@@ -1162,11 +1162,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-<<<<<<< HEAD
-  background: #622695;
-=======
-  background: #0ff;
->>>>>>> Change a theme!
+  background: #0d086e;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
