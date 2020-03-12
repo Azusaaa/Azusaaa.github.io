@@ -116,11 +116,6 @@
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
-
-  </li>
         <li class="menu-item menu-item-tags">
 
     <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
@@ -158,6 +153,75 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/12/JavaScript%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/12/JavaScript%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">JavaScript事件循环机制</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-12 13:51:07 / 修改时间：14:06:59" itemprop="dateCreated datePublished" datetime="2020-03-12T13:51:07+08:00">2020-03-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h3><p>因为<code>JavaScript</code>是单线程的，所谓的单线程是指 JS 引擎中负责解释和执行<code>javascript</code>的线程只有一个，称之为”主线程“</p>
+<p>除了主线程外，还存在着其他线程。例如：处理<code>AJAX</code>请求的线程、处理<code>DOM</code>事件的线程、定时器线程、读写文件的线程（例如<code>Node.js</code>）等等。</p>
+<h3 id="消息队列和事件循环"><a href="#消息队列和事件循环" class="headerlink" title="消息队列和事件循环"></a>消息队列和事件循环</h3><p>异步过程中，工作线程在异步操作完成后需要通知主线程，那么通知机制是怎么样的呢？就是利用<strong>消息队列和事件循环</strong>。</p>
+<blockquote>
+<p>工作线程将消息放在消息队列，主线程通过事件循环过程去取消息。</p>
+</blockquote>
+<ul>
+<li>消息队列：消息队列是一个先进先出的队列，里面存放各类消息。</li>
+<li>事件循环：事件循环是指主线程重复从消息队列中取信息并执行的过程。</li>
+</ul>
+<p>实际上，主线程只会做一件事情，就是从消息队列中取信息、执行信息，再反复循环。当消息队列为空时，就会等待消息队列变成非空。这种机制就叫做<strong>事件循环机制</strong>，取一个消息并执行的过程叫做一次循环。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -362,9 +426,15 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -401,26 +471,6 @@
   </div>
 
         
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
 
 
 
