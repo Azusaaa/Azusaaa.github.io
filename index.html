@@ -157,6 +157,314 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/17/JS%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/17/JS%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">JS数据缓存</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-17 21:34:41 / 修改时间：22:57:48" itemprop="dateCreated datePublished" datetime="2020-03-17T21:34:41+08:00">2020-03-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h4><p><code>cookie</code>非常小，它的大小限制在4kb左右，主要用于保存登陆信息，比如你登陆某个网站市场可以看到“记住密码”，这就是通过在cookie中存入一段辨别用户身份的数据来实现的。</p>
+<h4 id="sessionStorage（临时保存"><a href="#sessionStorage（临时保存" class="headerlink" title="sessionStorage（临时保存"></a>sessionStorage（临时保存</h4><p><code>sessionStorage</code>可以将数据保存在客户端的session对象中，不与服务器进行交互通信，其生命周期仅在当前会话下有效，会话关闭其中的数据会被清空。</p>
+<h4 id="localStorage（永久保存"><a href="#localStorage（永久保存" class="headerlink" title="localStorage（永久保存"></a>localStorage（永久保存</h4><p><code>localStorage</code>将数据保存在客户端本地的硬件设备(通常指硬盘，也可以是其他硬件设备)中，即使浏览器被关闭了，该数据仍然存在，下次打开浏览器访问网站时仍然可以继续使用。</p>
+<h3 id="三者的不同之处"><a href="#三者的不同之处" class="headerlink" title="三者的不同之处"></a>三者的不同之处</h3><ul>
+<li>数据的生命周期不同</li>
+</ul>
+<p><strong>Cookie</strong>一般由服务器生成，可以设置失效时间(maxAge)，如果浏览器生成cookie，默认关闭后失效</p>
+<p><strong>localStorage</strong>除非被永久清除，否则永久保存</p>
+<p><strong>sessionStorage</strong>仅在当前会话有效，关闭页面或浏览器后被清除</p>
+<ul>
+<li>存放数据不同</li>
+</ul>
+<p><strong>cookie</strong>一般为4KB，<strong>localStorage</strong>和<strong>sessionStorage</strong>一般为5MB。</p>
+<ul>
+<li>与服务器端通信不同</li>
+</ul>
+<p><strong>cookie</strong> – 由对服务器的请求来传递，每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题</p>
+<p><strong>localStorage</strong>和<strong>sessionStorage</strong> – 数据不是由每个服务器请求传递的，而是只有在请求时使用数据，不参与和服务器的通信</p>
+<ul>
+<li>易用性</li>
+</ul>
+<p><strong>cookie</strong>需要自己封装<code>setCookie</code>, <code>getCookie</code></p>
+<p><strong>localStorage</strong>和<strong>sessionStorage</strong>则可以用原生接口，也可以再次封装来对Object和Array有更好的支持</p>
+<ul>
+<li>安全性</li>
+</ul>
+<p><code>localStorage</code>和<code>sessionStorage</code>不会随<code>HTTP header</code>发送到服务器端，所以安全性相对cookie来说较高一些，不用担心截获，但仍旧存在伪造问题</p>
+<ul>
+<li>应用场景</li>
+</ul>
+<h3 id="WebStorage使用方法与实例"><a href="#WebStorage使用方法与实例" class="headerlink" title="WebStorage使用方法与实例"></a>WebStorage使用方法与实例</h3><h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; webStorage &#x3D;&gt; localStorage&#x2F;sessionStorage </span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;保存数据，以键值对的方式储存信息。</span><br><span class="line">webStorage.setItem (key, value)		</span><br><span class="line">&#x2F;&#x2F;获取数据，将键值传入，即可获取到对应的value值。</span><br><span class="line">webStorage.getItem (key)					</span><br><span class="line">&#x2F;&#x2F;删除单个数据，根据键值移除对应的信息。</span><br><span class="line">webStorage.removeItem (key)			</span><br><span class="line">&#x2F;&#x2F;删除所有的数据</span><br><span class="line">webStorage.clear ()</span><br><span class="line">&#x2F;&#x2F;获取某个索引的key</span><br><span class="line">webStorage.key (index)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="封装方法实例（读取与保存数据方法封装在script-js中"><a href="#封装方法实例（读取与保存数据方法封装在script-js中" class="headerlink" title="封装方法实例（读取与保存数据方法封装在script.js中)"></a>封装方法实例（读取与保存数据方法封装在script.js中)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;sessionStorage 示例  (保存一个会话周期:从打开浏览器——到关闭浏览器窗口)</span><br><span class="line">function saveStorage(id)&#123;</span><br><span class="line">    var target&#x3D;document.getElementById(id);</span><br><span class="line">    var str&#x3D;target.value;</span><br><span class="line">    sessionStorage.setItem(&quot;message&quot;,str);</span><br><span class="line">    &#x2F;&#x2F;或者sessionStorage.message&#x3D;str;</span><br><span class="line">&#125;</span><br><span class="line">function loadStorage(id)&#123;</span><br><span class="line">    var target&#x3D;document.getElementById(id);</span><br><span class="line">    var msg&#x3D;sessionStorage.getItem(&quot;message&quot;);</span><br><span class="line">    &#x2F;&#x2F;或者var msg&#x3D;sessionStorage.message;</span><br><span class="line">    target.innerHTML&#x3D;msg;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;localStorage 示例(可永久保存)    </span><br><span class="line">function saveStorage(id)&#123;</span><br><span class="line">    var target&#x3D;document.getElementById(id);</span><br><span class="line">    var str&#x3D;target.value;</span><br><span class="line">    localStorage.setItem(&quot;message&quot;,str);</span><br><span class="line">    &#x2F;&#x2F;或者localStorage.message&#x3D;str;</span><br><span class="line">&#125;</span><br><span class="line">function loadStorage(id)&#123;</span><br><span class="line">    var target&#x3D;document.getElementById(&quot;msg&quot;);</span><br><span class="line">    var msg&#x3D;localStorage.getItem(&quot;message&quot;);</span><br><span class="line">    &#x2F;&#x2F;或者var msg&#x3D;localStorage.message;</span><br><span class="line">    target.innerHTML&#x3D;msg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/16/JS%E4%B8%AD%E7%9A%84call-apply%E4%B8%8Ebind/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/16/JS%E4%B8%AD%E7%9A%84call-apply%E4%B8%8Ebind/" class="post-title-link" itemprop="url">JS中的call,apply与bind</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-16 21:36:21" itemprop="dateCreated datePublished" datetime="2020-03-16T21:36:21+08:00">2020-03-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-17 15:37:11" itemprop="dateModified" datetime="2020-03-17T15:37:11+08:00">2020-03-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>首先，在了解call，apply及bind的区别前，我们要先弄清楚一个概念，<strong>this 永远指向最后调用它的那个对象</strong>（注意“最后调用”！！）。而使用call、apply和bind都能够是函数的上下文发生改变，即改变了this的指向。</p>
+<p>除此以外，还有<strong>ES6箭头函数</strong>、<strong>在函数内部使用_this = this</strong>以及<strong>new实例化一个对象</strong>等方法实现指向的改变。</p>
+<blockquote>
+<p>call()、apply()、bind()是用来改变this的指向的</p>
+</blockquote>
+<h3 id="call与apply"><a href="#call与apply" class="headerlink" title="call与apply"></a>call与apply</h3><p><code>call()</code>与<code>apply()</code>均为<code>Function.prototype</code>中的方法，使用方法基本相似，二者的区别只是传入的参数不同：</p>
+<ul>
+<li><code>call()</code>：第一个参数是this值没有变化，变化的是<strong>其余参数都直接传递给函数</strong>。在使用<code>call()</code>方法时，<strong>传递给函数的参数必须逐个列举出来</strong>。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function.call(thisArg, arg1, arg2, ...)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>apply()</code>：传递给函数的是<strong>参数数组</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function.apply(thisArg, [argsArray])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D;&#123;</span><br><span class="line">	name : &quot;Cherry&quot;,</span><br><span class="line">  fn : function (a,b) &#123;</span><br><span class="line">  	console.log( a + b)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var b1 &#x3D; a.fn;</span><br><span class="line">var b2 &#x3D; a.fn;</span><br><span class="line">b1.apply(a,[1,2])  &#x2F;&#x2F; 3</span><br><span class="line">b2.call(a,1,2)		 &#x2F;&#x2F; 3</span><br></pre></td></tr></table></figure>
+
+<p><em>注：</em>如果call()和apply()的第一个参数是null或者undefined，那么this的指向就是全局变量，在浏览器里就是window对象。</p>
+<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p><code>bind()</code> 方法创建一个新的函数，在 <code>bind()</code> 被调用时，这个新函数的 <code>this</code> 被指定为 <code>bind()</code> 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function.bind(thisArg[, arg1[, arg2[, ...]]])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const module &#x3D; &#123;</span><br><span class="line">  x: 42,</span><br><span class="line">  getX: function() &#123;</span><br><span class="line">    return this.x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const unboundGetX &#x3D; module.getX;</span><br><span class="line">console.log(unboundGetX()); 	&#x2F;&#x2F; undefined</span><br><span class="line">&#x2F;&#x2F; 此时UNboundGetX函数this指向windows全局变量，this.x未定义</span><br><span class="line"></span><br><span class="line">const boundGetX &#x3D; unboundGetX.bind(module);</span><br><span class="line">console.log(boundGetX());			&#x2F;&#x2F; 42</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/15/JS%E9%97%AD%E5%8C%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/15/JS%E9%97%AD%E5%8C%85/" class="post-title-link" itemprop="url">JS闭包</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-15 22:13:39" itemprop="dateCreated datePublished" datetime="2020-03-15T22:13:39+08:00">2020-03-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-16 13:44:00" itemprop="dateModified" datetime="2020-03-16T13:44:00+08:00">2020-03-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="闭包是什么？"><a href="#闭包是什么？" class="headerlink" title="闭包是什么？"></a>闭包是什么？</h3><p>闭包是指<strong>有权访问另一个函数作用域中的变量的函数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function outer() &#123;</span><br><span class="line">     var  a &#x3D; &#39;变量a&#39;</span><br><span class="line">     var  inner &#x3D; function()&#123;</span><br><span class="line">            console.info(a)</span><br><span class="line">     &#125;</span><br><span class="line">    return inner    &#x2F;&#x2F; inner 就是一个闭包函数，因为他能够访问到outer函数的作用域</span><br><span class="line">&#125;</span><br><span class="line">var  inner &#x3D; outer()   &#x2F;&#x2F; 获得inner闭包函数</span><br><span class="line">inner()   &#x2F;&#x2F;&quot;变量a&quot;</span><br></pre></td></tr></table></figure>
+
+<p>inner()是依赖于outer()的，因此当outer()函数的返回值是inner()时，outer()中的变量也会始终存在于内存中，不会在调用结束时，被垃圾回收机制回收。</p>
+<blockquote>
+<p>闭包是一种保护私有变量的机制，在函数执行时形成私有的作用域，保护里面的私有变量不受外界干扰。</p>
+<p>直观的说就是形成一个不销毁的栈环境。</p>
+</blockquote>
+<h3 id="闭包的应用场景"><a href="#闭包的应用场景" class="headerlink" title="闭包的应用场景"></a>闭包的应用场景</h3><h4 id="1、函数工厂"><a href="#1、函数工厂" class="headerlink" title="1、函数工厂"></a>1、函数工厂</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function makeAdder(x) &#123;</span><br><span class="line">  return function(y) &#123;</span><br><span class="line">    return x + y;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var add5 &#x3D; makeAdder(5);</span><br><span class="line">var add10 &#x3D; makeAdder(10);</span><br><span class="line">console.log(add5(2));  	&#x2F;&#x2F; 7</span><br><span class="line">console.log(add10(2)); 	&#x2F;&#x2F; 12</span><br></pre></td></tr></table></figure>
+
+<p>从本质上讲，<code>makeAdder</code> 是一个函数工厂 — 他创建了将指定的值和它的参数相加求和的函数。在上面的示例中，我们使用函数工厂创建了两个新函数 — 一个将其参数和 5 求和，另一个和 10 求和。</p>
+<p><code>add5</code> 和 <code>add10</code> 都是闭包。它们共享相同的函数定义，但是保存了不同的词法环境。在 <code>add5</code> 的环境中，<code>x</code> 为 5。而在 <code>add10</code> 中，<code>x</code> 则为 10。</p>
+<h4 id="2、用闭包解决递归"><a href="#2、用闭包解决递归" class="headerlink" title="2、用闭包解决递归"></a>2、用闭包解决递归</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function  factorial(num) &#123;</span><br><span class="line">   if(num&lt;&#x3D; 1) &#123;</span><br><span class="line">       return 1;</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">      return num * factorial(num-1)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 使用闭包实现递归</span><br><span class="line">function newFactorial &#x3D; （function f(num)&#123;</span><br><span class="line">    if(num&lt;1) &#123;return 1&#125;</span><br><span class="line">    else &#123;</span><br><span class="line">       return num* f(num-1)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;）</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、用闭包模仿块级作用域（现在都用let和const定义"><a href="#3、用闭包模仿块级作用域（现在都用let和const定义" class="headerlink" title="3、用闭包模仿块级作用域（现在都用let和const定义"></a>3、用闭包模仿块级作用域（现在都用let和const定义</h4><p>ES6没出来之前，用var定义变量会存在变量提升的问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">for(var i&#x3D;0; i&lt;10; i++)&#123;</span><br><span class="line">    console.info(i)</span><br><span class="line">&#125;</span><br><span class="line">alert(i)  &#x2F;&#x2F; 变量提升，弹出10</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;为了避免i的提升可以这样做</span><br><span class="line">(function () &#123;</span><br><span class="line">    for(var i&#x3D;0; i&lt;10; i++)&#123;</span><br><span class="line">         console.info(i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)()</span><br><span class="line">alert(i)   &#x2F;&#x2F; underfined   因为i随着闭包函数的退出，执行环境销毁，变量回收</span><br></pre></td></tr></table></figure>
+
+<h4 id="4、用闭包模拟私有方法"><a href="#4、用闭包模拟私有方法" class="headerlink" title="4、用闭包模拟私有方法"></a>4、用闭包模拟私有方法</h4><p> JavaScript 没有原生的private变量提供私有方法，但我们可以使用闭包来模拟私有方法。私有方法不仅仅有利于限制对代码的访问：还提供了管理全局命名空间的强大能力，避免非核心的方法弄乱了代码的公共接口部分。</p>
+<p>下面的示例展现了如何使用闭包来定义公共函数，并令其可以访问私有函数和变量。这个方式也称为<strong>模块模式（module pattern）</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var makeCounter &#x3D; function() &#123;</span><br><span class="line">  var privateCounter &#x3D; 0;</span><br><span class="line">  function changeBy(val) &#123;</span><br><span class="line">    privateCounter +&#x3D; val;</span><br><span class="line">  &#125;</span><br><span class="line">  return &#123;</span><br><span class="line">    increment: function() &#123;</span><br><span class="line">      changeBy(1);</span><br><span class="line">    &#125;,</span><br><span class="line">    decrement: function() &#123;</span><br><span class="line">      changeBy(-1);</span><br><span class="line">    &#125;,</span><br><span class="line">    value: function() &#123;</span><br><span class="line">      return privateCounter;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var Counter1 &#x3D; makeCounter();</span><br><span class="line">var Counter2 &#x3D; makeCounter();</span><br><span class="line">console.log(Counter1.value()); &#x2F;* logs 0 *&#x2F;</span><br><span class="line">Counter1.increment();</span><br><span class="line">Counter1.increment();</span><br><span class="line">console.log(Counter1.value()); &#x2F;* logs 2 *&#x2F;</span><br><span class="line">Counter1.decrement();</span><br><span class="line">console.log(Counter1.value()); &#x2F;* logs 1 *&#x2F;</span><br><span class="line">console.log(Counter2.value()); &#x2F;* logs 0 *&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>请注意两个计数器 <code>Counter1</code> 和 <code>Counter2</code> 是如何维护它们各自的独立性的。每个闭包都是引用自己词法作用域内的变量 <code>privateCounter</code> 。</p>
+<h3 id="闭包存在的坑"><a href="#闭包存在的坑" class="headerlink" title="闭包存在的坑"></a>闭包存在的坑</h3><h4 id="1、this指向问题"><a href="#1、this指向问题" class="headerlink" title="1、this指向问题"></a>1、this指向问题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var object &#x3D; &#123;</span><br><span class="line">	name: &quot;object&quot;,</span><br><span class="line">	getName: function()&#123;</span><br><span class="line">		return function()&#123;</span><br><span class="line">			console.log(this.name)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">object.getName()	&#x2F;&#x2F;undefined</span><br><span class="line">&#x2F;&#x2F;因为闭包函数是在window作用域下执行的，也就是说，this，指向windows</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、内存泄露问题"><a href="#2、内存泄露问题" class="headerlink" title="2、内存泄露问题"></a>2、内存泄露问题</h4><blockquote>
+<p>内存泄漏（Memory Leak）是指程序中己动态分配的堆内存由于某种原因程序未释放或无法释放，造成系统内存的浪费，导致程序运行速度减慢甚至系统崩溃等严重后果.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function  showId() &#123;</span><br><span class="line">    var el &#x3D; document.getElementById(&quot;app&quot;)</span><br><span class="line">    el.onclick &#x3D; function()&#123;</span><br><span class="line">      aler(el.id)   &#x2F;&#x2F; 这样会导致闭包引用外层的el，当执行完showId后，el无法释放</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 改成下面</span><br><span class="line">function  showId() &#123;</span><br><span class="line">    var el &#x3D; document.getElementById(&quot;app&quot;)</span><br><span class="line">    var id  &#x3D; el.id</span><br><span class="line">    el.onclick &#x3D; function()&#123;</span><br><span class="line">      aler(id)   &#x2F;&#x2F; 这样会导致闭包引用外层的el，当执行完showId后，el无法释放</span><br><span class="line">    &#125;</span><br><span class="line">    el &#x3D; null    &#x2F;&#x2F; 主动释放el</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/14/JS%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -180,10 +488,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-14 20:41:39 / 修改时间：23:33:04" itemprop="dateCreated datePublished" datetime="2020-03-14T20:41:39+08:00">2020-03-14</time>
+              <time title="创建时间：2020-03-14 20:41:39" itemprop="dateCreated datePublished" datetime="2020-03-14T20:41:39+08:00">2020-03-14</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-15 21:35:45" itemprop="dateModified" datetime="2020-03-15T21:35:45+08:00">2020-03-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -205,8 +519,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>众所周知，<code>JavaScript</code> 也是一门面向对象的编程语言，处处皆对象（object）。因此，不论我们给数组、函数定义了什么内容，他们总是有一些相同的方法和属性，比如说<code>hasOwnProperty()</code>，<code>toString()</code> 等。</p>
-<p>按笔者的理解便是：一个对象不仅拥有自身所定义的属性，还会从其他对象中继承一些属性。当JavaScript在一个对象中找不到需要的属性时，便会到该对象的父属性上找，以此类推，便构成了<strong>对象的原型链</strong></p>
+          <p>一个对象不仅拥有自身所定义的属性，还会从其他对象中继承一些属性。当JavaScript在一个对象中找不到需要的属性时，便会到该对象的父属性上找，以此类推，便构成了<strong>对象的原型链</strong></p>
 <hr>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">构造函数：function Foo( )&#123; &#125;;</span><br><span class="line">实例对象：let f1 &#x3D; new foo;</span><br></pre></td></tr></table></figure>
 
@@ -885,7 +1198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -898,7 +1211,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
