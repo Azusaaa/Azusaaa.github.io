@@ -157,6 +157,161 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E7%89%A9%E7%90%86%E5%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/24/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E7%89%A9%E7%90%86%E5%B1%82/" class="post-title-link" itemprop="url">【计算机网络】第二章：物理层</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-24 20:41:29" itemprop="dateCreated datePublished" datetime="2020-03-24T20:41:29+08:00">2020-03-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/for-in-%E5%92%8C-for-of/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/20/for-in-%E5%92%8C-for-of/" class="post-title-link" itemprop="url">for...in和for...of</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-20 20:31:33 / 修改时间：22:19:46" itemprop="dateCreated datePublished" datetime="2020-03-20T20:31:33+08:00">2020-03-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>通过举多个例子进行说明</p>
+<h4 id="例子1：遍历数组"><a href="#例子1：遍历数组" class="headerlink" title="例子1：遍历数组"></a>例子1：遍历数组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const arr1 &#x3D;[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];</span><br><span class="line">&#x2F;&#x2F; for...in 返回数组的下标</span><br><span class="line">for(let i in arr1)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; 0,1,2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; for...of 返回数组的元素</span><br><span class="line">for(let i of arr1)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; a,b,c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="例子2：给数组手动添加属性"><a href="#例子2：给数组手动添加属性" class="headerlink" title="例子2：给数组手动添加属性"></a>例子2：给数组手动添加属性</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const arr2 &#x3D; [&#39;a&#39;, &#39;b&#39;];</span><br><span class="line">arr2.name &#x3D; &#39;c&#39;;</span><br><span class="line">&#x2F;&#x2F; for..in循环可以遍历出&#39;name&#39;这个键名，for..of结果则为 a, b</span><br><span class="line">for(let i in arr2)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F;0,1,name</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="例子3：遍历对象"><a href="#例子3：遍历对象" class="headerlink" title="例子3：遍历对象"></a>例子3：遍历对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const json &#x3D; &#123;&quot;a&quot;:1, &quot;b&quot;:2, &quot;c&quot;:3&#125;;</span><br><span class="line">&#x2F;&#x2F; for..in遍历获取对象的key值 (对应键值对key-value)</span><br><span class="line">for(let i in json)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; a,b,c</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; for..of报错</span><br><span class="line">for(let i of json)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; TypeError: json is not iterable</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="for-in-的特点："><a href="#for-in-的特点：" class="headerlink" title="for..in 的特点："></a>for..in 的特点：</h4><ul>
+<li>for..in 语句用于对<strong>数组</strong>或<strong>对象</strong>的属性进行循环操作</li>
+<li>for..in 循环中的代码每执行一次，就会对数组元素或者对象的属性进行一次操作</li>
+<li>for..in 语句会遍历一个对象的<strong>可枚举属性</strong>（包括继承而来的属性）。</li>
+</ul>
+<h4 id="for-of-的特点："><a href="#for-of-的特点：" class="headerlink" title="for..of 的特点："></a>for..of 的特点：</h4><ul>
+<li>for..of 语句在<strong>可迭代对象</strong>(包括<strong>Array，Map，Set，String，arguments对象</strong>等)上创建一个迭代循环，调用自定义迭代钩子，并为每个不同属性的值执行语句。</li>
+<li>一个数据结构只要部署了<code>Symbol.iterator</code>属性，就被视为 <strong>iterator接口</strong>，就可以for..in</li>
+<li>for..of 可以与<code>break continue</code>和<code>return</code>配合使用（即可以随时退出循环，比forEach强</li>
+</ul>
+<hr>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>for..in 遍历的是<strong>key值</strong>，for..of遍历的是<strong>value值</strong>，因此前者更适合遍历对象</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Object.prototype.objCustom &#x3D; function() &#123;&#125;; </span><br><span class="line">Array.prototype.arrCustom &#x3D; function() &#123;&#125;;</span><br><span class="line"> </span><br><span class="line">let iterable &#x3D; [3, 5, 7];</span><br><span class="line">iterable.foo &#x3D; &#39;hello&#39;;</span><br><span class="line"> </span><br><span class="line">for (let i in iterable) &#123;</span><br><span class="line">  console.log(i); &#x2F;&#x2F; 0, 1, 2, &quot;foo&quot;, &quot;arrCustom&quot;, &quot;objCustom&quot;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">for (let i in iterable) &#123;</span><br><span class="line">  if (iterable.hasOwnProperty(i)) &#123;</span><br><span class="line">    console.log(i); &#x2F;&#x2F; 0, 1, 2, &quot;foo&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">for (let i of iterable) &#123;</span><br><span class="line">  console.log(i); &#x2F;&#x2F; 3, 5, 7</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>for...in</code> 语句以原始插入顺序迭代对象的可枚举属性。</p>
+<p><code>for...of</code> 语句遍历可迭代对象定义要迭代的数据。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/17/JS%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -496,7 +651,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-15 21:35:45" itemprop="dateModified" datetime="2020-03-15T21:35:45+08:00">2020-03-15</time>
+                <time title="修改时间：2020-03-20 21:35:54" itemprop="dateModified" datetime="2020-03-20T21:35:54+08:00">2020-03-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -578,6 +733,10 @@
 <blockquote>
 <p>请注意<strong>proto</strong>与prototype的区别！<strong>proto</strong>才是真正连接原型链的东西，而prototype只是构造函数的一个指针属性而已</p>
 </blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 将伪数组（arguments和字符串）转化成数组</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 方法1：Array.prototype.slice.call(arguments)</span><br><span class="line">function foo(a,b,c,d) &#123; </span><br><span class="line">   var arg &#x3D; Array.prototype.slice.call(arguments); </span><br><span class="line">   console.log(arg); </span><br><span class="line">   console.log(typeof arguments);</span><br><span class="line">   console.log(arguments);</span><br><span class="line">&#125; </span><br><span class="line">foo(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;); &#x2F;&#x2F; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]， object</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 方法2：ES6提供了Array.from，适用对象（伪数组对象和可遍历对象）</span><br><span class="line">let bar &#x3D; new Set([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]);</span><br><span class="line">Array.from(bar); 	&#x2F;&#x2F; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 方法3：拓展运算符 ...</span><br><span class="line">function foo(a,b,c,d) &#123;</span><br><span class="line">&#x2F;&#x2F;    console.log(Array.prototype.slice.call(arguments));</span><br><span class="line">&#x2F;&#x2F;    console.log(Array.from(arguments));</span><br><span class="line">    console.log([...arguments]); &#x2F;&#x2F; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]</span><br><span class="line">&#125;</span><br><span class="line">foo(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;);		&#x2F;&#x2F; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;];</span><br></pre></td></tr></table></figure>
+
+
+
 
       
     </div>
@@ -620,10 +779,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-14 17:20:55 / 修改时间：17:21:35" itemprop="dateCreated datePublished" datetime="2020-03-14T17:20:55+08:00">2020-03-14</time>
+              <time title="创建时间：2020-03-14 17:20:55" itemprop="dateCreated datePublished" datetime="2020-03-14T17:20:55+08:00">2020-03-14</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-24 21:09:02" itemprop="dateModified" datetime="2020-03-24T21:09:02+08:00">2020-03-24</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -645,7 +810,42 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h3 id="计算机网络的性能"><a href="#计算机网络的性能" class="headerlink" title="计算机网络的性能"></a>计算机网络的性能</h3><h4 id="1、速率"><a href="#1、速率" class="headerlink" title="1、速率"></a>1、速率</h4><p>连接在计算机网络上的主机在数字信道上传送数据位数的速率，也称<code>data rate &amp; bit rate</code>，单位是b/s, kb/s, Mb/s, Gb/s。和正常理解的网速关系是 网速÷8 = 速率</p>
+<h4 id="2、带宽"><a href="#2、带宽" class="headerlink" title="2、带宽"></a>2、带宽</h4><p>数据通信领域中，数字信道所能传输的最高速率，单位是b/s，kb/s，Mb/s，Gb/s</p>
+<h4 id="3、吞吐量"><a href="#3、吞吐量" class="headerlink" title="3、吞吐量"></a>3、吞吐量</h4><p>即单位时间内通过某个网络的数据量，单位是b/s，Mb/s等</p>
+<h4 id="4、时延"><a href="#4、时延" class="headerlink" title="4、时延"></a>4、时延</h4><p>分为<em>发送时延、传播时延、处理时延和排队时延</em>。</p>
+<p>发送时延 = 数据块长度（比特）/ 信道带宽（比特/秒）</p>
+<p>传播时延 = 信道长度（米）/ 信号在信道上的传播速率（米/秒）</p>
+<p>处理时延，即网络结点存储转发处理时间；排队时延，网络结点缓存队列排队时间</p>
+<h4 id="5、时延带宽积"><a href="#5、时延带宽积" class="headerlink" title="5、时延带宽积"></a>5、时延带宽积</h4><p>时延带宽积 = 传播时延 x 带宽，用于确认有多少数据在链路上</p>
+<h4 id="6、往返时间RRT（Round-Trip-Time）"><a href="#6、往返时间RRT（Round-Trip-Time）" class="headerlink" title="6、往返时间RRT（Round-Trip Time）"></a>6、往返时间RRT（Round-Trip Time）</h4><p>从发送方发送数据开始，到发送方收到接收方确认</p>
+<h4 id="7、利用率"><a href="#7、利用率" class="headerlink" title="7、利用率"></a>7、利用率</h4><p>信道利用率：有数据通过时间 / (有+无)数据通过时间</p>
+<p>网络利用率：信道利用率加权平均值</p>
+<p>网络当前时延D = 网络空闲时时延D0 / (1 - 信道利用率U)</p>
+<hr>
+<h3 id="计算机网络的体系结构"><a href="#计算机网络的体系结构" class="headerlink" title="计算机网络的体系结构"></a>计算机网络的体系结构</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><blockquote>
+<p>ISO：国际标准化组织</p>
+<p>OSI/RM：互联网法律上的国际标准</p>
+<p>TCP/IP Suite：因特网事实上的国际标准</p>
+<p>NetWork Protocols：数据交换遵守的规则、标准或约定</p>
+<p>网络体系结构：计算机网络各层及其协议的集合 </p>
+</blockquote>
+<h4 id="OSI参考模型（从高到低"><a href="#OSI参考模型（从高到低" class="headerlink" title="OSI参考模型（从高到低"></a>OSI参考模型（从高到低</h4><ul>
+<li>应用层——所有能产生网络流量和与用户交互的程序</li>
+<li>表示层——在传输之前是否进行加密 或 压缩 处理，二进制或ASCII码表示（开发人员需要考虑的层</li>
+<li>会话层——服务端和客户端建立的会话（查木马netstat -nb，看需求端和网站之间的连接</li>
+<li>传输层——可靠传输（建立会话），流量控制，不可靠传输（一个数据包即可，不需要建立会话，例如向DNS查询网站IP地址）</li>
+<li>网络层——负责选择最佳路径，规划IP地址(ipv4和ipv6变化只会影响网络层)</li>
+<li>数据链路层——帧的开始和结束，还有透明传输，差错校验(纠错由传输层解决)</li>
+<li>物理层——定义网络设备接口标准，电气标准(电压)，如何在物理链路上传输的更快</li>
+</ul>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%911OSI%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B.png" alt="OSI参考模型"></p>
+<h4 id="OSI-网络排错与网络安全"><a href="#OSI-网络排错与网络安全" class="headerlink" title="OSI 网络排错与网络安全"></a>OSI 网络排错与网络安全</h4><p>每一层都为上一层提供服务，一旦某一层崩了，上面所有层都崩了，所以排查问题从最上层(物理层)排查；</p>
+<h5 id="1、物理层故障"><a href="#1、物理层故障" class="headerlink" title="1、物理层故障"></a>1、物理层故障</h5><p>查看链接状态，发送和接收的数据包数值（网线接口之类的</p>
+<h5 id="2、数据链路层故障"><a href="#2、数据链路层故障" class="headerlink" title="2、数据链路层故障"></a>2、数据链路层故障</h5><p>Mac地址冲突，2个一样的Mac地址同时访问；ADSL(非对称数字用户线路)欠费；两端的接口网速没有协商一致；计算机连接到其它VLAN(虚拟互联网)中。</p>
+<h5 id="3、网络层故障"><a href="#3、网络层故障" class="headerlink" title="3、网络层故障"></a>3、网络层故障</h5><p>配置错误的IP地址，子网掩码，网关；数据有没有通过各个网关到达指定位置；防火墙设置</p>
+<h5 id="4、应用层故障"><a href="#4、应用层故障" class="headerlink" title="4、应用层故障"></a>4、应用层故障</h5><p>SQL注入漏洞 上传漏洞 分布式攻击（密码学DNS有讲过</p>
+
       
     </div>
 
@@ -994,144 +1194,12 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/08/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/08/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="post-title-link" itemprop="url">我的第一篇文章</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-08 22:07:18" itemprop="dateCreated datePublished" datetime="2020-03-08T22:07:18+08:00">2020-03-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-11 11:24:58" itemprop="dateModified" datetime="2020-03-11T11:24:58+08:00">2020-03-11</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>hello，文章内容测试desu</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/08/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/08/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-08 21:51:03" itemprop="dateCreated datePublished" datetime="2020-03-08T21:51:03+08:00">2020-03-08</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1198,7 +1266,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1211,7 +1279,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
