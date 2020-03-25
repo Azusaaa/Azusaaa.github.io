@@ -20,17 +20,29 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Welcome to Natsun Blog~">
+  <meta name="description" content="物理层定义的标准物理层解决如何在链接各种计算机的传输媒体上传输数据比特流，而不是指具体的传输媒体。物理层的主要任务：确定传输媒体的接口的一些特性，包括，机械特性：接口形状，大小，引线数量电气特性：例如规定电压范围(-5V-5V)功能特性：例如规定-5V上0，+5V是1过程特性：也称规程特性，规定建立连接时各个相关部件的工作步骤 通信的目的是传送消息数据(data)——运送消息的实体。信号(sign">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【计算机网络】第二章：物理层">
 <meta property="og:url" content="http://yoursite.com/2020/03/24/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E7%89%A9%E7%90%86%E5%B1%82/index.html">
 <meta property="og:site_name" content="Natsun Blog">
-<meta property="og:description" content="Welcome to Natsun Blog~">
+<meta property="og:description" content="物理层定义的标准物理层解决如何在链接各种计算机的传输媒体上传输数据比特流，而不是指具体的传输媒体。物理层的主要任务：确定传输媒体的接口的一些特性，包括，机械特性：接口形状，大小，引线数量电气特性：例如规定电压范围(-5V-5V)功能特性：例如规定-5V上0，+5V是1过程特性：也称规程特性，规定建立连接时各个相关部件的工作步骤 通信的目的是传送消息数据(data)——运送消息的实体。信号(sign">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E8%B0%83%E5%88%B6.png">
+<meta property="og:image" content="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F.png">
+<meta property="og:image" content="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%9B%BC%E5%BD%BB%E6%96%AF%E7%89%B9%E7%BC%96%E7%A0%81.png">
+<meta property="og:image" content="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E5%B7%AE%E5%88%86%E6%9B%BC%E5%BD%BB%E6%96%AF%E7%89%B9%E7%BC%96%E7%A0%81.png">
+<meta property="og:image" content="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E4%BC%A0%E8%BE%93%E8%AE%BE%E5%A4%87%E9%9B%86%E7%BA%BF%E5%99%A8.png">
+<meta property="og:image" content="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E4%BF%A1%E9%81%93%E5%A4%8D%E7%94%A8%E6%8A%80%E6%9C%AF.png">
+<meta property="og:image" content="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E9%A2%91%E5%88%86%E5%A4%8D%E7%94%A8FDM.png">
+<meta property="og:image" content="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%97%B6%E5%88%86%E5%A4%8D%E7%94%A8TDM.png">
+<meta property="og:image" content="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%B3%A2%E5%88%86%E5%A4%8D%E7%94%A8WDM.png">
+<meta property="og:image" content="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E7%A0%81%E5%88%86%E5%A4%8D%E7%94%A8CDM.png">
 <meta property="article:published_time" content="2020-03-24T12:41:29.000Z">
-<meta property="article:modified_time" content="2020-03-24T12:41:29.941Z">
+<meta property="article:modified_time" content="2020-03-25T07:14:13.966Z">
 <meta property="article:author" content="Xya Fred">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B.png">
 
 <link rel="canonical" href="http://yoursite.com/2020/03/24/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E7%89%A9%E7%90%86%E5%B1%82/">
 
@@ -184,6 +196,13 @@
 
               <time title="创建时间：2020-03-24 20:41:29" itemprop="dateCreated datePublished" datetime="2020-03-24T20:41:29+08:00">2020-03-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-25 15:14:13" itemprop="dateModified" datetime="2020-03-25T15:14:13+08:00">2020-03-25</time>
+              </span>
 
           
 
@@ -196,7 +215,51 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h3 id="物理层定义的标准"><a href="#物理层定义的标准" class="headerlink" title="物理层定义的标准"></a>物理层定义的标准</h3><p>物理层解决如何在链接各种计算机的传输媒体上传输<strong>数据比特流</strong>，而不是指具体的传输媒体。<br>物理层的主要任务：确定传输媒体的接口的一些特性，包括，<br>机械特性：接口形状，大小，引线数量<br>电气特性：例如规定电压范围(-5V-5V)<br>功能特性：例如规定-5V上0，+5V是1<br>过程特性：也称规程特性，规定建立连接时各个相关部件的工作步骤<br><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B.png" alt="数据通信模型"></p>
+<h4 id="通信的目的是传送消息"><a href="#通信的目的是传送消息" class="headerlink" title="通信的目的是传送消息"></a>通信的目的是传送消息</h4><p><strong>数据(data)</strong>——运送消息的实体。<br><strong>信号(signal)</strong>——数据的电气或电磁的表现。<br><strong>模拟信号</strong>——代表信息的参数的取值是连续的。<br><strong>数字信号</strong>——代表信息的参数的取值是离散的。<br><strong>码元(code)</strong>——在使用时间域的波形表示数字信号时，代表不同离散数值的基本波形。<br>在数字通信中常常用时间间隔相同的符号表示一个二进制数字，这样的时间间隔内的信号称为<strong>二进制码元</strong>。这个间隔称为<strong>码元长度</strong>，1 code可以携带n bit信息量(此时电压会有多个取值，例如1，2，…,7V，而不是只有2个取值)</p>
+<h4 id="信道的概念"><a href="#信道的概念" class="headerlink" title="信道的概念"></a>信道的概念</h4><p>信道一般表示向一个方向传输信息的媒体。所以通信线路往往包含一条发送信息的信道和一条接收信息的信道。<br><strong>单向通信</strong>(单工通信)——只能有一个方向的通信，没有反向交互。<br><strong>双向交替通信</strong>(半双工通信)——通信的双方都可以发送信息，但是不能双方同时发送或接收。<br><strong>双向同时通信</strong>(全双工通信)——通信的双发可以同时发送和接收。</p>
+<h4 id="什么是基带-baseband-和带通-base-pass-信号？"><a href="#什么是基带-baseband-和带通-base-pass-信号？" class="headerlink" title="什么是基带(baseband)和带通(base pass)信号？"></a>什么是基带(baseband)和带通(base pass)信号？</h4><ul>
+<li><p>基带信号(基本频率信号)——来自信源的信号，例如计算机输出的代表各种文字或图像文件的数据信号都属于基带信号。基带信号就是发出的直接表达了要传输的信息的信号，比如说我们说话的声波。</p>
+</li>
+<li><p>带通信号——把基带信号经过<strong>载波调制</strong>后，把信号的频率范围迁移到较高的频段以便在信道中传输(即仅在一段频率范围内能够通过信道)</p>
+</li>
+</ul>
+<p>因此在传输<strong>距离较近</strong>时，采用<strong>基带传输</strong>方式(衰减不大，信号内容不会变化)。传输<strong>距离较远</strong>时，采用<strong>带通传输</strong>方式，例如从计算机到监视器，打印机等外设的信号。</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E8%B0%83%E5%88%B6.png" alt="信号调制方法"></p>
+<h4 id="常用编码方式"><a href="#常用编码方式" class="headerlink" title="常用编码方式"></a>常用编码方式</h4><p>单极性不归零编码：只使用一个电压值，高电平表示1，低电平表示0<br>双极性不归零编码：用幅值相等的正负电平表示二进制数1和0<br>单极性归零编码：发送码1时高电平在整个码元期间只持续一段时间，其余时间返回零电平<br>双极性归零编码：正负零三个电平，信号本事携带同步信息</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F.png" alt="常用的编码方式"></p>
+<p>曼彻斯特编码：单极性编码的缺点是没有办法区分此时是没有信号，还是有信号，但是信号是0</p>
+<blockquote>
+<p>这种编码方式是bit中间有信号，低-高跳转表示0，高-低跳转表示1，一个时钟周期只可以表示一个bit，并且必须通过两次采样才能得到一个bit。它能携带时钟信号，而且能区分此时是没有信号还是信号为0.</p>
+</blockquote>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%9B%BC%E5%BD%BB%E6%96%AF%E7%89%B9%E7%BC%96%E7%A0%81.png" alt="曼彻斯特编码"></p>
+<p>差分曼彻斯特编码：抗干扰能力比曼彻斯特编码更强。bit与bit之间有信号跳变，表示下一个bit为0，bit与bit之间没有信号跳变，表示下一个bit为1</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E5%B7%AE%E5%88%86%E6%9B%BC%E5%BD%BB%E6%96%AF%E7%89%B9%E7%BC%96%E7%A0%81.png" alt="差分曼彻斯特编码"></p>
+<h3 id="物理层下面的传输媒体"><a href="#物理层下面的传输媒体" class="headerlink" title="物理层下面的传输媒体"></a>物理层下面的传输媒体</h3><p>集线器：</p>
+<p>工作特点是在网络中只起到<strong>信号放大</strong>和<strong>重发</strong>作用，目的是扩大网络的传输范围，而<strong>不具备信号的定向传送能力</strong>。由于安全性的问题，现在被<strong>交换机</strong>取代</p>
+<p>最大传输距离是100m；</p>
+<p>集线器是一个大的冲突域(意思是某个时间点只能是2台设备进行通信)。</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E4%BC%A0%E8%BE%93%E8%AE%BE%E5%A4%87%E9%9B%86%E7%BA%BF%E5%99%A8.png" alt="集线器"></p>
+<h3 id="信道复用技术"><a href="#信道复用技术" class="headerlink" title="信道复用技术"></a>信道复用技术</h3><p>复用（multiplexing）是通信技术中的基本概念</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E4%BF%A1%E9%81%93%E5%A4%8D%E7%94%A8%E6%8A%80%E6%9C%AF.png" alt="信道复用技术"></p>
+<h4 id="频分复用FDM（Frequency-Division-Multiplexing）"><a href="#频分复用FDM（Frequency-Division-Multiplexing）" class="headerlink" title="频分复用FDM（Frequency Division Multiplexing）"></a>频分复用FDM（Frequency Division Multiplexing）</h4><p>用户在分配到一定频带后，在通信过程中自始至终都占用这个频带。频带复用的所用用户在同样的时间占用不同的带宽资源（这里的“带宽”是频率带宽而非数据的发送速率）</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E9%A2%91%E5%88%86%E5%A4%8D%E7%94%A8FDM.png" alt="频分复用"></p>
+<h4 id="时分复用TDM（Time-Division-Multiplexing）"><a href="#时分复用TDM（Time-Division-Multiplexing）" class="headerlink" title="时分复用TDM（Time Division Multiplexing）"></a>时分复用TDM（Time Division Multiplexing）</h4><p><strong>时分复用</strong>则是将时间划分为一段段等长的<strong>时分复用帧</strong>（TDM帧）。每一个时分复用的用户在每一个TDM帧中占用固定序号的时隙。每一个用户所占用的时隙是<strong>周期性</strong>出现的（其周期就是TDM帧的长度对应的时间）</p>
+<p>TDM信号也称为<strong>等时信号</strong>。时分复用的所有用户是在不同的时间占用同样的频带宽度。</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%97%B6%E5%88%86%E5%A4%8D%E7%94%A8TDM.png" alt="时分复用实现机制"></p>
+<p>缺点：时分复用可能造成线路资源浪费。由于计算机数据的突发性质，用户对分配到的子信道的利用率一般不高。</p>
+<h4 id="波分复用WDM（Wavelength-Division-Multiplexing）"><a href="#波分复用WDM（Wavelength-Division-Multiplexing）" class="headerlink" title="波分复用WDM（Wavelength Division Multiplexing）"></a>波分复用WDM（Wavelength Division Multiplexing）</h4><p>实质就是<strong>频分复用</strong></p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%B3%A2%E5%88%86%E5%A4%8D%E7%94%A8WDM.png" alt="波分复用"></p>
+<h4 id="码分复用CDM（Code-Division-Multiplexing）"><a href="#码分复用CDM（Code-Division-Multiplexing）" class="headerlink" title="码分复用CDM（Code Division Multiplexing）"></a>码分复用CDM（Code Division Multiplexing）</h4><p>常用名词是<strong>码分多址CDMA</strong>（Code Division Multiple Access）</p>
+<p>各用户使用经过特殊挑选的不同码型，因此彼此不会造成干扰。</p>
+<p>这种系统发送的信号有很强的抗干扰能力，其频谱类似于白噪声，不易被敌人发现。   </p>
+<p>每一个比特时间划分为m个短的间隔，称为<strong>码片(chip)</strong>。</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E7%A0%81%E5%88%86%E5%A4%8D%E7%94%A8CDM.png" alt="码分复用"></p>
+<blockquote>
+<p>任何一个码片向量和该码片向量自己的规格化内积都是1.</p>
+<p>任何一个码片向量和该码片反码向量的规格化内积都是-1.</p>
+</blockquote>
+
     </div>
 
     
@@ -214,7 +277,10 @@
     <a href="/2020/03/20/for-in-%E5%92%8C-for-of/" rel="prev" title="for...in和for...of">
       <i class="fa fa-chevron-left"></i> for...in和for...of
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/25/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%91%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" rel="next" title="【计算机网络】第三章：数据链路层">
+      【计算机网络】第三章：数据链路层 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -274,6 +340,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#物理层定义的标准"><span class="nav-number">1.</span> <span class="nav-text">物理层定义的标准</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通信的目的是传送消息"><span class="nav-number">1.1.</span> <span class="nav-text">通信的目的是传送消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信道的概念"><span class="nav-number">1.2.</span> <span class="nav-text">信道的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是基带-baseband-和带通-base-pass-信号？"><span class="nav-number">1.3.</span> <span class="nav-text">什么是基带(baseband)和带通(base pass)信号？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用编码方式"><span class="nav-number">1.4.</span> <span class="nav-text">常用编码方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#物理层下面的传输媒体"><span class="nav-number">2.</span> <span class="nav-text">物理层下面的传输媒体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信道复用技术"><span class="nav-number">3.</span> <span class="nav-text">信道复用技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#频分复用FDM（Frequency-Division-Multiplexing）"><span class="nav-number">3.1.</span> <span class="nav-text">频分复用FDM（Frequency Division Multiplexing）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时分复用TDM（Time-Division-Multiplexing）"><span class="nav-number">3.2.</span> <span class="nav-text">时分复用TDM（Time Division Multiplexing）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#波分复用WDM（Wavelength-Division-Multiplexing）"><span class="nav-number">3.3.</span> <span class="nav-text">波分复用WDM（Wavelength Division Multiplexing）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#码分复用CDM（Code-Division-Multiplexing）"><span class="nav-number">3.4.</span> <span class="nav-text">码分复用CDM（Code Division Multiplexing）</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -289,7 +356,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
