@@ -157,6 +157,66 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/JS%E5%BC%82%E6%AD%A5Promise/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/04/JS%E5%BC%82%E6%AD%A5Promise/" class="post-title-link" itemprop="url">JS异步Promise</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-04 23:22:49 / 修改时间：23:23:06" itemprop="dateCreated datePublished" datetime="2020-04-04T23:22:49+08:00">2020-04-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 手写实现Promise</span><br><span class="line"> * **&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 创建了三个常量用于表示状态</span><br><span class="line">const PENDING &#x3D; &#39;pending&#39;;</span><br><span class="line">const REJECTED &#x3D; &#39;rejected&#39;;</span><br><span class="line">const FULFILLED &#x3D; &#39;fulfilled&#39;;</span><br><span class="line">var myPromise &#x3D; function (fn) &#123;</span><br><span class="line">    console.log(&quot;Create a Promise!&quot;);</span><br><span class="line">    let _this &#x3D; this;</span><br><span class="line">    _this.state &#x3D; PENDING;</span><br><span class="line">    _this.value &#x3D; null;</span><br><span class="line">    _this.rejectedCallBacks &#x3D; [];</span><br><span class="line">    _this.resolvedCallBacks &#x3D; [];</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 首先两个函数都得判断当前状态是否为等待中，因为规范规定只有等待态才可以改变状态</span><br><span class="line">    &#x2F;&#x2F; 将当前状态更改为对应状态，并且将传入的值赋值给 value</span><br><span class="line">    &#x2F;&#x2F; 遍历回调数组并执行</span><br><span class="line">    function resolve(value) &#123;</span><br><span class="line">        console.log(&quot;Running Resolve&quot;);</span><br><span class="line">        if(_this.state &#x3D;&#x3D;&#x3D; PENDING)&#123;</span><br><span class="line">            _this.state &#x3D; FULFILLED;</span><br><span class="line">            _this.value &#x3D; value;</span><br><span class="line">            _this.resolvedCallBacks.map(cb &#x3D;&gt; cb(_this.value));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    function reject(value) &#123;</span><br><span class="line">        console.log(&quot;Running Reject&quot;);</span><br><span class="line">        if(_this.state &#x3D;&#x3D;&#x3D; PENDING)&#123;</span><br><span class="line">            _this.state &#x3D; REJECTED;</span><br><span class="line">            _this.value &#x3D; value;</span><br><span class="line">            _this.rejectedCallBacks.map(cb &#x3D;&gt; cb(_this.value));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 实现很简单，执行传入的参数并且将之前两个函数当做参数传进去</span><br><span class="line">    &#x2F;&#x2F; 要注意的是，可能执行函数过程中会遇到错误，需要捕获错误并且执行 reject 函数</span><br><span class="line">    try &#123;</span><br><span class="line">        console.log(&quot;Running try &amp; catch&quot;);</span><br><span class="line">        fn(resolve, reject);</span><br><span class="line">    &#125;catch (e) &#123;</span><br><span class="line">        reject(e);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line">&#x2F;&#x2F; prototype实现then方法</span><br><span class="line">myPromise.prototype.then &#x3D; function (onFulfilled, onRejected) &#123;</span><br><span class="line">    const _this &#x3D; this;</span><br><span class="line">    &#x2F;&#x2F; 首先判断两个参数是否为函数类型，因为这两个参数是可选参数</span><br><span class="line">    &#x2F;&#x2F; 当参数不是函数类型时，需要创建一个函数赋值给对应的参数，同时也实现了透传</span><br><span class="line">    onFulfilled &#x3D; typeof onFulfilled &#x3D;&#x3D;&#x3D; &#39;function&#39;? onFulfilled: v &#x3D;&gt; v;</span><br><span class="line">    onRejected &#x3D; typeof onRejected &#x3D;&#x3D;&#x3D; &#39;function&#39;? onRejected: err &#x3D;&gt; &#123;throw err&#125;;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 根据状态执行相应函数</span><br><span class="line">    &#x2F;&#x2F; 如果状态是等待态的话，就往回调函数中 push 函数</span><br><span class="line">    if(_this.state &#x3D;&#x3D;&#x3D; PENDING)&#123;</span><br><span class="line">        _this.resolvedCallBacks.push(onFulfilled);</span><br><span class="line">        _this.rejectedCallBacks.push(onRejected);</span><br><span class="line">    &#125;else if(_this.state &#x3D;&#x3D;&#x3D; FULFILLED)&#123;</span><br><span class="line">        onFulfilled(_this.value);</span><br><span class="line">    &#125;else if(_this.state &#x3D;&#x3D;&#x3D; REJECTED)&#123;</span><br><span class="line">        onRejected(_this.value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">new myPromise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">        resolve(&quot;Write your content here!!&quot;)</span><br><span class="line">        &#x2F;&#x2F;reject(&quot;can i reject?&quot;)</span><br><span class="line">    &#125;, 1000)</span><br><span class="line">&#125;).then(res &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">    console.log(&quot;This is my Then&quot;);</span><br><span class="line">&#125;, err&#x3D;&gt;&#123;</span><br><span class="line">    console.log(err);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/JS%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -438,7 +498,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-01 23:26:10" itemprop="dateModified" datetime="2020-04-01T23:26:10+08:00">2020-04-01</time>
+                <time title="修改时间：2020-04-04 18:48:16" itemprop="dateModified" datetime="2020-04-04T18:48:16+08:00">2020-04-04</time>
               </span>
 
           
@@ -495,10 +555,22 @@
 <ul>
 <li>进程和线程的区别吧</li>
 </ul>
-<h3 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h3><p>js手撕继承</p>
-<p>数据结构–链表二叉树</p>
+<h3 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h3><p>数据结构–链表二叉树</p>
 <p>LeetCode算法题</p>
-<p>http</p>
+<p>※※※  http相关</p>
+<p>去重、二分查找</p>
+<p>跨域、同源策略</p>
+<p>前端安全：XSS CSRF 中间人攻击</p>
+<p>Object.defineProperty 代码实现</p>
+<p>git相关技术</p>
+<p>webpack配置与实现</p>
+<p>​    <strong>打包的性能优化 将业务和依赖分开打包，依赖部分做缓存</strong></p>
+<p>※※※  Vue</p>
+<p>算法复杂度（时间和和空间复杂度</p>
+<p>set和map</p>
+<p>jsonp和ajax</p>
+<p>CSS实现垂直居中</p>
+<p>解惑 [“1”, “2”, “3”].map(parseInt) 为何返回[1,NaN,NaN]</p>
 
       
     </div>
@@ -1038,108 +1110,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/15/JS%E9%97%AD%E5%8C%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/15/JS%E9%97%AD%E5%8C%85/" class="post-title-link" itemprop="url">JS闭包</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-15 22:13:39" itemprop="dateCreated datePublished" datetime="2020-03-15T22:13:39+08:00">2020-03-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-16 13:44:00" itemprop="dateModified" datetime="2020-03-16T13:44:00+08:00">2020-03-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="闭包是什么？"><a href="#闭包是什么？" class="headerlink" title="闭包是什么？"></a>闭包是什么？</h3><p>闭包是指<strong>有权访问另一个函数作用域中的变量的函数</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function outer() &#123;</span><br><span class="line">     var  a &#x3D; &#39;变量a&#39;</span><br><span class="line">     var  inner &#x3D; function()&#123;</span><br><span class="line">            console.info(a)</span><br><span class="line">     &#125;</span><br><span class="line">    return inner    &#x2F;&#x2F; inner 就是一个闭包函数，因为他能够访问到outer函数的作用域</span><br><span class="line">&#125;</span><br><span class="line">var  inner &#x3D; outer()   &#x2F;&#x2F; 获得inner闭包函数</span><br><span class="line">inner()   &#x2F;&#x2F;&quot;变量a&quot;</span><br></pre></td></tr></table></figure>
-
-<p>inner()是依赖于outer()的，因此当outer()函数的返回值是inner()时，outer()中的变量也会始终存在于内存中，不会在调用结束时，被垃圾回收机制回收。</p>
-<blockquote>
-<p>闭包是一种保护私有变量的机制，在函数执行时形成私有的作用域，保护里面的私有变量不受外界干扰。</p>
-<p>直观的说就是形成一个不销毁的栈环境。</p>
-</blockquote>
-<h3 id="闭包的应用场景"><a href="#闭包的应用场景" class="headerlink" title="闭包的应用场景"></a>闭包的应用场景</h3><h4 id="1、函数工厂"><a href="#1、函数工厂" class="headerlink" title="1、函数工厂"></a>1、函数工厂</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function makeAdder(x) &#123;</span><br><span class="line">  return function(y) &#123;</span><br><span class="line">    return x + y;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var add5 &#x3D; makeAdder(5);</span><br><span class="line">var add10 &#x3D; makeAdder(10);</span><br><span class="line">console.log(add5(2));  	&#x2F;&#x2F; 7</span><br><span class="line">console.log(add10(2)); 	&#x2F;&#x2F; 12</span><br></pre></td></tr></table></figure>
-
-<p>从本质上讲，<code>makeAdder</code> 是一个函数工厂 — 他创建了将指定的值和它的参数相加求和的函数。在上面的示例中，我们使用函数工厂创建了两个新函数 — 一个将其参数和 5 求和，另一个和 10 求和。</p>
-<p><code>add5</code> 和 <code>add10</code> 都是闭包。它们共享相同的函数定义，但是保存了不同的词法环境。在 <code>add5</code> 的环境中，<code>x</code> 为 5。而在 <code>add10</code> 中，<code>x</code> 则为 10。</p>
-<h4 id="2、用闭包解决递归"><a href="#2、用闭包解决递归" class="headerlink" title="2、用闭包解决递归"></a>2、用闭包解决递归</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function  factorial(num) &#123;</span><br><span class="line">   if(num&lt;&#x3D; 1) &#123;</span><br><span class="line">       return 1;</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">      return num * factorial(num-1)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 使用闭包实现递归</span><br><span class="line">function newFactorial &#x3D; （function f(num)&#123;</span><br><span class="line">    if(num&lt;1) &#123;return 1&#125;</span><br><span class="line">    else &#123;</span><br><span class="line">       return num* f(num-1)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;）</span><br></pre></td></tr></table></figure>
-
-<h4 id="3、用闭包模仿块级作用域（现在都用let和const定义"><a href="#3、用闭包模仿块级作用域（现在都用let和const定义" class="headerlink" title="3、用闭包模仿块级作用域（现在都用let和const定义"></a>3、用闭包模仿块级作用域（现在都用let和const定义</h4><p>ES6没出来之前，用var定义变量会存在变量提升的问题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">for(var i&#x3D;0; i&lt;10; i++)&#123;</span><br><span class="line">    console.info(i)</span><br><span class="line">&#125;</span><br><span class="line">alert(i)  &#x2F;&#x2F; 变量提升，弹出10</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;为了避免i的提升可以这样做</span><br><span class="line">(function () &#123;</span><br><span class="line">    for(var i&#x3D;0; i&lt;10; i++)&#123;</span><br><span class="line">         console.info(i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)()</span><br><span class="line">alert(i)   &#x2F;&#x2F; underfined   因为i随着闭包函数的退出，执行环境销毁，变量回收</span><br></pre></td></tr></table></figure>
-
-<h4 id="4、用闭包模拟私有方法"><a href="#4、用闭包模拟私有方法" class="headerlink" title="4、用闭包模拟私有方法"></a>4、用闭包模拟私有方法</h4><p> JavaScript 没有原生的private变量提供私有方法，但我们可以使用闭包来模拟私有方法。私有方法不仅仅有利于限制对代码的访问：还提供了管理全局命名空间的强大能力，避免非核心的方法弄乱了代码的公共接口部分。</p>
-<p>下面的示例展现了如何使用闭包来定义公共函数，并令其可以访问私有函数和变量。这个方式也称为<strong>模块模式（module pattern）</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var makeCounter &#x3D; function() &#123;</span><br><span class="line">  var privateCounter &#x3D; 0;</span><br><span class="line">  function changeBy(val) &#123;</span><br><span class="line">    privateCounter +&#x3D; val;</span><br><span class="line">  &#125;</span><br><span class="line">  return &#123;</span><br><span class="line">    increment: function() &#123;</span><br><span class="line">      changeBy(1);</span><br><span class="line">    &#125;,</span><br><span class="line">    decrement: function() &#123;</span><br><span class="line">      changeBy(-1);</span><br><span class="line">    &#125;,</span><br><span class="line">    value: function() &#123;</span><br><span class="line">      return privateCounter;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var Counter1 &#x3D; makeCounter();</span><br><span class="line">var Counter2 &#x3D; makeCounter();</span><br><span class="line">console.log(Counter1.value()); &#x2F;* logs 0 *&#x2F;</span><br><span class="line">Counter1.increment();</span><br><span class="line">Counter1.increment();</span><br><span class="line">console.log(Counter1.value()); &#x2F;* logs 2 *&#x2F;</span><br><span class="line">Counter1.decrement();</span><br><span class="line">console.log(Counter1.value()); &#x2F;* logs 1 *&#x2F;</span><br><span class="line">console.log(Counter2.value()); &#x2F;* logs 0 *&#x2F;</span><br></pre></td></tr></table></figure>
-
-<p>请注意两个计数器 <code>Counter1</code> 和 <code>Counter2</code> 是如何维护它们各自的独立性的。每个闭包都是引用自己词法作用域内的变量 <code>privateCounter</code> 。</p>
-<h3 id="闭包存在的坑"><a href="#闭包存在的坑" class="headerlink" title="闭包存在的坑"></a>闭包存在的坑</h3><h4 id="1、this指向问题"><a href="#1、this指向问题" class="headerlink" title="1、this指向问题"></a>1、this指向问题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var object &#x3D; &#123;</span><br><span class="line">	name: &quot;object&quot;,</span><br><span class="line">	getName: function()&#123;</span><br><span class="line">		return function()&#123;</span><br><span class="line">			console.log(this.name)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">object.getName()	&#x2F;&#x2F;undefined</span><br><span class="line">&#x2F;&#x2F;因为闭包函数是在window作用域下执行的，也就是说，this，指向windows</span><br></pre></td></tr></table></figure>
-
-<h4 id="2、内存泄露问题"><a href="#2、内存泄露问题" class="headerlink" title="2、内存泄露问题"></a>2、内存泄露问题</h4><blockquote>
-<p>内存泄漏（Memory Leak）是指程序中己动态分配的堆内存由于某种原因程序未释放或无法释放，造成系统内存的浪费，导致程序运行速度减慢甚至系统崩溃等严重后果.</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function  showId() &#123;</span><br><span class="line">    var el &#x3D; document.getElementById(&quot;app&quot;)</span><br><span class="line">    el.onclick &#x3D; function()&#123;</span><br><span class="line">      aler(el.id)   &#x2F;&#x2F; 这样会导致闭包引用外层的el，当执行完showId后，el无法释放</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 改成下面</span><br><span class="line">function  showId() &#123;</span><br><span class="line">    var el &#x3D; document.getElementById(&quot;app&quot;)</span><br><span class="line">    var id  &#x3D; el.id</span><br><span class="line">    el.onclick &#x3D; function()&#123;</span><br><span class="line">      aler(id)   &#x2F;&#x2F; 这样会导致闭包引用外层的el，当执行完showId后，el无法释放</span><br><span class="line">    &#125;</span><br><span class="line">    el &#x3D; null    &#x2F;&#x2F; 主动释放el</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1212,7 +1182,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
