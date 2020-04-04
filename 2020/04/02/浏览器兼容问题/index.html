@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="首先，在了解call，apply及bind的区别前，我们要先弄清楚一个概念，this 永远指向最后调用它的那个对象（注意“最后调用”！！）。而使用call、apply和bind都能够是函数的上下文发生改变，即改变了this的指向。 除此以外，还有ES6箭头函数、在函数内部使用_this &#x3D; this以及new实例化一个对象等方法实现指向的改变。  call()、apply()、bind()是用来改">
+  <meta name="description" content="IE9以下的浏览器不支持forEach函数解决方法： 加上下面这一段代码来支持这个函数 1234567891011121314151617181920212223if(!Array.prototype.forEach)&amp;#123;	Array.prototype.forEach &#x3D; function(func)&amp;#123;		var len &#x3D; this.length;		if">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS中的call,apply与bind">
-<meta property="og:url" content="http://yoursite.com/2020/03/16/JS%E4%B8%AD%E7%9A%84call-apply%E4%B8%8Ebind/index.html">
+<meta property="og:title" content="浏览器兼容问题">
+<meta property="og:url" content="http://yoursite.com/2020/04/02/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Natsun Blog">
-<meta property="og:description" content="首先，在了解call，apply及bind的区别前，我们要先弄清楚一个概念，this 永远指向最后调用它的那个对象（注意“最后调用”！！）。而使用call、apply和bind都能够是函数的上下文发生改变，即改变了this的指向。 除此以外，还有ES6箭头函数、在函数内部使用_this &#x3D; this以及new实例化一个对象等方法实现指向的改变。  call()、apply()、bind()是用来改">
+<meta property="og:description" content="IE9以下的浏览器不支持forEach函数解决方法： 加上下面这一段代码来支持这个函数 1234567891011121314151617181920212223if(!Array.prototype.forEach)&amp;#123;	Array.prototype.forEach &#x3D; function(func)&amp;#123;		var len &#x3D; this.length;		if">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-16T13:36:21.000Z">
-<meta property="article:modified_time" content="2020-03-17T07:37:11.872Z">
+<meta property="article:published_time" content="2020-04-02T10:36:46.000Z">
+<meta property="article:modified_time" content="2020-04-02T14:13:23.238Z">
 <meta property="article:author" content="Xya Fred">
-<meta property="article:tag" content="this指针">
+<meta property="article:tag" content="forEach">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/03/16/JS%E4%B8%AD%E7%9A%84call-apply%E4%B8%8Ebind/">
+<link rel="canonical" href="http://yoursite.com/2020/04/02/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>JS中的call,apply与bind | Natsun Blog</title>
+  <title>浏览器兼容问题 | Natsun Blog</title>
   
 
 
@@ -160,7 +160,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/16/JS%E4%B8%AD%E7%9A%84call-apply%E4%B8%8Ebind/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/02/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -173,7 +173,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          JS中的call,apply与bind
+          浏览器兼容问题
         </h1>
 
         <div class="post-meta">
@@ -182,16 +182,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-03-16 21:36:21" itemprop="dateCreated datePublished" datetime="2020-03-16T21:36:21+08:00">2020-03-16</time>
+              <time title="创建时间：2020-04-02 18:36:46 / 修改时间：22:13:23" itemprop="dateCreated datePublished" datetime="2020-04-02T18:36:46+08:00">2020-04-02</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-17 15:37:11" itemprop="dateModified" datetime="2020-03-17T15:37:11+08:00">2020-03-17</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -213,31 +207,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>首先，在了解call，apply及bind的区别前，我们要先弄清楚一个概念，<strong>this 永远指向最后调用它的那个对象</strong>（注意“最后调用”！！）。而使用call、apply和bind都能够是函数的上下文发生改变，即改变了this的指向。</p>
-<p>除此以外，还有<strong>ES6箭头函数</strong>、<strong>在函数内部使用_this = this</strong>以及<strong>new实例化一个对象</strong>等方法实现指向的改变。</p>
-<blockquote>
-<p>call()、apply()、bind()是用来改变this的指向的</p>
-</blockquote>
-<h3 id="call与apply"><a href="#call与apply" class="headerlink" title="call与apply"></a>call与apply</h3><p><code>call()</code>与<code>apply()</code>均为<code>Function.prototype</code>中的方法，使用方法基本相似，二者的区别只是传入的参数不同：</p>
-<ul>
-<li><code>call()</code>：第一个参数是this值没有变化，变化的是<strong>其余参数都直接传递给函数</strong>。在使用<code>call()</code>方法时，<strong>传递给函数的参数必须逐个列举出来</strong>。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function.call(thisArg, arg1, arg2, ...)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>apply()</code>：传递给函数的是<strong>参数数组</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function.apply(thisArg, [argsArray])</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D;&#123;</span><br><span class="line">	name : &quot;Cherry&quot;,</span><br><span class="line">  fn : function (a,b) &#123;</span><br><span class="line">  	console.log( a + b)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var b1 &#x3D; a.fn;</span><br><span class="line">var b2 &#x3D; a.fn;</span><br><span class="line">b1.apply(a,[1,2])  &#x2F;&#x2F; 3</span><br><span class="line">b2.call(a,1,2)		 &#x2F;&#x2F; 3</span><br></pre></td></tr></table></figure>
-
-<p><em>注：</em>如果call()和apply()的第一个参数是null或者undefined，那么this的指向就是全局变量，在浏览器里就是window对象。</p>
-<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p><code>bind()</code> 方法创建一个新的函数，在 <code>bind()</code> 被调用时，这个新函数的 <code>this</code> 被指定为 <code>bind()</code> 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function.bind(thisArg[, arg1[, arg2[, ...]]])</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const module &#x3D; &#123;</span><br><span class="line">  x: 42,</span><br><span class="line">  getX: function() &#123;</span><br><span class="line">    return this.x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const unboundGetX &#x3D; module.getX;</span><br><span class="line">console.log(unboundGetX()); 	&#x2F;&#x2F; undefined</span><br><span class="line">&#x2F;&#x2F; 此时UNboundGetX函数this指向windows全局变量，this.x未定义</span><br><span class="line"></span><br><span class="line">const boundGetX &#x3D; unboundGetX.bind(module);</span><br><span class="line">console.log(boundGetX());			&#x2F;&#x2F; 42</span><br></pre></td></tr></table></figure>
-
-
+        <h4 id="IE9以下的浏览器不支持forEach函数"><a href="#IE9以下的浏览器不支持forEach函数" class="headerlink" title="IE9以下的浏览器不支持forEach函数"></a>IE9以下的浏览器不支持<code>forEach</code>函数</h4><p><strong>解决方法</strong>：</p>
+<p>加上下面这一段代码来支持这个函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">if(!Array.prototype.forEach)&#123;</span><br><span class="line">	Array.prototype.forEach &#x3D; function(func)&#123;</span><br><span class="line">		var len &#x3D; this.length;</span><br><span class="line">		if(typeof func !&#x3D;&#x3D; &quot;function&quot;)</span><br><span class="line">			throw new TypeError();</span><br><span class="line">		var thisp &#x3D; arguments[1];</span><br><span class="line">		for(var i&#x3D;0; i&lt;len; i++)&#123;</span><br><span class="line">			if(i in this)&#123;</span><br><span class="line">				fun.call(thisp, this[i], i, this);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 或者这样：</span><br><span class="line">if (typeof Array.prototype.forEach !&#x3D; &#39;function&#39;) &#123;</span><br><span class="line">  Array.prototype.forEach &#x3D; function(callback)&#123;</span><br><span class="line">    for (var i &#x3D; 0; i &lt; this.length; i++)&#123;</span><br><span class="line">      callback.apply(this, [this[i], i, this]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -248,7 +220,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/this%E6%8C%87%E9%92%88/" rel="tag"># this指针</a>
+              <a href="/tags/forEach/" rel="tag"># forEach</a>
           </div>
 
         
@@ -257,12 +229,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/03/15/JS%E9%97%AD%E5%8C%85/" rel="prev" title="JS闭包">
-      <i class="fa fa-chevron-left"></i> JS闭包
+    <a href="/2020/03/31/%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AE%B0%E5%BD%95/" rel="prev" title="知识点记录">
+      <i class="fa fa-chevron-left"></i> 知识点记录
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/03/17/JS%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="next" title="JS数据缓存">
-      JS数据缓存 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/04/03/JS%E7%BB%A7%E6%89%BF/" rel="next" title="JS继承">
+      JS继承 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -323,7 +295,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#call与apply"><span class="nav-number">1.</span> <span class="nav-text">call与apply</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind"><span class="nav-number">2.</span> <span class="nav-text">bind</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#IE9以下的浏览器不支持forEach函数"><span class="nav-number">1.</span> <span class="nav-text">IE9以下的浏览器不支持forEach函数</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
