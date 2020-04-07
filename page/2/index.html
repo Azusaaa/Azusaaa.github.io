@@ -157,6 +157,310 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/for-in-%E5%92%8C-for-of/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/20/for-in-%E5%92%8C-for-of/" class="post-title-link" itemprop="url">for...in和for...of</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-20 20:31:33 / 修改时间：22:19:46" itemprop="dateCreated datePublished" datetime="2020-03-20T20:31:33+08:00">2020-03-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>通过举多个例子进行说明</p>
+<h4 id="例子1：遍历数组"><a href="#例子1：遍历数组" class="headerlink" title="例子1：遍历数组"></a>例子1：遍历数组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const arr1 &#x3D;[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];</span><br><span class="line">&#x2F;&#x2F; for...in 返回数组的下标</span><br><span class="line">for(let i in arr1)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; 0,1,2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; for...of 返回数组的元素</span><br><span class="line">for(let i of arr1)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; a,b,c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="例子2：给数组手动添加属性"><a href="#例子2：给数组手动添加属性" class="headerlink" title="例子2：给数组手动添加属性"></a>例子2：给数组手动添加属性</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const arr2 &#x3D; [&#39;a&#39;, &#39;b&#39;];</span><br><span class="line">arr2.name &#x3D; &#39;c&#39;;</span><br><span class="line">&#x2F;&#x2F; for..in循环可以遍历出&#39;name&#39;这个键名，for..of结果则为 a, b</span><br><span class="line">for(let i in arr2)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F;0,1,name</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="例子3：遍历对象"><a href="#例子3：遍历对象" class="headerlink" title="例子3：遍历对象"></a>例子3：遍历对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const json &#x3D; &#123;&quot;a&quot;:1, &quot;b&quot;:2, &quot;c&quot;:3&#125;;</span><br><span class="line">&#x2F;&#x2F; for..in遍历获取对象的key值 (对应键值对key-value)</span><br><span class="line">for(let i in json)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; a,b,c</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; for..of报错</span><br><span class="line">for(let i of json)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; TypeError: json is not iterable</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="for-in-的特点："><a href="#for-in-的特点：" class="headerlink" title="for..in 的特点："></a>for..in 的特点：</h4><ul>
+<li>for..in 语句用于对<strong>数组</strong>或<strong>对象</strong>的属性进行循环操作</li>
+<li>for..in 循环中的代码每执行一次，就会对数组元素或者对象的属性进行一次操作</li>
+<li>for..in 语句会遍历一个对象的<strong>可枚举属性</strong>（包括继承而来的属性）。</li>
+</ul>
+<h4 id="for-of-的特点："><a href="#for-of-的特点：" class="headerlink" title="for..of 的特点："></a>for..of 的特点：</h4><ul>
+<li>for..of 语句在<strong>可迭代对象</strong>(包括<strong>Array，Map，Set，String，arguments对象</strong>等)上创建一个迭代循环，调用自定义迭代钩子，并为每个不同属性的值执行语句。</li>
+<li>一个数据结构只要部署了<code>Symbol.iterator</code>属性，就被视为 <strong>iterator接口</strong>，就可以for..in</li>
+<li>for..of 可以与<code>break continue</code>和<code>return</code>配合使用（即可以随时退出循环，比forEach强</li>
+</ul>
+<hr>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>for..in 遍历的是<strong>key值</strong>，for..of遍历的是<strong>value值</strong>，因此前者更适合遍历对象</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Object.prototype.objCustom &#x3D; function() &#123;&#125;; </span><br><span class="line">Array.prototype.arrCustom &#x3D; function() &#123;&#125;;</span><br><span class="line"> </span><br><span class="line">let iterable &#x3D; [3, 5, 7];</span><br><span class="line">iterable.foo &#x3D; &#39;hello&#39;;</span><br><span class="line"> </span><br><span class="line">for (let i in iterable) &#123;</span><br><span class="line">  console.log(i); &#x2F;&#x2F; 0, 1, 2, &quot;foo&quot;, &quot;arrCustom&quot;, &quot;objCustom&quot;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">for (let i in iterable) &#123;</span><br><span class="line">  if (iterable.hasOwnProperty(i)) &#123;</span><br><span class="line">    console.log(i); &#x2F;&#x2F; 0, 1, 2, &quot;foo&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">for (let i of iterable) &#123;</span><br><span class="line">  console.log(i); &#x2F;&#x2F; 3, 5, 7</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>for...in</code> 语句以原始插入顺序迭代对象的可枚举属性。</p>
+<p><code>for...of</code> 语句遍历可迭代对象定义要迭代的数据。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/17/JS%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/17/JS%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">JS数据缓存</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-17 21:34:41 / 修改时间：22:57:48" itemprop="dateCreated datePublished" datetime="2020-03-17T21:34:41+08:00">2020-03-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h4><p><code>cookie</code>非常小，它的大小限制在4kb左右，主要用于保存登陆信息，比如你登陆某个网站市场可以看到“记住密码”，这就是通过在cookie中存入一段辨别用户身份的数据来实现的。</p>
+<h4 id="sessionStorage（临时保存"><a href="#sessionStorage（临时保存" class="headerlink" title="sessionStorage（临时保存"></a>sessionStorage（临时保存</h4><p><code>sessionStorage</code>可以将数据保存在客户端的session对象中，不与服务器进行交互通信，其生命周期仅在当前会话下有效，会话关闭其中的数据会被清空。</p>
+<h4 id="localStorage（永久保存"><a href="#localStorage（永久保存" class="headerlink" title="localStorage（永久保存"></a>localStorage（永久保存</h4><p><code>localStorage</code>将数据保存在客户端本地的硬件设备(通常指硬盘，也可以是其他硬件设备)中，即使浏览器被关闭了，该数据仍然存在，下次打开浏览器访问网站时仍然可以继续使用。</p>
+<h3 id="三者的不同之处"><a href="#三者的不同之处" class="headerlink" title="三者的不同之处"></a>三者的不同之处</h3><ul>
+<li>数据的生命周期不同</li>
+</ul>
+<p><strong>Cookie</strong>一般由服务器生成，可以设置失效时间(maxAge)，如果浏览器生成cookie，默认关闭后失效</p>
+<p><strong>localStorage</strong>除非被永久清除，否则永久保存</p>
+<p><strong>sessionStorage</strong>仅在当前会话有效，关闭页面或浏览器后被清除</p>
+<ul>
+<li>存放数据不同</li>
+</ul>
+<p><strong>cookie</strong>一般为4KB，<strong>localStorage</strong>和<strong>sessionStorage</strong>一般为5MB。</p>
+<ul>
+<li>与服务器端通信不同</li>
+</ul>
+<p><strong>cookie</strong> – 由对服务器的请求来传递，每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题</p>
+<p><strong>localStorage</strong>和<strong>sessionStorage</strong> – 数据不是由每个服务器请求传递的，而是只有在请求时使用数据，不参与和服务器的通信</p>
+<ul>
+<li>易用性</li>
+</ul>
+<p><strong>cookie</strong>需要自己封装<code>setCookie</code>, <code>getCookie</code></p>
+<p><strong>localStorage</strong>和<strong>sessionStorage</strong>则可以用原生接口，也可以再次封装来对Object和Array有更好的支持</p>
+<ul>
+<li>安全性</li>
+</ul>
+<p><code>localStorage</code>和<code>sessionStorage</code>不会随<code>HTTP header</code>发送到服务器端，所以安全性相对cookie来说较高一些，不用担心截获，但仍旧存在伪造问题</p>
+<ul>
+<li>应用场景</li>
+</ul>
+<h3 id="WebStorage使用方法与实例"><a href="#WebStorage使用方法与实例" class="headerlink" title="WebStorage使用方法与实例"></a>WebStorage使用方法与实例</h3><h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; webStorage &#x3D;&gt; localStorage&#x2F;sessionStorage </span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;保存数据，以键值对的方式储存信息。</span><br><span class="line">webStorage.setItem (key, value)		</span><br><span class="line">&#x2F;&#x2F;获取数据，将键值传入，即可获取到对应的value值。</span><br><span class="line">webStorage.getItem (key)					</span><br><span class="line">&#x2F;&#x2F;删除单个数据，根据键值移除对应的信息。</span><br><span class="line">webStorage.removeItem (key)			</span><br><span class="line">&#x2F;&#x2F;删除所有的数据</span><br><span class="line">webStorage.clear ()</span><br><span class="line">&#x2F;&#x2F;获取某个索引的key</span><br><span class="line">webStorage.key (index)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="封装方法实例（读取与保存数据方法封装在script-js中"><a href="#封装方法实例（读取与保存数据方法封装在script-js中" class="headerlink" title="封装方法实例（读取与保存数据方法封装在script.js中)"></a>封装方法实例（读取与保存数据方法封装在script.js中)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;sessionStorage 示例  (保存一个会话周期:从打开浏览器——到关闭浏览器窗口)</span><br><span class="line">function saveStorage(id)&#123;</span><br><span class="line">    var target&#x3D;document.getElementById(id);</span><br><span class="line">    var str&#x3D;target.value;</span><br><span class="line">    sessionStorage.setItem(&quot;message&quot;,str);</span><br><span class="line">    &#x2F;&#x2F;或者sessionStorage.message&#x3D;str;</span><br><span class="line">&#125;</span><br><span class="line">function loadStorage(id)&#123;</span><br><span class="line">    var target&#x3D;document.getElementById(id);</span><br><span class="line">    var msg&#x3D;sessionStorage.getItem(&quot;message&quot;);</span><br><span class="line">    &#x2F;&#x2F;或者var msg&#x3D;sessionStorage.message;</span><br><span class="line">    target.innerHTML&#x3D;msg;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;localStorage 示例(可永久保存)    </span><br><span class="line">function saveStorage(id)&#123;</span><br><span class="line">    var target&#x3D;document.getElementById(id);</span><br><span class="line">    var str&#x3D;target.value;</span><br><span class="line">    localStorage.setItem(&quot;message&quot;,str);</span><br><span class="line">    &#x2F;&#x2F;或者localStorage.message&#x3D;str;</span><br><span class="line">&#125;</span><br><span class="line">function loadStorage(id)&#123;</span><br><span class="line">    var target&#x3D;document.getElementById(&quot;msg&quot;);</span><br><span class="line">    var msg&#x3D;localStorage.getItem(&quot;message&quot;);</span><br><span class="line">    &#x2F;&#x2F;或者var msg&#x3D;localStorage.message;</span><br><span class="line">    target.innerHTML&#x3D;msg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/16/JS%E4%B8%AD%E7%9A%84call-apply%E4%B8%8Ebind/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/16/JS%E4%B8%AD%E7%9A%84call-apply%E4%B8%8Ebind/" class="post-title-link" itemprop="url">JS中的call,apply与bind</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-16 21:36:21" itemprop="dateCreated datePublished" datetime="2020-03-16T21:36:21+08:00">2020-03-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-17 15:37:11" itemprop="dateModified" datetime="2020-03-17T15:37:11+08:00">2020-03-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>首先，在了解call，apply及bind的区别前，我们要先弄清楚一个概念，<strong>this 永远指向最后调用它的那个对象</strong>（注意“最后调用”！！）。而使用call、apply和bind都能够是函数的上下文发生改变，即改变了this的指向。</p>
+<p>除此以外，还有<strong>ES6箭头函数</strong>、<strong>在函数内部使用_this = this</strong>以及<strong>new实例化一个对象</strong>等方法实现指向的改变。</p>
+<blockquote>
+<p>call()、apply()、bind()是用来改变this的指向的</p>
+</blockquote>
+<h3 id="call与apply"><a href="#call与apply" class="headerlink" title="call与apply"></a>call与apply</h3><p><code>call()</code>与<code>apply()</code>均为<code>Function.prototype</code>中的方法，使用方法基本相似，二者的区别只是传入的参数不同：</p>
+<ul>
+<li><code>call()</code>：第一个参数是this值没有变化，变化的是<strong>其余参数都直接传递给函数</strong>。在使用<code>call()</code>方法时，<strong>传递给函数的参数必须逐个列举出来</strong>。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function.call(thisArg, arg1, arg2, ...)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>apply()</code>：传递给函数的是<strong>参数数组</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function.apply(thisArg, [argsArray])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D;&#123;</span><br><span class="line">	name : &quot;Cherry&quot;,</span><br><span class="line">  fn : function (a,b) &#123;</span><br><span class="line">  	console.log( a + b)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var b1 &#x3D; a.fn;</span><br><span class="line">var b2 &#x3D; a.fn;</span><br><span class="line">b1.apply(a,[1,2])  &#x2F;&#x2F; 3</span><br><span class="line">b2.call(a,1,2)		 &#x2F;&#x2F; 3</span><br></pre></td></tr></table></figure>
+
+<p><em>注：</em>如果call()和apply()的第一个参数是null或者undefined，那么this的指向就是全局变量，在浏览器里就是window对象。</p>
+<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p><code>bind()</code> 方法创建一个新的函数，在 <code>bind()</code> 被调用时，这个新函数的 <code>this</code> 被指定为 <code>bind()</code> 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function.bind(thisArg[, arg1[, arg2[, ...]]])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const module &#x3D; &#123;</span><br><span class="line">  x: 42,</span><br><span class="line">  getX: function() &#123;</span><br><span class="line">    return this.x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const unboundGetX &#x3D; module.getX;</span><br><span class="line">console.log(unboundGetX()); 	&#x2F;&#x2F; undefined</span><br><span class="line">&#x2F;&#x2F; 此时UNboundGetX函数this指向windows全局变量，this.x未定义</span><br><span class="line"></span><br><span class="line">const boundGetX &#x3D; unboundGetX.bind(module);</span><br><span class="line">console.log(boundGetX());			&#x2F;&#x2F; 42</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/15/JS%E9%97%AD%E5%8C%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -534,7 +838,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-14 23:40:23" itemprop="dateModified" datetime="2020-03-14T23:40:23+08:00">2020-03-14</time>
+                <time title="修改时间：2020-04-07 20:29:09" itemprop="dateModified" datetime="2020-04-07T20:29:09+08:00">2020-04-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -574,7 +878,7 @@
 
 
 
-<h4 id="实现深拷贝的方法"><a href="#实现深拷贝的方法" class="headerlink" title="实现深拷贝的方法"></a>实现深拷贝的方法</h4><h5 id="（1）采用递归去拷贝所有层级属性"><a href="#（1）采用递归去拷贝所有层级属性" class="headerlink" title="（1）采用递归去拷贝所有层级属性"></a>（1）采用递归去拷贝所有层级属性</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function deepClone(obj)&#123;</span><br><span class="line">	let objClone &#x3D; Array.isArray(obj)? [] : &#123;&#125;;</span><br><span class="line">	if(obj &amp;&amp; typeof obj&#x3D;&#x3D;&#x3D;&quot;object&quot;)&#123;</span><br><span class="line">		for(key in obj)&#123;</span><br><span class="line">			if(obj.hasOwnProperty(key))&#123;</span><br><span class="line">				&#x2F;&#x2F;判断ojb子元素是否为对象，如果是，递归复制</span><br><span class="line">				if(obj[key] &amp;&amp; typeof obj[key] &#x3D;&#x3D;&#x3D; &quot;object&quot;)&#123;</span><br><span class="line">					objClone[key] &#x3D; deepClone(obj[key]);</span><br><span class="line">				&#125;else&#123;</span><br><span class="line">					&#x2F;&#x2F;如果不是，简单复制</span><br><span class="line">					objClone[key] &#x3D; obj[key];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return objClone;</span><br><span class="line">&#125;    </span><br><span class="line">let a&#x3D;[1,2,3,4],</span><br><span class="line">b&#x3D;deepClone(a);</span><br><span class="line">a[0]&#x3D;2;</span><br><span class="line">console.log(a);		&#x2F;&#x2F;[2,2,3,4]</span><br><span class="line">console.log(b);		&#x2F;&#x2F;[1,2,3,4]</span><br></pre></td></tr></table></figure>
+<h4 id="实现深拷贝的方法"><a href="#实现深拷贝的方法" class="headerlink" title="实现深拷贝的方法"></a>实现深拷贝的方法</h4><h5 id="（1）采用递归去拷贝所有层级属性"><a href="#（1）采用递归去拷贝所有层级属性" class="headerlink" title="（1）采用递归去拷贝所有层级属性"></a>（1）采用递归去拷贝所有层级属性</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function deepClone(obj)&#123;</span><br><span class="line">	let objClone &#x3D; Array.isArray(obj)? [] : &#123;&#125;;</span><br><span class="line">	if(obj &amp;&amp; typeof obj&#x3D;&#x3D;&#x3D;&quot;object&quot;)&#123;</span><br><span class="line">		for(key in obj)&#123;</span><br><span class="line">			if(obj.hasOwnProperty(key))&#123;</span><br><span class="line">				&#x2F;&#x2F;判断obj子元素是否为对象，如果是，递归复制</span><br><span class="line">				if(obj[key] &amp;&amp; typeof obj[key] &#x3D;&#x3D;&#x3D; &quot;object&quot;)&#123;</span><br><span class="line">					objClone[key] &#x3D; deepClone(obj[key]);</span><br><span class="line">				&#125;else&#123;</span><br><span class="line">					&#x2F;&#x2F;如果不是，简单复制</span><br><span class="line">					objClone[key] &#x3D; obj[key];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return objClone;</span><br><span class="line">&#125;    </span><br><span class="line">let a&#x3D;[1,2,3,4],</span><br><span class="line">b&#x3D;deepClone(a);</span><br><span class="line">a[0]&#x3D;2;</span><br><span class="line">console.log(a);		&#x2F;&#x2F;[2,2,3,4]</span><br><span class="line">console.log(b);		&#x2F;&#x2F;[1,2,3,4]</span><br></pre></td></tr></table></figure>
 
 <h5 id="（2）通过JSON-parse-JSON-stringify-实现深拷贝"><a href="#（2）通过JSON-parse-JSON-stringify-实现深拷贝" class="headerlink" title="（2）通过JSON.parse(JSON.stringify())实现深拷贝"></a>（2）通过JSON.parse(JSON.stringify())实现深拷贝</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function deepClone2(obj) &#123;</span><br><span class="line">  var _obj &#x3D; JSON.stringify(obj),</span><br><span class="line">    objClone &#x3D; JSON.parse(_obj);</span><br><span class="line">  return objClone;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -743,7 +1047,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-14 23:39:51" itemprop="dateModified" datetime="2020-03-14T23:39:51+08:00">2020-03-14</time>
+                <time title="修改时间：2020-04-05 14:30:20" itemprop="dateModified" datetime="2020-04-05T14:30:20+08:00">2020-04-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -818,6 +1122,9 @@
 <p>在执行线程时，JS引擎会将所有任务按照类别分到这两个队列中。待主线程执行完毕后，会先执行 <strong>微任务</strong> 队列所有任务。然后再在 <strong>宏任务</strong> 队列中取出第一个任务，执行完毕后取出 <strong>微任务</strong> 队列中的所有任务顺序执行；之后再取 <strong>宏任务</strong> ，周而复始，直至两个队列的任务全部取完。</p>
 <p>上述例子中，JS从上到下执行，所以先打印了<code>script start</code>。接着遇到了<code>setTimeout</code>，将其加入<strong>宏任务</strong>队列；遇到了<code>Promise</code>，将其加入<strong>微任务</strong>队列中。最后执行打印了<code>script end</code>，主线程执行完毕！</p>
 <p>接着JS引擎便执行<strong>微任务</strong>队列中的所有任务，打印出 <code>Promise1</code> 和 <code>Promise2</code>，最后再执行一个<strong>宏任务</strong>，打印<code>setTimeout</code>中的结果 <code>timer over</code>。</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">function testSometing() &#123;</span><br><span class="line">    console.log(&quot;执行testSometing&quot;);</span><br><span class="line">    return &quot;testSometing&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">async function testAsync() &#123;</span><br><span class="line">    console.log(&quot;执行testAsync&quot;);</span><br><span class="line">    return Promise.resolve(&quot;hello async&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">async function test() &#123;</span><br><span class="line">    console.log(&quot;test start...&quot;);</span><br><span class="line">    const v1 &#x3D; await testSometing();</span><br><span class="line">    console.log(v1);</span><br><span class="line">    const v2 &#x3D; await testAsync();</span><br><span class="line">    console.log(v2);</span><br><span class="line">    console.log(v1, v2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test();</span><br><span class="line">var promise &#x3D; new Promise((resolve, reject)&#x3D;&gt; &#123; </span><br><span class="line">		console.log(&quot;promise start..&quot;); </span><br><span class="line">		resolve(&quot;promise&quot;);</span><br><span class="line">		&#125;);</span><br><span class="line">promise.then((val)&#x3D;&gt; console.log(val));</span><br><span class="line">console.log(&quot;test end...&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 结果为：</span><br><span class="line">test start...</span><br><span class="line">执行testSometing</span><br><span class="line">promise start..</span><br><span class="line">test end...</span><br><span class="line">testSometing</span><br><span class="line">执行testAsync</span><br><span class="line">promise</span><br><span class="line">hello async</span><br><span class="line">testSometing hello async</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -898,81 +1205,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/08/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/08/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-08 21:51:03" itemprop="dateCreated datePublished" datetime="2020-03-08T21:51:03+08:00">2020-03-08</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1040,20 +1277,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

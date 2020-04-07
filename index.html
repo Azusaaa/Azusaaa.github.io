@@ -157,6 +157,642 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/07/HTTP%E5%8D%8F%E8%AE%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/07/HTTP%E5%8D%8F%E8%AE%AE/" class="post-title-link" itemprop="url">HTTP协议</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-07 15:58:09 / 修改时间：16:16:04" itemprop="dateCreated datePublished" datetime="2020-04-07T15:58:09+08:00">2020-04-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h3><p>1XX：信息状态码</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>100</td>
+<td>继续</td>
+<td>初始请求已接受，请客户端继续发送剩余部分</td>
+</tr>
+<tr>
+<td>101</td>
+<td>切换协议</td>
+<td>服务器根据客户端的请求切换协议。</td>
+</tr>
+</tbody></table>
+<p>2XX：成功状态码</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200</td>
+<td>成功</td>
+<td>服务器已成功处理请求</td>
+</tr>
+<tr>
+<td>201</td>
+<td>已创建</td>
+<td>请求成功并且服务器创建了新的资源</td>
+</tr>
+<tr>
+<td>202</td>
+<td>已接受</td>
+<td>服务器已接受请求但尚未处理</td>
+</tr>
+<tr>
+<td>203</td>
+<td>非授权信息</td>
+<td>服务器已成功处理请求，但返回的信息可能来自另一个来源</td>
+</tr>
+<tr>
+<td>204</td>
+<td>无内容</td>
+<td>服务器已成功处理请求，但没返回任何内容</td>
+</tr>
+<tr>
+<td>205</td>
+<td>重置内容</td>
+<td>服务器处理成功，用户终端应重置文档视图</td>
+</tr>
+<tr>
+<td>206</td>
+<td>部分内容</td>
+<td>服务器成功处理了部分GET请求</td>
+</tr>
+</tbody></table>
+<p>3XX：重定向状态码</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>300</td>
+<td>多种选择</td>
+<td>针对请求，服务器可以执行多种操作</td>
+</tr>
+<tr>
+<td>301</td>
+<td>永久移动</td>
+<td>请求的页面已永久跳转到新的url</td>
+</tr>
+<tr>
+<td>302</td>
+<td>临时移动</td>
+<td>临时移动。与301类似。但资源只是临时被移动。客户端应继续使用原有URI</td>
+</tr>
+<tr>
+<td>303</td>
+<td>查看其他位置</td>
+<td>查看其它地址。与301类似。使用GET和POST请求查看</td>
+</tr>
+<tr>
+<td>304</td>
+<td>未修改</td>
+<td>自从上次请求后，请求的网页未修改过</td>
+</tr>
+<tr>
+<td>305</td>
+<td>使用代理</td>
+<td>请求者只能使用代理访问请求的网页</td>
+</tr>
+<tr>
+<td>307</td>
+<td>临时重定向</td>
+<td>临时重定向。与302类似。使用GET请求重定向</td>
+</tr>
+</tbody></table>
+<p>4XX：客户端错误状态码</p>
+<table>
+<thead>
+<tr>
+<th><strong>状态码</strong></th>
+<th><strong>含义</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>400</td>
+<td>错误请求</td>
+<td>服务器不理解请求的语法</td>
+</tr>
+<tr>
+<td>401</td>
+<td>未授权</td>
+<td>请求要求用户的身份演验证</td>
+</tr>
+<tr>
+<td>403</td>
+<td>禁止</td>
+<td>服务器拒绝请求</td>
+</tr>
+<tr>
+<td>404</td>
+<td>未找到</td>
+<td>服务器找不到请求的页面</td>
+</tr>
+<tr>
+<td>405</td>
+<td>方法禁用</td>
+<td>禁用请求中指定的方法</td>
+</tr>
+<tr>
+<td>406</td>
+<td>不接受</td>
+<td>无法使用请求的内容特性响应请求的页面</td>
+</tr>
+<tr>
+<td>407</td>
+<td>需要代理授权</td>
+<td>请求需要代理的身份认证</td>
+</tr>
+<tr>
+<td>408</td>
+<td>请求超时</td>
+<td>服务器等候请求时发生超时</td>
+</tr>
+<tr>
+<td>409</td>
+<td>冲突</td>
+<td>服务器在完成请求时发生冲突</td>
+</tr>
+<tr>
+<td>410</td>
+<td>已删除</td>
+<td>客户端请求的资源已经不存在</td>
+</tr>
+<tr>
+<td>411</td>
+<td>需要有效长度</td>
+<td>服务器不接受不含有效长度表头字段的请求</td>
+</tr>
+<tr>
+<td>412</td>
+<td>未满足前提条件</td>
+<td>服务器未满足请求者在请求中设置的其中一个前提条件</td>
+</tr>
+<tr>
+<td>413</td>
+<td>请求实体过大</td>
+<td>由于请求实体过大，服务器无法处理，因此拒绝请求</td>
+</tr>
+<tr>
+<td>414</td>
+<td>请求url过长</td>
+<td>请求的url过长，服务器无法处理</td>
+</tr>
+<tr>
+<td>415</td>
+<td>不支持格式</td>
+<td>服务器无法处理请求中附带媒体格式</td>
+</tr>
+<tr>
+<td>416</td>
+<td>范围无效</td>
+<td>客户端请求的范围无效</td>
+</tr>
+<tr>
+<td>417</td>
+<td>未满足期望</td>
+<td>服务器无法满足请求表头字段要求</td>
+</tr>
+</tbody></table>
+<p>5XX：服务端错误状态码</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>500</td>
+<td>服务器错误</td>
+<td>服务器内部错误，无法完成请求</td>
+</tr>
+<tr>
+<td>501</td>
+<td>尚未实施</td>
+<td>服务器不具备完成请求的功能</td>
+</tr>
+<tr>
+<td>502</td>
+<td>错误网关</td>
+<td>服务器作为网关或代理出现错误</td>
+</tr>
+<tr>
+<td>503</td>
+<td>服务不可用</td>
+<td>服务器目前无法使用</td>
+</tr>
+<tr>
+<td>504</td>
+<td>网关超时</td>
+<td>网关或代理服务器，未及时获取请求</td>
+</tr>
+<tr>
+<td>505</td>
+<td>不支持版本</td>
+<td>服务器不支持请求中使用的HTTP协议版本</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/07/JSONP%E4%B8%8EAJAX%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/07/JSONP%E4%B8%8EAJAX%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">JSONP与AJAX实现</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-07 12:24:52 / 修改时间：18:09:52" itemprop="dateCreated datePublished" datetime="2020-04-07T12:24:52+08:00">2020-04-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><h4 id="原理与实现步骤"><a href="#原理与实现步骤" class="headerlink" title="原理与实现步骤"></a>原理与实现步骤</h4><blockquote>
+<p>我们可知跨域问题的实现方式有多种，其中一种便是通过HTML标签实现跨域（如<code>&lt;img&gt; &lt;link&gt; &lt;script&gt;</code>），JSONP便是通过script标签这一特性实现的。</p>
+</blockquote>
+<p>（一）声明一个回调函数，其函数值作为参数值，要传递给跨域请求数据的服务器，函数的形式参数为服务器返回的数据。</p>
+<p>（二）创建一个script标签，把那个跨域的API数据接口地址，赋值给script的src，还要在这个地址中向服务器传递该函数名。通常使用<code>?</code>传递参数。</p>
+<p>（三）服务器接收请求，对数据进行拼接处理。</p>
+<p>（四）服务器通过HTTP协议把数据返回给客户端，客户端再调用之前的回调函数。</p>
+<h4 id="JSONP的实现"><a href="#JSONP的实现" class="headerlink" title="JSONP的实现"></a>JSONP的实现</h4><p>首先实现一个最简单的JSONP：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function jsonp(url)&#123;</span><br><span class="line">		const script &#x3D; document.createElement(&quot;script&quot;);</span><br><span class="line">		script.src &#x3D; url;</span><br><span class="line">		script.type &#x3D; &quot;type&#x2F;javascript&quot;;</span><br><span class="line">		document.body.appendChild(script);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上只是最基本的写法，要是想要使用需要定义全局的回调函数，还需进行改进：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function jsonp(&#123;url, params, callback&#125;)&#123;</span><br><span class="line">		window[callback] &#x3D;  callback;</span><br><span class="line">		const script &#x3D; document.createElement(&quot;script&quot;);</span><br><span class="line">		let arr &#x3D; [];</span><br><span class="line">		params &#x3D; &#123;...params, callback&#125;;</span><br><span class="line">		for(var key in params)&#123;</span><br><span class="line">				arr.push(&#96;$&#123;url&#125;&#x3D;$&#123;params[key]&#125;&#96;);</span><br><span class="line">		&#125;</span><br><span class="line">		script.src &#x3D; &#96;$&#123;url&#125;?$&#123;arr.join(&#39;&amp;&#39;)&#125;&#96;;</span><br><span class="line">		script.type &#x3D; &quot;type&#x2F;javascript&quot;;</span><br><span class="line">		document.body.appendChild(script);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第二个函数改进了不足，但依旧存在不足之处：</p>
+<p>（1）没清楚生成的script标签</p>
+<p>（2）要写回调，很麻烦</p>
+<p>因此下面使用ES6的promise语法进行改进：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function jsonp(&#123;url, params, callback&#125;)&#123;</span><br><span class="line">		return new Promise((resolve,reject) &#x3D;&gt; &#123;</span><br><span class="line">				let script &#x3D; document.createElement(&quot;script&quot;);</span><br><span class="line">				window[callback] &#x3D; (data) &#x3D;&gt; &#123;</span><br><span class="line">						resolve(data);</span><br><span class="line">						&#x2F;&#x2F; 删除了script标签，原因应该是考虑同网页函数反复调用问题</span><br><span class="line">						document.body.removeChild(script);	</span><br><span class="line">				&#125;</span><br><span class="line">				params &#x3D; &#123; ...params, callback &#125;;</span><br><span class="line">				let arrs &#x3D; [];</span><br><span class="line">				for(var key in params)&#123;</span><br><span class="line">						arr.push(&#96;$&#123;key&#125;&#x3D;$&#123;params[key]&#125;&#96;);</span><br><span class="line">				&#125;</span><br><span class="line">				script.src &#x3D; &#96;$&#123;url&#125;?$&#123;arr.join(&#39;&amp;&#39;)&#125;&#96;;</span><br><span class="line">				script.type &#x3D; &quot;type&#x2F;javascript&quot;;</span><br><span class="line">				document.body.appendChild(script);</span><br><span class="line">		&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; test demo:</span><br><span class="line">jsonp(&#123;</span><br><span class="line">		url: &#39;http:&#x2F;&#x2F;localhost:3000&#x2F;&#39;,</span><br><span class="line">		params: &#123;test:&quot;test&quot;&#125;,</span><br><span class="line">		callback: &quot;show&quot;</span><br><span class="line">&#125;).then((data) &#x3D;&gt; &#123;</span><br><span class="line">		console.log(data);</span><br><span class="line">&#125;).catch((e) &#x3D;&gt; &#123;console.err(e)&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="AJAX的实现方法"><a href="#AJAX的实现方法" class="headerlink" title="AJAX的实现方法"></a>AJAX的实现方法</h3><h4 id="JQuery提供的AJAX方法："><a href="#JQuery提供的AJAX方法：" class="headerlink" title="JQuery提供的AJAX方法："></a>JQuery提供的AJAX方法：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">		url: &quot;&quot;,</span><br><span class="line">		type: &quot;&quot;,</span><br><span class="line">		dataType: &quot;&quot;,</span><br><span class="line">		data: &#123;</span><br><span class="line">				</span><br><span class="line">		&#125;,</span><br><span class="line">		success: function()&#123;&#125;,</span><br><span class="line">		error: function()&#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h4><blockquote>
+<p><code>XMLHttpRequest</code> 对象</p>
+</blockquote>
+<p>用于在后台与服务器交换数据</p>
+<blockquote>
+<p><code>xmlhttp.open(method,url,async)</code></p>
+</blockquote>
+<ul>
+<li><p>method：请求类型（GET，POST）</p>
+</li>
+<li><p>url：文件在服务器上的位置</p>
+</li>
+<li><p>async：true（异步）或false（同步）</p>
+</li>
+</ul>
+<blockquote>
+<p><code>xmlhttp.onreadystatechang事件</code></p>
+</blockquote>
+<ul>
+<li>当请求被发送到服务器时，我们需要执行一些基于响应的任务</li>
+<li>每当readyState改变时，就会触发该事件</li>
+<li>readyState属性存有XMLHTTPRequest的状态信息</li>
+</ul>
+<blockquote>
+<p><code>xmlhttp.readyState</code>状态码</p>
+</blockquote>
+<ul>
+<li>0：请求未初始化</li>
+<li>1：服务器连接已建立</li>
+<li>2：请求已接受</li>
+<li>3：请求处理中</li>
+<li>4：请求已完成，且响应已就绪</li>
+</ul>
+<blockquote>
+<p><code>xmlhttp.status</code>即HTTP状态码</p>
+</blockquote>
+<h4 id="原生js实现AJAX方法："><a href="#原生js实现AJAX方法：" class="headerlink" title="原生js实现AJAX方法："></a>原生js实现AJAX方法：</h4><p>（1）创建一个异步对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (window.XMLHttpRequest)</span><br><span class="line">&#123;		&#x2F;&#x2F; code for IE7+, Firefox, Chrome, Opera, Safari</span><br><span class="line">		xmlhttp&#x3D;new XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;		&#x2F;&#x2F; code for IE6, IE5</span><br><span class="line">		mlhttp&#x3D;new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）打开连接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(&quot;GET&quot;, url, true);</span><br></pre></td></tr></table></figure>
+
+<p>（3）发送请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET 请求:</span><br><span class="line">xmlhttp.send();&#x2F;&#x2F;get请求的参数加在url的后面</span><br><span class="line"></span><br><span class="line">POST 请求:</span><br><span class="line">xmlhttp.setRequestHeader(&quot;Content-type&quot;,&quot;application&#x2F;x-www-form-urlencoded&quot;);    &#x2F;&#x2F; 向请求添加HTTP头</span><br><span class="line">xmlhttp.send(&quot;fname&#x3D;Bill&amp;lname&#x3D;Gates&quot;);	&#x2F;&#x2F;post请求的参数要放在send()里面</span><br></pre></td></tr></table></figure>
+
+<p>（4）监听状态变化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.onreadystatechange &#x3D; function (ev2) &#123;</span><br><span class="line">		if(xmlhttp.readyState &#x3D;&#x3D;&#x3D; 4)&#123;</span><br><span class="line">				&#x2F;&#x2F; 判断是否请求成功</span><br><span class="line">				if(xmlhttp.status &gt;&#x3D; 200 &amp;&amp; xmlhttp.status &lt; 300 ||xmlhttp.status &#x3D;&#x3D;&#x3D; 304)&#123;</span><br><span class="line">						&#x2F;&#x2F; 处理返回的结果</span><br><span class="line">						console.log(&quot;接收到服务器返回的数据&quot;);</span><br><span class="line">						success(xmlhttp);</span><br><span class="line">				&#125;else&#123;</span><br><span class="line">						console.log(&quot;没有接收到服务器返回的数据&quot;);</span><br><span class="line">						error(xmlhttp);</span><br><span class="line">				&#125;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="封装ajax方法"><a href="#封装ajax方法" class="headerlink" title="封装ajax方法"></a>封装ajax方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">var myAjax &#x3D; &#123;</span><br><span class="line">    get: function (url, fn) &#123;</span><br><span class="line">        var xmlhttp &#x3D; new XMLHttpRequest();</span><br><span class="line">        xmlhttp.open(&quot;GET&quot;, url, true);</span><br><span class="line">        xmlhttp.send();</span><br><span class="line">        xmlhttp.onreadystatechange &#x3D; function (e) &#123;</span><br><span class="line">            if(xmlhttp.readyState &#x3D;&#x3D;&#x3D; 4 &amp;&amp; xmlhttp.status &#x3D;&#x3D;&#x3D; 200 || xmlhttp.status &#x3D;&#x3D;&#x3D; 304)&#123;</span><br><span class="line">                &#x2F;&#x2F; xmlhttp.responseText为从服务端返回的数据</span><br><span class="line">                fn.call(this, xmlhttp.responseText);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    post: function (url, fn, data) &#123;</span><br><span class="line">        var xmlhttp &#x3D; new XMLHttpRequest();</span><br><span class="line">        xmlhttp.open(&quot;POST&quot;, url, true);</span><br><span class="line">        &#x2F;&#x2F; 添加http头，发送信息至服务器时内容编码类型</span><br><span class="line">        xmlhttp.setRequestHeader(&quot;Content-Type&quot;, &quot;application&#x2F;x-www-form-urlencoded&quot;);</span><br><span class="line">        xmlhttp.onreadystatechange &#x3D; function () &#123;</span><br><span class="line">            if(xmlhttp.readyState &#x3D;&#x3D;&#x3D; 4 &amp;&amp; xmlhttp.status &#x3D;&#x3D;&#x3D; 200 || xmlhttp.status &#x3D;&#x3D;&#x3D; 304)&#123;</span><br><span class="line">                fn.call(this, xmlhttp.responseText);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        xmlhttp.send(data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/06/JS%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/06/JS%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">JS跨域问题</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-06 16:06:27" itemprop="dateCreated datePublished" datetime="2020-04-06T16:06:27+08:00">2020-04-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-07 11:51:34" itemprop="dateModified" datetime="2020-04-07T11:51:34+08:00">2020-04-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>所谓的  <strong>同源</strong>  是指<strong>域名、协议、端口号</strong> 相同。不同的客户端脚本（javascript，ActionScript）在没有授权的情况下，不能读取对方资源。简单来说，浏览器允许包含在页面A的脚本访问第二个页面B的数据资源，这一切是建立在A和B页面是同源的基础上。</p>
+<blockquote>
+<p>同源策略 是由Netscape提出的一个著名的安全策略，现在所有支持JavaScript 的浏览器都会使用这个策略。实际上，这种策略只是一个规范，并不是强制要求，各大厂商的浏览器只是针对同源策略的一种实现。它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。</p>
+</blockquote>
+<h4 id="什么是跨域？"><a href="#什么是跨域？" class="headerlink" title="什么是跨域？"></a>什么是跨域？</h4><p>跨域就是<strong>从一个域名的网页去请求另一个域名的资源</strong>。比如从<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 页面去请求 <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a> 的资源,出于安全方面的考虑，页面中的JavaScript在<strong>请求非同源的资源</strong>时就会出 <strong>跨域问题</strong> ，这时，由于同源策略，我们的请求会被浏览器禁止。</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/JS%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98%E4%BE%8B%E5%AD%90.png" alt="跨域问题例子"></p>
+<p>浏览器执行JavaScript脚本时，会检查这个脚本属于哪个页面，如果不是同源页面，就不会被执行。</p>
+<h4 id="为什么要跨域？"><a href="#为什么要跨域？" class="headerlink" title="为什么要跨域？"></a>为什么要跨域？</h4><p>最主要的原因便是<strong>安全问题</strong>：如果一个网页可以随意访问另一个网页的资源，那么就有可能在客户完全不知情的情况下出现安全问题。举个例子</p>
+<ol>
+<li>用户访问银行账户，登陆网银进行操作，登陆的信息通过cookie保存在了浏览器</li>
+<li>用户不小心访问了一个钓鱼网站</li>
+<li>钓鱼网站执行脚本，在浏览器页面拿到了银行和cookie，比如用户、登陆token等</li>
+<li>如果此时浏览器不予限制，并且银行没有安全处理，那么用户的信息便可能会泄露</li>
+</ol>
+<hr>
+<h3 id="解决跨域问题的方法"><a href="#解决跨域问题的方法" class="headerlink" title="解决跨域问题的方法"></a>解决跨域问题的方法</h3><h4 id="跨域资源共享（CORS）"><a href="#跨域资源共享（CORS）" class="headerlink" title="跨域资源共享（CORS）"></a>跨域资源共享（CORS）</h4><blockquote>
+<p>CORS（Cross-Origin Resource Sharing）跨域资源共享，定义了必须在访问跨域资源时，浏览器与服务器如何沟通。CORS背后的基本思想是使用自定义的HTTP头部让浏览器与服务器进行沟通，从而决定请求或响应是应该成功还是失败。</p>
+</blockquote>
+<p>服务器端对于CORS的支持，主要是通过设置Accesss-Control-Allow-Origin来进行。如果浏览器检测到相应设置，就允许AJAX进行跨域访问。</p>
+<p>只需要在后台中加上<strong>响应头来允许域请求</strong>！在被请求的Response header中加入以下设置，就可以实现Ajax跨域访问。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 指定允许其他域名访问</span><br><span class="line">&#39;Access-Control-Allow-Origin: *&#39;	&#x2F;&#x2F; 或指定其他域</span><br><span class="line">&#x2F;&#x2F; 响应类型</span><br><span class="line">&#39;Access-Control-Allow-Methods: GET,POST&#39;</span><br><span class="line">&#x2F;&#x2F; 响应头设置</span><br><span class="line">&#39;Access-Control-Allow-Headers: x-request-with,content-type&#39;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="通过JSONP跨域"><a href="#通过JSONP跨域" class="headerlink" title="通过JSONP跨域"></a>通过JSONP跨域</h4><h5 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h5><p>JSONP是JSON with Padding的缩写，是应用JSON的一种新方法，只不过是<strong>被包含在函数调用中的json</strong>。JSONP由两个部分组成：<strong>回调函数</strong>和<strong>数据</strong>。回调函数是当响应到来时应该在页面中调用的函数，而数据就是传入回调函数中的JSON数据</p>
+<h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><p>通过script标签引入异步加载的js文件，当js文件加载成功后会调用url参数中的回调函数，并会把我们需要的数据作为参数传入。即<strong>用JavaScript动态加载一个js文件，同时定义一个回调函数给script执行</strong>。</p>
+<h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><p>有个a.html页面，它里面的代码需要利用ajax获取一个不同域上的json数据，假设这个json数据地址是<a href="http://example.com/data.php,那么a.html中的代码就可以这样：" target="_blank" rel="noopener">http://example.com/data.php,那么a.html中的代码就可以这样：</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">		function dosomething(jsondata)&#123;</span><br><span class="line">        &#x2F;&#x2F;处理获得的json数据</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;http:&#x2F;&#x2F;example.com&#x2F;data.php?callback&#x3D;dosomething&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。所以jsonp是需要<strong>服务器端的页面</strong>进行相应的配合的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$callback &#x3D; $_GET[&#39;callback&#39;];&#x2F;&#x2F;得到回调函数名</span><br><span class="line">$data &#x3D; array(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;);&#x2F;&#x2F;要返回的数据</span><br><span class="line">echo $callback.&#39;(&#39;.json_encode($data).&#39;)&#39;;&#x2F;&#x2F;输出</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>最终，输出结果为：<code>dosomething([&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]);</code></p>
+<h5 id="JSONP的优缺点"><a href="#JSONP的优缺点" class="headerlink" title="JSONP的优缺点"></a>JSONP的优缺点</h5><ul>
+<li>优点：不受同源策略的限制；兼容性更好；在更古老的浏览器中可以运行，不需要<code>XMLHTTPRequest</code>或者<code>ActiveX</code>的支持；请求完毕后可以通过调用callback的方式回传结果。</li>
+<li>缺点：只<strong>支持GET请求</strong>而不支持POST等其他类型的请求；只支持跨域HTTP请求这种情况，不能解决不同域的两个页面之间如何进行JavaScript调用的问题。</li>
+</ul>
+<h5 id="CORS和JSONP对比"><a href="#CORS和JSONP对比" class="headerlink" title="CORS和JSONP对比"></a>CORS和JSONP对比</h5><p>CORS与JSONP相比，无疑更为先进、方便和可靠。</p>
+<ol>
+<li><p>JSONP只能实现GET请求，而CORS支持所有类型的HTTP请求</p>
+</li>
+<li><p>使用CORS，开发者可以使用普通的XMLHTTPRequest发起请求和获得数据，比起JSONP有更好的错误处理。</p>
+</li>
+</ol>
+<h4 id="通过修改document-domain来跨子域"><a href="#通过修改document-domain来跨子域" class="headerlink" title="通过修改document.domain来跨子域"></a>通过修改<code>document.domain</code>来跨子域</h4><p>浏览器的同源策略使得我们<strong>不能通过AJAX的方法</strong>去请求不同源中的文档，而且限制了浏览器中<strong>不同域的框架之间是不能进行js的交互操作</strong>的。</p>
+<p><strong>不同的框架之间是可以获取window对象的，但却无法获取相应的属性和方法。</strong>比如，有一个页面，它的地址是<code>http://www.example.com/a.html</code> ， 在这个页面里面有一个<code>iframe</code>，它的src是<code>http://example.com/b.html</code>, 很显然，这个页面与它里面的<code>iframe</code>框架是不同域的，所以我们是无法通过在页面中书写js代码来获取<code>iframe</code>中的东西的。</p>
+<p>通过修改<code>document.domain</code>将域名设置成自身或更高一级的父域，且主域必须相同。</p>
+<ol>
+<li>在页面 <code>http://www.example.com/a.html</code> 中设置<code>document.domain</code>:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe id &#x3D; &quot;iframe&quot; src&#x3D;&quot;http:&#x2F;&#x2F;example.com&#x2F;b.html&quot; onload &#x3D; &quot;test()&quot;&gt;&lt;&#x2F;iframe&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">    document.domain &#x3D; &#39;example.com&#39;;	&#x2F;&#x2F;设置成主域</span><br><span class="line">    function test()&#123;</span><br><span class="line">    		&#x2F;&#x2F;contentWindow 可取得子窗口的 window 对象</span><br><span class="line">        alert(document.getElementById(&#39;￼iframe&#39;).contentWindow); </span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在页面 <code>http://example.com/b.html</code> 中也设置<code>document.domain</code>:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">		&#x2F;&#x2F;在iframe载入这个页面也设置document.domain，使之与主页面的document.domain相同</span><br><span class="line">    document.domain &#x3D; &#39;example.com&#39;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="使用window-name来进行跨域"><a href="#使用window-name来进行跨域" class="headerlink" title="使用window.name来进行跨域"></a>使用<code>window.name</code>来进行跨域</h4><p>window对象有一个name属性，该属性有一个特征：<strong>即在一个窗口的生命周期内，窗口载入的所有页面都是共享一个<code>window.name</code>的，每个页面对<code>window.name</code>都有读写权限</strong>，<code>window.name</code>是持久存在一个窗口载入过的所有页面中的，并不会因新页面的载入而进行重置。</p>
+<p>注意，<code>window.name</code>的值只能是字符串的形式，这个字符串的大小最大能允许2M左右甚至更大的一个容量，具体取决于不同的浏览器。</p>
+<h4 id="使用HTML5的window-postMessage实现跨域"><a href="#使用HTML5的window-postMessage实现跨域" class="headerlink" title="使用HTML5的window.postMessage实现跨域"></a>使用HTML5的<code>window.postMessage</code>实现跨域</h4><p><code>**window.postMessage**(message,targetOrigin)</code>  方法是html5新引进的特性，可以使用它来向其它的window对象发送消息，无论这个window对象是属于同源或不同源，目前IE8+、FireFox、Chrome、Opera等浏览器都已经支持window.postMessage方法。</p>
+<p>调用postMessage方法的window对象是指要接收消息的那一个window对象，该方法的第一个参数message为要发送的消息，类型只能为字符串；第二个参数targetOrigin用来限定接收消息的那个window对象所在的域，如果不想限定域，可以使用通配符 *  </p>
+<p>需要接收消息的window对象，可是通过<strong>监听自身的message事件</strong>来获取传过来的消息，消息内容<strong>储存在该事件对象的data属性</strong>中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 这是 http:&#x2F;&#x2F;test.com&#x2F;a.html 的代码 --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function onLoad()&#123;</span><br><span class="line">		var iframe &#x3D; document.getELementById(&#39;iframe&#39;);</span><br><span class="line">		var win &#x3D; iframe.contentWindow;		&#x2F;&#x2F; 获取window对象</span><br><span class="line">		win.postMessage(&quot;俺是来自页面a的消息！&quot;,&quot;*&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;iframe id&#x3D;&quot;iframe&quot; src&#x3D;&quot;http:&#x2F;&#x2F;test.com&#x2F;b.html&quot; onload&#x3D;&quot;onLoad()&quot;&gt;&lt;&#x2F;iframe&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 这是 http:&#x2F;&#x2F;test.com&#x2F;b.html 的代码 --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">window.onmessage &#x3D; function(e)&#123;</span><br><span class="line">		var e &#x3D; e || event;</span><br><span class="line">		alert(e.data);</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="web-sockets"><a href="#web-sockets" class="headerlink" title="web sockets"></a>web sockets</h4><p>web sockets是一种浏览器的API，它的目标是在一个单独的持久连接上提供全双工、双向通信。(同源策略对web sockets不适用)</p>
+<p>web sockets原理：在js创建了web socket之后，会有一个HTTP请求发送到浏览器以发起连接。取得服务器响应后，建立的连接会使用HTTP升级从HTTP协议交换为web socket协议。</p>
+<p>只有在支持web socket协议的服务器上才能正常工作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;http-&gt;ws;  https-&gt;wss</span><br><span class="line">var socket &#x3D; new WebSockt(&#39;ws:&#x2F;&#x2F;www.baidu.com&#39;);</span><br><span class="line">socket.send(&#39;hello WebSockt&#39;);</span><br><span class="line">socket.onmessage &#x3D; function(event)&#123;</span><br><span class="line">    var data &#x3D; event.data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="XSS和CRSF攻击"><a href="#XSS和CRSF攻击" class="headerlink" title="XSS和CRSF攻击"></a>XSS和CRSF攻击</h3><h4 id="XSS跨站脚本攻击（代码注入的一种）"><a href="#XSS跨站脚本攻击（代码注入的一种）" class="headerlink" title="XSS跨站脚本攻击（代码注入的一种）"></a>XSS跨站脚本攻击（代码注入的一种）</h4><p> XSS, 即为（Cross Site Scripting）, 中文名为跨站脚本,  是发生在目标用户的浏览器层面上的，当渲染DOM树的过程成发生了不在预期内执行的JS代码时，就发生了XSS攻击。</p>
+<p>攻击者可以使用户在浏览器中<strong>执行其预定义的恶意脚本</strong>，实际上是在目标网站的作用域下执行了这段js代码，其导致的危害可想而知，如劫持用户会话，插入恶意内容、重定向用户、使用恶意软件劫持用户浏览器、繁殖<a href="https://baike.baidu.com/item/XSS蠕虫/22777013" target="_blank" rel="noopener">XSS蠕虫</a>，甚至破坏网站、修改路由器配置信息等。</p>
+<h4 id="XSS防御措施"><a href="#XSS防御措施" class="headerlink" title="XSS防御措施"></a>XSS防御措施</h4><p>XSS防御的总体思路是：</p>
+<ul>
+<li><p>在不需要HTML输入的地方对HTML标签及一些特殊字符进行过滤，将其转化为不被浏览器解析执行的字符。 </p>
+</li>
+<li><p>对输入(和URL参数)进行过滤，对输出进行编码。也就是对提交的所有内容进行过滤，对url中的参数进行过滤，过滤掉会导致脚本执行的相关内容；</p>
+</li>
+</ul>
+<h4 id="CSRF跨站请求伪造"><a href="#CSRF跨站请求伪造" class="headerlink" title="CSRF跨站请求伪造"></a>CSRF跨站请求伪造</h4><p>CSRF（Cross Site Request  Forgery，跨站请求伪造），字面理解意思就是在别的站点伪造了一个请求。专业术语来说就是在受害者访问一个网站时，其 Cookie  还没有过期的情况下，攻击者伪造一个链接地址发送受害者并欺骗让其点击，从而形成 CSRF 攻击。 </p>
+<h4 id="CSRF防御措施"><a href="#CSRF防御措施" class="headerlink" title="CSRF防御措施"></a>CSRF防御措施</h4><p>防御CSRF 攻击主要有三种策略：</p>
+<ul>
+<li>验证 HTTP Referer 字段；</li>
+<li>在请求地址中添加 token 并验证；</li>
+<li>在 HTTP 头中自定义属性并验证。 </li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/JS%E5%BC%82%E6%AD%A5Promise/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -180,10 +816,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-04-04 23:22:49 / 修改时间：23:23:06" itemprop="dateCreated datePublished" datetime="2020-04-04T23:22:49+08:00">2020-04-04</time>
+              <time title="创建时间：2020-04-04 23:22:49" itemprop="dateCreated datePublished" datetime="2020-04-04T23:22:49+08:00">2020-04-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-05 14:37:39" itemprop="dateModified" datetime="2020-04-05T14:37:39+08:00">2020-04-05</time>
+              </span>
 
           
 
@@ -196,7 +838,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 手写实现Promise</span><br><span class="line"> * **&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 创建了三个常量用于表示状态</span><br><span class="line">const PENDING &#x3D; &#39;pending&#39;;</span><br><span class="line">const REJECTED &#x3D; &#39;rejected&#39;;</span><br><span class="line">const FULFILLED &#x3D; &#39;fulfilled&#39;;</span><br><span class="line">var myPromise &#x3D; function (fn) &#123;</span><br><span class="line">    console.log(&quot;Create a Promise!&quot;);</span><br><span class="line">    let _this &#x3D; this;</span><br><span class="line">    _this.state &#x3D; PENDING;</span><br><span class="line">    _this.value &#x3D; null;</span><br><span class="line">    _this.rejectedCallBacks &#x3D; [];</span><br><span class="line">    _this.resolvedCallBacks &#x3D; [];</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 首先两个函数都得判断当前状态是否为等待中，因为规范规定只有等待态才可以改变状态</span><br><span class="line">    &#x2F;&#x2F; 将当前状态更改为对应状态，并且将传入的值赋值给 value</span><br><span class="line">    &#x2F;&#x2F; 遍历回调数组并执行</span><br><span class="line">    function resolve(value) &#123;</span><br><span class="line">        console.log(&quot;Running Resolve&quot;);</span><br><span class="line">        if(_this.state &#x3D;&#x3D;&#x3D; PENDING)&#123;</span><br><span class="line">            _this.state &#x3D; FULFILLED;</span><br><span class="line">            _this.value &#x3D; value;</span><br><span class="line">            _this.resolvedCallBacks.map(cb &#x3D;&gt; cb(_this.value));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    function reject(value) &#123;</span><br><span class="line">        console.log(&quot;Running Reject&quot;);</span><br><span class="line">        if(_this.state &#x3D;&#x3D;&#x3D; PENDING)&#123;</span><br><span class="line">            _this.state &#x3D; REJECTED;</span><br><span class="line">            _this.value &#x3D; value;</span><br><span class="line">            _this.rejectedCallBacks.map(cb &#x3D;&gt; cb(_this.value));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 实现很简单，执行传入的参数并且将之前两个函数当做参数传进去</span><br><span class="line">    &#x2F;&#x2F; 要注意的是，可能执行函数过程中会遇到错误，需要捕获错误并且执行 reject 函数</span><br><span class="line">    try &#123;</span><br><span class="line">        console.log(&quot;Running try &amp; catch&quot;);</span><br><span class="line">        fn(resolve, reject);</span><br><span class="line">    &#125;catch (e) &#123;</span><br><span class="line">        reject(e);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line">&#x2F;&#x2F; prototype实现then方法</span><br><span class="line">myPromise.prototype.then &#x3D; function (onFulfilled, onRejected) &#123;</span><br><span class="line">    const _this &#x3D; this;</span><br><span class="line">    &#x2F;&#x2F; 首先判断两个参数是否为函数类型，因为这两个参数是可选参数</span><br><span class="line">    &#x2F;&#x2F; 当参数不是函数类型时，需要创建一个函数赋值给对应的参数，同时也实现了透传</span><br><span class="line">    onFulfilled &#x3D; typeof onFulfilled &#x3D;&#x3D;&#x3D; &#39;function&#39;? onFulfilled: v &#x3D;&gt; v;</span><br><span class="line">    onRejected &#x3D; typeof onRejected &#x3D;&#x3D;&#x3D; &#39;function&#39;? onRejected: err &#x3D;&gt; &#123;throw err&#125;;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 根据状态执行相应函数</span><br><span class="line">    &#x2F;&#x2F; 如果状态是等待态的话，就往回调函数中 push 函数</span><br><span class="line">    if(_this.state &#x3D;&#x3D;&#x3D; PENDING)&#123;</span><br><span class="line">        _this.resolvedCallBacks.push(onFulfilled);</span><br><span class="line">        _this.rejectedCallBacks.push(onRejected);</span><br><span class="line">    &#125;else if(_this.state &#x3D;&#x3D;&#x3D; FULFILLED)&#123;</span><br><span class="line">        onFulfilled(_this.value);</span><br><span class="line">    &#125;else if(_this.state &#x3D;&#x3D;&#x3D; REJECTED)&#123;</span><br><span class="line">        onRejected(_this.value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">new myPromise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">        resolve(&quot;Write your content here!!&quot;)</span><br><span class="line">        &#x2F;&#x2F;reject(&quot;can i reject?&quot;)</span><br><span class="line">    &#125;, 1000)</span><br><span class="line">&#125;).then(res &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">    console.log(&quot;This is my Then&quot;);</span><br><span class="line">&#125;, err&#x3D;&gt;&#123;</span><br><span class="line">    console.log(err);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 手写实现Promise</span><br><span class="line"> * **&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 创建了三个常量用于表示状态</span><br><span class="line">const PENDING &#x3D; &#39;pending&#39;;</span><br><span class="line">const REJECTED &#x3D; &#39;rejected&#39;;</span><br><span class="line">const FULFILLED &#x3D; &#39;fulfilled&#39;;</span><br><span class="line">var myPromise &#x3D; function (fn) &#123;</span><br><span class="line">    console.log(&quot;Create a Promise!&quot;);</span><br><span class="line">    let _this &#x3D; this;</span><br><span class="line">    _this.state &#x3D; PENDING;</span><br><span class="line">    _this.value &#x3D; null;</span><br><span class="line">    _this.rejectedCallBacks &#x3D; [];</span><br><span class="line">    _this.resolvedCallBacks &#x3D; [];</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 首先两个函数都得判断当前状态是否为等待中，因为规范规定只有等待态才可以改变状态</span><br><span class="line">    &#x2F;&#x2F; 将当前状态更改为对应状态，并且将传入的值赋值给 value</span><br><span class="line">    &#x2F;&#x2F; vaule值会做为Promise的参数被后续调用&lt;promise&gt;</span><br><span class="line">    &#x2F;&#x2F; 遍历回调数组并执行</span><br><span class="line">    function resolve(value) &#123;</span><br><span class="line">        console.log(&quot;Running Resolve&quot;);</span><br><span class="line">        if(_this.state &#x3D;&#x3D;&#x3D; PENDING)&#123;</span><br><span class="line">            _this.state &#x3D; FULFILLED;</span><br><span class="line">            _this.value &#x3D; value;</span><br><span class="line">            _this.resolvedCallBacks.map(cb &#x3D;&gt; cb(_this.value));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    function reject(value) &#123;</span><br><span class="line">        console.log(&quot;Running Reject&quot;);</span><br><span class="line">        if(_this.state &#x3D;&#x3D;&#x3D; PENDING)&#123;</span><br><span class="line">            _this.state &#x3D; REJECTED;</span><br><span class="line">            _this.value &#x3D; value;</span><br><span class="line">            _this.rejectedCallBacks.map(cb &#x3D;&gt; cb(_this.value));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 实现很简单，执行传入的参数并且将之前两个函数当做参数传进去</span><br><span class="line">    &#x2F;&#x2F; 要注意的是，可能执行函数过程中会遇到错误，需要捕获错误并且执行 reject 函数</span><br><span class="line">    try &#123;</span><br><span class="line">        console.log(&quot;Running try &amp; catch&quot;);</span><br><span class="line">        fn(resolve, reject);</span><br><span class="line">    &#125;catch (e) &#123;</span><br><span class="line">        reject(e);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line">&#x2F;&#x2F; prototype实现then方法</span><br><span class="line">myPromise.prototype.then &#x3D; function (onFulfilled, onRejected) &#123;</span><br><span class="line">    const _this &#x3D; this;</span><br><span class="line">    &#x2F;&#x2F; 首先判断两个参数是否为函数类型，因为这两个参数是可选参数</span><br><span class="line">    &#x2F;&#x2F; 当参数不是函数类型时，需要创建一个函数赋值给对应的参数，同时也实现了透传</span><br><span class="line">    onFulfilled &#x3D; typeof onFulfilled &#x3D;&#x3D;&#x3D; &#39;function&#39;? onFulfilled: v &#x3D;&gt; v;</span><br><span class="line">    onRejected &#x3D; typeof onRejected &#x3D;&#x3D;&#x3D; &#39;function&#39;? onRejected: err &#x3D;&gt; &#123;throw err&#125;;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 根据状态执行相应函数</span><br><span class="line">    &#x2F;&#x2F; 如果状态是等待态的话，就往回调函数中 push 函数</span><br><span class="line">    if(_this.state &#x3D;&#x3D;&#x3D; PENDING)&#123;</span><br><span class="line">        _this.resolvedCallBacks.push(onFulfilled);</span><br><span class="line">        _this.rejectedCallBacks.push(onRejected);</span><br><span class="line">    &#125;else if(_this.state &#x3D;&#x3D;&#x3D; FULFILLED)&#123;</span><br><span class="line">        onFulfilled(_this.value);</span><br><span class="line">    &#125;else if(_this.state &#x3D;&#x3D;&#x3D; REJECTED)&#123;</span><br><span class="line">        onRejected(_this.value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 测试DEMO</span><br><span class="line">new myPromise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">        resolve(&quot;Write your content here!!&quot;)</span><br><span class="line">        &#x2F;&#x2F;reject(&quot;can i reject?&quot;)</span><br><span class="line">    &#125;, 1000)</span><br><span class="line">&#125;).then(res &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">    console.log(&quot;This is my Then&quot;);</span><br><span class="line">&#125;, err&#x3D;&gt;&#123;</span><br><span class="line">    console.log(err);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 
       
@@ -217,7 +859,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/JS%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/JS%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -231,7 +873,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/04/04/JS%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/" class="post-title-link" itemprop="url">JS防抖节流</a>
+            <a href="/2020/04/04/JS%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">JS常见的几个函数</a>
         </h1>
 
         <div class="post-meta">
@@ -243,6 +885,13 @@
 
               <time title="创建时间：2020-04-04 12:30:26" itemprop="dateCreated datePublished" datetime="2020-04-04T12:30:26+08:00">2020-04-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-07 20:37:32" itemprop="dateModified" datetime="2020-04-07T20:37:32+08:00">2020-04-07</time>
+              </span>
 
           
 
@@ -255,7 +904,48 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <p>日常开发过程中，滚动事件频繁调用回调函数很可能造成页面卡顿，这时候就需要防抖<code>debounce</code>和节流<code>throttle</code>来对代码进行性能优化了！</p>
+<h3 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h3><p>当<strong>持续</strong>触发事件时，一定时间内没有再触发事件，事件处理函数才会执行一次。</p>
+<p>主要应用场景有：<strong>input验证、搜索联想、resize</strong>。</p>
+<p>DEMO：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 防抖</span><br><span class="line">var debounce &#x3D; function(fn, wait)&#123;</span><br><span class="line">		var timeout &#x3D; null;</span><br><span class="line">		return function()&#123;</span><br><span class="line">				if(timeout !&#x3D;&#x3D; null)</span><br><span class="line">						clearTimeout(timeout);</span><br><span class="line">				timeout &#x3D; setTimeout(fn, wait);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 处理函数</span><br><span class="line">var handle &#x3D; function()&#123;</span><br><span class="line">		&#x2F;&#x2F;这里放的是相应事件的处理函数</span><br><span class="line">		console.log(Math.random());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 添加滚动监听事件</span><br><span class="line">window.addEventListener(&quot;scroll&quot;, debounce(handle, 1000));</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h3><p>当持续触发事件时，保证一定时间段内只调用一次事件处理函数。节流通俗解释就比如我们水龙头放水，阀门一打开，水哗哗的往下流，秉着勤俭节约的优良传统美德，我们要把水龙头关小点，最好是如我们心意按照一定规律在某个时间间隔内一滴一滴的往下滴。</p>
+<p>主要应用场景：</p>
+<ul>
+<li>鼠标不断点击触发，<code>mousedown</code>(单位时间内只触发一次)</li>
+<li>监听滚动事件，比如是否滑到底部自动加载更多，用throttle来判断</li>
+</ul>
+<h4 id="方法一：事件戳"><a href="#方法一：事件戳" class="headerlink" title="方法一：事件戳"></a>方法一：事件戳</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var throttle &#x3D; function(func, delay) &#123;            </span><br><span class="line">		var prev &#x3D; Date.now();            </span><br><span class="line">		return function() &#123;                </span><br><span class="line">  			var context &#x3D; this;                </span><br><span class="line">				var args &#x3D; arguments;                </span><br><span class="line">				var now &#x3D; Date.now();                </span><br><span class="line">				if (now - prev &gt;&#x3D; delay) &#123;                    </span><br><span class="line">						func.apply(context, args);                    </span><br><span class="line">						prev &#x3D; Date.now();                </span><br><span class="line">    		&#125;            </span><br><span class="line">		&#125;        </span><br><span class="line">&#125;        </span><br><span class="line">function handle() &#123;            </span><br><span class="line">　　console.log(Math.random());        </span><br><span class="line">&#125;        </span><br><span class="line">window.addEventListener(&#39;scroll&#39;, throttle(handle, 1000));</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法二：定时器"><a href="#方法二：定时器" class="headerlink" title="方法二：定时器"></a>方法二：定时器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var throttle &#x3D; function(func, delay)&#123;</span><br><span class="line">		var timeout &#x3D; null;</span><br><span class="line">		return function()&#123;</span><br><span class="line">				if(!timeout)&#123;</span><br><span class="line">						var context &#x3D; this;</span><br><span class="line">						var args &#x3D; arguments;</span><br><span class="line">						timeout &#x3D; setTimeout(function()&#123;</span><br><span class="line">								func.apply(context, args);</span><br><span class="line">								timeout &#x3D; null;</span><br><span class="line">						&#125;)</span><br><span class="line">				&#125;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line">function handle() &#123;            </span><br><span class="line">　　console.log(Math.random());        </span><br><span class="line">&#125;        </span><br><span class="line">window.addEventListener(&#39;scroll&#39;, throttle(handle, 1000));</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="数组扁平化处理"><a href="#数组扁平化处理" class="headerlink" title="数组扁平化处理"></a>数组扁平化处理</h3><h4 id="方法一：正则表达式"><a href="#方法一：正则表达式" class="headerlink" title="方法一：正则表达式"></a>方法一：正则表达式</h4><p>先将多维数组转换成字符串，再通过正则进行处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let num &#x3D; [1,5,[2,2],[3,[2,55],34],1];</span><br><span class="line">let str &#x3D; JSON.Stringify(num);</span><br><span class="line">&#x2F;&#x2F; 正则处理1</span><br><span class="line">result &#x3D; str.replace(&#x2F;(\[\])&#x2F;g, &#39;&#39;).split(&#39;,&#39;);</span><br><span class="line">&#x2F;&#x2F; 正则处理2</span><br><span class="line">str &#x3D; str.replace(&#x2F;(\[\])&#x2F;g, &#39;&#39;);</span><br><span class="line">str &#x3D; &#39;[&#39;+str+&#39;]&#39;;</span><br><span class="line">result2 &#x3D; JSON.parse(str);</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法二：拓展运算符"><a href="#方法二：拓展运算符" class="headerlink" title="方法二：拓展运算符"></a>方法二：拓展运算符</h4><blockquote>
+<p>some( ) 方法用于检测数组中的元素是否满足指定条件（函数提供）。</p>
+</blockquote>
+<blockquote>
+<p>… （拓展运算符）可以将数组元素迭代为函数参数使用</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while (arr.some(Array.isArray)) &#123;</span><br><span class="line">  	arr &#x3D; [].concat(...arr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法三：递归处理"><a href="#方法三：递归处理" class="headerlink" title="方法三：递归处理"></a>方法三：递归处理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function myFlat(arr)&#123;</span><br><span class="line">		let result &#x3D; [];</span><br><span class="line">		if(Array.isArray(arr))&#123;</span><br><span class="line">				arr.forEach(function(item)&#123;</span><br><span class="line">						if(Array.isArray(item))&#123;</span><br><span class="line">								result.push(...myFlat(item));</span><br><span class="line">						&#125;else&#123;</span><br><span class="line">								result.push(item);</span><br><span class="line">						&#125;</span><br><span class="line">				&#125;)</span><br><span class="line">		&#125;</span><br><span class="line">		return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>通过递归实现深拷贝</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function deepClone(obj)&#123;</span><br><span class="line">		if(typeof obj !&#x3D;&#x3D; &#39;object&#39;) return false;</span><br><span class="line">		var newObj &#x3D; Array.isArray(obj)? []: &#123;&#125;;</span><br><span class="line">		for(var key in obj)&#123;</span><br><span class="line">				if(obj.hasOwnProperty(key))&#123;</span><br><span class="line">						if(typeof obj[key] &#x3D;&#x3D;&#x3D; &#39;object&#39;)&#123;</span><br><span class="line">								newObj[key] &#x3D; deepClone(obj[key]);</span><br><span class="line">						&#125;else&#123;</span><br><span class="line">								newObj[key] &#x3D; obj[key];</span><br><span class="line">						&#125;</span><br><span class="line">				&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return newObj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
 
@@ -498,7 +1188,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-04 18:48:16" itemprop="dateModified" datetime="2020-04-04T18:48:16+08:00">2020-04-04</time>
+                <time title="修改时间：2020-04-05 19:20:34" itemprop="dateModified" datetime="2020-04-05T19:20:34+08:00">2020-04-05</time>
               </span>
 
           
@@ -512,66 +1202,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><ul>
-<li>html5的新特性</li>
-<li>事件代理、事件委托、事件冒泡和捕获</li>
-<li>Doctype</li>
-<li>常用的meta标签、常用的name（description、keyword、作者、版权等信息）<ul>
-<li>这些信息给谁用（搜索引擎爬虫用来做索引）</li>
-<li>如何设置网页编码（charset）</li>
-<li>viewport的作用（设置页面视窗宽高缩放）</li>
-</ul>
-</li>
-</ul>
-<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><ul>
-<li>布局问题，三列布局，左右固定宽度，中间自适应，问实现方法（圣杯布局、双飞翼布局） </li>
-</ul>
-<h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><ul>
-<li>HTTP和HTTPS的区别</li>
-<li>HTTP请求有哪些方式（GET，POST，PUT，DELETE，UPDATE，OPTION）</li>
-<li>TCP和UDP</li>
-<li>TCP的三四</li>
-<li>计算机网络的五层模型物理层、数据链路层、</li>
-<li>http状态码</li>
-</ul>
-<h3 id="算法与数据结构"><a href="#算法与数据结构" class="headerlink" title="算法与数据结构"></a>算法与数据结构</h3><ul>
-<li>树</li>
-<li>递归</li>
-<li>排序</li>
-<li>查找</li>
-</ul>
-<ul>
-<li>前端性能优化的方案<ul>
-<li>减少请求数量</li>
-<li>减小资源大小</li>
-<li>优化网络连接</li>
-<li>优化资源加载</li>
-<li>减少回流重绘</li>
-<li>使用性能更佳的API</li>
-<li>构建优化</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>进程和线程的区别吧</li>
-</ul>
-<h3 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h3><p>数据结构–链表二叉树</p>
-<p>LeetCode算法题</p>
-<p>※※※  http相关</p>
-<p>去重、二分查找</p>
-<p>跨域、同源策略</p>
-<p>前端安全：XSS CSRF 中间人攻击</p>
-<p>Object.defineProperty 代码实现</p>
-<p>git相关技术</p>
-<p>webpack配置与实现</p>
-<p>​    <strong>打包的性能优化 将业务和依赖分开打包，依赖部分做缓存</strong></p>
-<p>※※※  Vue</p>
-<p>算法复杂度（时间和和空间复杂度</p>
-<p>set和map</p>
-<p>jsonp和ajax</p>
-<p>CSS实现垂直居中</p>
-<p>解惑 [“1”, “2”, “3”].map(parseInt) 为何返回[1,NaN,NaN]</p>
-
+          
       
     </div>
 
@@ -806,315 +1437,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/for-in-%E5%92%8C-for-of/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/20/for-in-%E5%92%8C-for-of/" class="post-title-link" itemprop="url">for...in和for...of</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-20 20:31:33 / 修改时间：22:19:46" itemprop="dateCreated datePublished" datetime="2020-03-20T20:31:33+08:00">2020-03-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>通过举多个例子进行说明</p>
-<h4 id="例子1：遍历数组"><a href="#例子1：遍历数组" class="headerlink" title="例子1：遍历数组"></a>例子1：遍历数组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const arr1 &#x3D;[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];</span><br><span class="line">&#x2F;&#x2F; for...in 返回数组的下标</span><br><span class="line">for(let i in arr1)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; 0,1,2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; for...of 返回数组的元素</span><br><span class="line">for(let i of arr1)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; a,b,c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="例子2：给数组手动添加属性"><a href="#例子2：给数组手动添加属性" class="headerlink" title="例子2：给数组手动添加属性"></a>例子2：给数组手动添加属性</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const arr2 &#x3D; [&#39;a&#39;, &#39;b&#39;];</span><br><span class="line">arr2.name &#x3D; &#39;c&#39;;</span><br><span class="line">&#x2F;&#x2F; for..in循环可以遍历出&#39;name&#39;这个键名，for..of结果则为 a, b</span><br><span class="line">for(let i in arr2)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F;0,1,name</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="例子3：遍历对象"><a href="#例子3：遍历对象" class="headerlink" title="例子3：遍历对象"></a>例子3：遍历对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const json &#x3D; &#123;&quot;a&quot;:1, &quot;b&quot;:2, &quot;c&quot;:3&#125;;</span><br><span class="line">&#x2F;&#x2F; for..in遍历获取对象的key值 (对应键值对key-value)</span><br><span class="line">for(let i in json)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; a,b,c</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; for..of报错</span><br><span class="line">for(let i of json)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; TypeError: json is not iterable</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="for-in-的特点："><a href="#for-in-的特点：" class="headerlink" title="for..in 的特点："></a>for..in 的特点：</h4><ul>
-<li>for..in 语句用于对<strong>数组</strong>或<strong>对象</strong>的属性进行循环操作</li>
-<li>for..in 循环中的代码每执行一次，就会对数组元素或者对象的属性进行一次操作</li>
-<li>for..in 语句会遍历一个对象的<strong>可枚举属性</strong>（包括继承而来的属性）。</li>
-</ul>
-<h4 id="for-of-的特点："><a href="#for-of-的特点：" class="headerlink" title="for..of 的特点："></a>for..of 的特点：</h4><ul>
-<li>for..of 语句在<strong>可迭代对象</strong>(包括<strong>Array，Map，Set，String，arguments对象</strong>等)上创建一个迭代循环，调用自定义迭代钩子，并为每个不同属性的值执行语句。</li>
-<li>一个数据结构只要部署了<code>Symbol.iterator</code>属性，就被视为 <strong>iterator接口</strong>，就可以for..in</li>
-<li>for..of 可以与<code>break continue</code>和<code>return</code>配合使用（即可以随时退出循环，比forEach强</li>
-</ul>
-<hr>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
-<li>for..in 遍历的是<strong>key值</strong>，for..of遍历的是<strong>value值</strong>，因此前者更适合遍历对象</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Object.prototype.objCustom &#x3D; function() &#123;&#125;; </span><br><span class="line">Array.prototype.arrCustom &#x3D; function() &#123;&#125;;</span><br><span class="line"> </span><br><span class="line">let iterable &#x3D; [3, 5, 7];</span><br><span class="line">iterable.foo &#x3D; &#39;hello&#39;;</span><br><span class="line"> </span><br><span class="line">for (let i in iterable) &#123;</span><br><span class="line">  console.log(i); &#x2F;&#x2F; 0, 1, 2, &quot;foo&quot;, &quot;arrCustom&quot;, &quot;objCustom&quot;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">for (let i in iterable) &#123;</span><br><span class="line">  if (iterable.hasOwnProperty(i)) &#123;</span><br><span class="line">    console.log(i); &#x2F;&#x2F; 0, 1, 2, &quot;foo&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">for (let i of iterable) &#123;</span><br><span class="line">  console.log(i); &#x2F;&#x2F; 3, 5, 7</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>for...in</code> 语句以原始插入顺序迭代对象的可枚举属性。</p>
-<p><code>for...of</code> 语句遍历可迭代对象定义要迭代的数据。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/17/JS%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/17/JS%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">JS数据缓存</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-17 21:34:41 / 修改时间：22:57:48" itemprop="dateCreated datePublished" datetime="2020-03-17T21:34:41+08:00">2020-03-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h4><p><code>cookie</code>非常小，它的大小限制在4kb左右，主要用于保存登陆信息，比如你登陆某个网站市场可以看到“记住密码”，这就是通过在cookie中存入一段辨别用户身份的数据来实现的。</p>
-<h4 id="sessionStorage（临时保存"><a href="#sessionStorage（临时保存" class="headerlink" title="sessionStorage（临时保存"></a>sessionStorage（临时保存</h4><p><code>sessionStorage</code>可以将数据保存在客户端的session对象中，不与服务器进行交互通信，其生命周期仅在当前会话下有效，会话关闭其中的数据会被清空。</p>
-<h4 id="localStorage（永久保存"><a href="#localStorage（永久保存" class="headerlink" title="localStorage（永久保存"></a>localStorage（永久保存</h4><p><code>localStorage</code>将数据保存在客户端本地的硬件设备(通常指硬盘，也可以是其他硬件设备)中，即使浏览器被关闭了，该数据仍然存在，下次打开浏览器访问网站时仍然可以继续使用。</p>
-<h3 id="三者的不同之处"><a href="#三者的不同之处" class="headerlink" title="三者的不同之处"></a>三者的不同之处</h3><ul>
-<li>数据的生命周期不同</li>
-</ul>
-<p><strong>Cookie</strong>一般由服务器生成，可以设置失效时间(maxAge)，如果浏览器生成cookie，默认关闭后失效</p>
-<p><strong>localStorage</strong>除非被永久清除，否则永久保存</p>
-<p><strong>sessionStorage</strong>仅在当前会话有效，关闭页面或浏览器后被清除</p>
-<ul>
-<li>存放数据不同</li>
-</ul>
-<p><strong>cookie</strong>一般为4KB，<strong>localStorage</strong>和<strong>sessionStorage</strong>一般为5MB。</p>
-<ul>
-<li>与服务器端通信不同</li>
-</ul>
-<p><strong>cookie</strong> – 由对服务器的请求来传递，每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题</p>
-<p><strong>localStorage</strong>和<strong>sessionStorage</strong> – 数据不是由每个服务器请求传递的，而是只有在请求时使用数据，不参与和服务器的通信</p>
-<ul>
-<li>易用性</li>
-</ul>
-<p><strong>cookie</strong>需要自己封装<code>setCookie</code>, <code>getCookie</code></p>
-<p><strong>localStorage</strong>和<strong>sessionStorage</strong>则可以用原生接口，也可以再次封装来对Object和Array有更好的支持</p>
-<ul>
-<li>安全性</li>
-</ul>
-<p><code>localStorage</code>和<code>sessionStorage</code>不会随<code>HTTP header</code>发送到服务器端，所以安全性相对cookie来说较高一些，不用担心截获，但仍旧存在伪造问题</p>
-<ul>
-<li>应用场景</li>
-</ul>
-<h3 id="WebStorage使用方法与实例"><a href="#WebStorage使用方法与实例" class="headerlink" title="WebStorage使用方法与实例"></a>WebStorage使用方法与实例</h3><h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; webStorage &#x3D;&gt; localStorage&#x2F;sessionStorage </span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;保存数据，以键值对的方式储存信息。</span><br><span class="line">webStorage.setItem (key, value)		</span><br><span class="line">&#x2F;&#x2F;获取数据，将键值传入，即可获取到对应的value值。</span><br><span class="line">webStorage.getItem (key)					</span><br><span class="line">&#x2F;&#x2F;删除单个数据，根据键值移除对应的信息。</span><br><span class="line">webStorage.removeItem (key)			</span><br><span class="line">&#x2F;&#x2F;删除所有的数据</span><br><span class="line">webStorage.clear ()</span><br><span class="line">&#x2F;&#x2F;获取某个索引的key</span><br><span class="line">webStorage.key (index)</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="封装方法实例（读取与保存数据方法封装在script-js中"><a href="#封装方法实例（读取与保存数据方法封装在script-js中" class="headerlink" title="封装方法实例（读取与保存数据方法封装在script.js中)"></a>封装方法实例（读取与保存数据方法封装在script.js中)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;sessionStorage 示例  (保存一个会话周期:从打开浏览器——到关闭浏览器窗口)</span><br><span class="line">function saveStorage(id)&#123;</span><br><span class="line">    var target&#x3D;document.getElementById(id);</span><br><span class="line">    var str&#x3D;target.value;</span><br><span class="line">    sessionStorage.setItem(&quot;message&quot;,str);</span><br><span class="line">    &#x2F;&#x2F;或者sessionStorage.message&#x3D;str;</span><br><span class="line">&#125;</span><br><span class="line">function loadStorage(id)&#123;</span><br><span class="line">    var target&#x3D;document.getElementById(id);</span><br><span class="line">    var msg&#x3D;sessionStorage.getItem(&quot;message&quot;);</span><br><span class="line">    &#x2F;&#x2F;或者var msg&#x3D;sessionStorage.message;</span><br><span class="line">    target.innerHTML&#x3D;msg;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;localStorage 示例(可永久保存)    </span><br><span class="line">function saveStorage(id)&#123;</span><br><span class="line">    var target&#x3D;document.getElementById(id);</span><br><span class="line">    var str&#x3D;target.value;</span><br><span class="line">    localStorage.setItem(&quot;message&quot;,str);</span><br><span class="line">    &#x2F;&#x2F;或者localStorage.message&#x3D;str;</span><br><span class="line">&#125;</span><br><span class="line">function loadStorage(id)&#123;</span><br><span class="line">    var target&#x3D;document.getElementById(&quot;msg&quot;);</span><br><span class="line">    var msg&#x3D;localStorage.getItem(&quot;message&quot;);</span><br><span class="line">    &#x2F;&#x2F;或者var msg&#x3D;localStorage.message;</span><br><span class="line">    target.innerHTML&#x3D;msg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/16/JS%E4%B8%AD%E7%9A%84call-apply%E4%B8%8Ebind/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/16/JS%E4%B8%AD%E7%9A%84call-apply%E4%B8%8Ebind/" class="post-title-link" itemprop="url">JS中的call,apply与bind</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-16 21:36:21" itemprop="dateCreated datePublished" datetime="2020-03-16T21:36:21+08:00">2020-03-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-17 15:37:11" itemprop="dateModified" datetime="2020-03-17T15:37:11+08:00">2020-03-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>首先，在了解call，apply及bind的区别前，我们要先弄清楚一个概念，<strong>this 永远指向最后调用它的那个对象</strong>（注意“最后调用”！！）。而使用call、apply和bind都能够是函数的上下文发生改变，即改变了this的指向。</p>
-<p>除此以外，还有<strong>ES6箭头函数</strong>、<strong>在函数内部使用_this = this</strong>以及<strong>new实例化一个对象</strong>等方法实现指向的改变。</p>
-<blockquote>
-<p>call()、apply()、bind()是用来改变this的指向的</p>
-</blockquote>
-<h3 id="call与apply"><a href="#call与apply" class="headerlink" title="call与apply"></a>call与apply</h3><p><code>call()</code>与<code>apply()</code>均为<code>Function.prototype</code>中的方法，使用方法基本相似，二者的区别只是传入的参数不同：</p>
-<ul>
-<li><code>call()</code>：第一个参数是this值没有变化，变化的是<strong>其余参数都直接传递给函数</strong>。在使用<code>call()</code>方法时，<strong>传递给函数的参数必须逐个列举出来</strong>。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function.call(thisArg, arg1, arg2, ...)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>apply()</code>：传递给函数的是<strong>参数数组</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function.apply(thisArg, [argsArray])</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D;&#123;</span><br><span class="line">	name : &quot;Cherry&quot;,</span><br><span class="line">  fn : function (a,b) &#123;</span><br><span class="line">  	console.log( a + b)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var b1 &#x3D; a.fn;</span><br><span class="line">var b2 &#x3D; a.fn;</span><br><span class="line">b1.apply(a,[1,2])  &#x2F;&#x2F; 3</span><br><span class="line">b2.call(a,1,2)		 &#x2F;&#x2F; 3</span><br></pre></td></tr></table></figure>
-
-<p><em>注：</em>如果call()和apply()的第一个参数是null或者undefined，那么this的指向就是全局变量，在浏览器里就是window对象。</p>
-<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p><code>bind()</code> 方法创建一个新的函数，在 <code>bind()</code> 被调用时，这个新函数的 <code>this</code> 被指定为 <code>bind()</code> 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function.bind(thisArg[, arg1[, arg2[, ...]]])</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const module &#x3D; &#123;</span><br><span class="line">  x: 42,</span><br><span class="line">  getX: function() &#123;</span><br><span class="line">    return this.x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const unboundGetX &#x3D; module.getX;</span><br><span class="line">console.log(unboundGetX()); 	&#x2F;&#x2F; undefined</span><br><span class="line">&#x2F;&#x2F; 此时UNboundGetX函数this指向windows全局变量，this.x未定义</span><br><span class="line"></span><br><span class="line">const boundGetX &#x3D; unboundGetX.bind(module);</span><br><span class="line">console.log(boundGetX());			&#x2F;&#x2F; 42</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1182,20 +1509,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

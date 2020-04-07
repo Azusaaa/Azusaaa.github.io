@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="日常开发过程中，滚动事件频繁调用回调函数很可能造成页面卡顿，这时候就需要防抖debounce和节流throttle来对代码进行性能优化了！ 函数防抖当持续触发事件时，一定时间内没有再触发事件，事件处理函数才会执行一次。 主要应用场景有：input验证、搜索联想、resize。 DEMO： 123456789101112131415161718&#x2F;&#x2F; 防抖var debounce">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS常见的几个函数">
+<meta property="og:url" content="http://yoursite.com/2020/04/04/JS%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="Natsun Blog">
+<meta property="og:description" content="日常开发过程中，滚动事件频繁调用回调函数很可能造成页面卡顿，这时候就需要防抖debounce和节流throttle来对代码进行性能优化了！ 函数防抖当持续触发事件时，一定时间内没有再触发事件，事件处理函数才会执行一次。 主要应用场景有：input验证、搜索联想、resize。 DEMO： 123456789101112131415161718&#x2F;&#x2F; 防抖var debounce">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-04T04:30:26.000Z">
+<meta property="article:modified_time" content="2020-04-07T12:37:32.214Z">
+<meta property="article:author" content="Xya Fred">
+<meta property="article:tag" content="防抖节流">
+<meta property="article:tag" content="Curry化">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/04/JS%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>JS常见的几个函数 | Natsun Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Natsun Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">留下记忆中的美好</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/JS%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS常见的几个函数
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-04 12:30:26" itemprop="dateCreated datePublished" datetime="2020-04-04T12:30:26+08:00">2020-04-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-07 20:37:32" itemprop="dateModified" datetime="2020-04-07T20:37:32+08:00">2020-04-07</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>日常开发过程中，滚动事件频繁调用回调函数很可能造成页面卡顿，这时候就需要防抖<code>debounce</code>和节流<code>throttle</code>来对代码进行性能优化了！</p>
+<h3 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h3><p>当<strong>持续</strong>触发事件时，一定时间内没有再触发事件，事件处理函数才会执行一次。</p>
+<p>主要应用场景有：<strong>input验证、搜索联想、resize</strong>。</p>
+<p>DEMO：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 防抖</span><br><span class="line">var debounce &#x3D; function(fn, wait)&#123;</span><br><span class="line">		var timeout &#x3D; null;</span><br><span class="line">		return function()&#123;</span><br><span class="line">				if(timeout !&#x3D;&#x3D; null)</span><br><span class="line">						clearTimeout(timeout);</span><br><span class="line">				timeout &#x3D; setTimeout(fn, wait);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 处理函数</span><br><span class="line">var handle &#x3D; function()&#123;</span><br><span class="line">		&#x2F;&#x2F;这里放的是相应事件的处理函数</span><br><span class="line">		console.log(Math.random());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 添加滚动监听事件</span><br><span class="line">window.addEventListener(&quot;scroll&quot;, debounce(handle, 1000));</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h3><p>当持续触发事件时，保证一定时间段内只调用一次事件处理函数。节流通俗解释就比如我们水龙头放水，阀门一打开，水哗哗的往下流，秉着勤俭节约的优良传统美德，我们要把水龙头关小点，最好是如我们心意按照一定规律在某个时间间隔内一滴一滴的往下滴。</p>
+<p>主要应用场景：</p>
+<ul>
+<li>鼠标不断点击触发，<code>mousedown</code>(单位时间内只触发一次)</li>
+<li>监听滚动事件，比如是否滑到底部自动加载更多，用throttle来判断</li>
+</ul>
+<h4 id="方法一：事件戳"><a href="#方法一：事件戳" class="headerlink" title="方法一：事件戳"></a>方法一：事件戳</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var throttle &#x3D; function(func, delay) &#123;            </span><br><span class="line">		var prev &#x3D; Date.now();            </span><br><span class="line">		return function() &#123;                </span><br><span class="line">  			var context &#x3D; this;                </span><br><span class="line">				var args &#x3D; arguments;                </span><br><span class="line">				var now &#x3D; Date.now();                </span><br><span class="line">				if (now - prev &gt;&#x3D; delay) &#123;                    </span><br><span class="line">						func.apply(context, args);                    </span><br><span class="line">						prev &#x3D; Date.now();                </span><br><span class="line">    		&#125;            </span><br><span class="line">		&#125;        </span><br><span class="line">&#125;        </span><br><span class="line">function handle() &#123;            </span><br><span class="line">　　console.log(Math.random());        </span><br><span class="line">&#125;        </span><br><span class="line">window.addEventListener(&#39;scroll&#39;, throttle(handle, 1000));</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法二：定时器"><a href="#方法二：定时器" class="headerlink" title="方法二：定时器"></a>方法二：定时器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var throttle &#x3D; function(func, delay)&#123;</span><br><span class="line">		var timeout &#x3D; null;</span><br><span class="line">		return function()&#123;</span><br><span class="line">				if(!timeout)&#123;</span><br><span class="line">						var context &#x3D; this;</span><br><span class="line">						var args &#x3D; arguments;</span><br><span class="line">						timeout &#x3D; setTimeout(function()&#123;</span><br><span class="line">								func.apply(context, args);</span><br><span class="line">								timeout &#x3D; null;</span><br><span class="line">						&#125;)</span><br><span class="line">				&#125;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line">function handle() &#123;            </span><br><span class="line">　　console.log(Math.random());        </span><br><span class="line">&#125;        </span><br><span class="line">window.addEventListener(&#39;scroll&#39;, throttle(handle, 1000));</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="数组扁平化处理"><a href="#数组扁平化处理" class="headerlink" title="数组扁平化处理"></a>数组扁平化处理</h3><h4 id="方法一：正则表达式"><a href="#方法一：正则表达式" class="headerlink" title="方法一：正则表达式"></a>方法一：正则表达式</h4><p>先将多维数组转换成字符串，再通过正则进行处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let num &#x3D; [1,5,[2,2],[3,[2,55],34],1];</span><br><span class="line">let str &#x3D; JSON.Stringify(num);</span><br><span class="line">&#x2F;&#x2F; 正则处理1</span><br><span class="line">result &#x3D; str.replace(&#x2F;(\[\])&#x2F;g, &#39;&#39;).split(&#39;,&#39;);</span><br><span class="line">&#x2F;&#x2F; 正则处理2</span><br><span class="line">str &#x3D; str.replace(&#x2F;(\[\])&#x2F;g, &#39;&#39;);</span><br><span class="line">str &#x3D; &#39;[&#39;+str+&#39;]&#39;;</span><br><span class="line">result2 &#x3D; JSON.parse(str);</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法二：拓展运算符"><a href="#方法二：拓展运算符" class="headerlink" title="方法二：拓展运算符"></a>方法二：拓展运算符</h4><blockquote>
+<p>some( ) 方法用于检测数组中的元素是否满足指定条件（函数提供）。</p>
+</blockquote>
+<blockquote>
+<p>… （拓展运算符）可以将数组元素迭代为函数参数使用</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while (arr.some(Array.isArray)) &#123;</span><br><span class="line">  	arr &#x3D; [].concat(...arr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法三：递归处理"><a href="#方法三：递归处理" class="headerlink" title="方法三：递归处理"></a>方法三：递归处理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function myFlat(arr)&#123;</span><br><span class="line">		let result &#x3D; [];</span><br><span class="line">		if(Array.isArray(arr))&#123;</span><br><span class="line">				arr.forEach(function(item)&#123;</span><br><span class="line">						if(Array.isArray(item))&#123;</span><br><span class="line">								result.push(...myFlat(item));</span><br><span class="line">						&#125;else&#123;</span><br><span class="line">								result.push(item);</span><br><span class="line">						&#125;</span><br><span class="line">				&#125;)</span><br><span class="line">		&#125;</span><br><span class="line">		return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>通过递归实现深拷贝</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function deepClone(obj)&#123;</span><br><span class="line">		if(typeof obj !&#x3D;&#x3D; &#39;object&#39;) return false;</span><br><span class="line">		var newObj &#x3D; Array.isArray(obj)? []: &#123;&#125;;</span><br><span class="line">		for(var key in obj)&#123;</span><br><span class="line">				if(obj.hasOwnProperty(key))&#123;</span><br><span class="line">						if(typeof obj[key] &#x3D;&#x3D;&#x3D; &#39;object&#39;)&#123;</span><br><span class="line">								newObj[key] &#x3D; deepClone(obj[key]);</span><br><span class="line">						&#125;else&#123;</span><br><span class="line">								newObj[key] &#x3D; obj[key];</span><br><span class="line">						&#125;</span><br><span class="line">				&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return newObj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/" rel="tag"># 防抖节流</a>
+              <a href="/tags/Curry%E5%8C%96/" rel="tag"># Curry化</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/03/JS%E7%BB%A7%E6%89%BF/" rel="prev" title="JS继承">
+      <i class="fa fa-chevron-left"></i> JS继承
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/04/JS%E5%BC%82%E6%AD%A5Promise/" rel="next" title="JS异步Promise">
+      JS异步Promise <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数防抖"><span class="nav-number">1.</span> <span class="nav-text">函数防抖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数节流"><span class="nav-number">2.</span> <span class="nav-text">函数节流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法一：事件戳"><span class="nav-number">2.1.</span> <span class="nav-text">方法一：事件戳</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法二：定时器"><span class="nav-number">2.2.</span> <span class="nav-text">方法二：定时器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组扁平化处理"><span class="nav-number">3.</span> <span class="nav-text">数组扁平化处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法一：正则表达式"><span class="nav-number">3.1.</span> <span class="nav-text">方法一：正则表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法二：拓展运算符"><span class="nav-number">3.2.</span> <span class="nav-text">方法二：拓展运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法三：递归处理"><span class="nav-number">3.3.</span> <span class="nav-text">方法三：递归处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深拷贝"><span class="nav-number">4.</span> <span class="nav-text">深拷贝</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xya Fred"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Xya Fred</p>
+  <div class="site-description" itemprop="description">Welcome to Natsun Blog~</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xya Fred</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>

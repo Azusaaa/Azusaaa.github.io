@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="同源策略定义所谓的  同源  是指域名、协议、端口号 相同。不同的客户端脚本（javascript，ActionScript）在没有授权的情况下，不能读取对方资源。简单来说，浏览器允许包含在页面A的脚本访问第二个页面B的数据资源，这一切是建立在A和B页面是同源的基础上。  同源策略 是由Netscape提出的一个著名的安全策略，现在所有支持JavaScript 的浏览器都会使用这个策略。实际上，这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS跨域问题">
+<meta property="og:url" content="http://yoursite.com/2020/04/06/JS%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Natsun Blog">
+<meta property="og:description" content="同源策略定义所谓的  同源  是指域名、协议、端口号 相同。不同的客户端脚本（javascript，ActionScript）在没有授权的情况下，不能读取对方资源。简单来说，浏览器允许包含在页面A的脚本访问第二个页面B的数据资源，这一切是建立在A和B页面是同源的基础上。  同源策略 是由Netscape提出的一个著名的安全策略，现在所有支持JavaScript 的浏览器都会使用这个策略。实际上，这">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://q76oz3v1b.bkt.clouddn.com/JS%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98%E4%BE%8B%E5%AD%90.png">
+<meta property="article:published_time" content="2020-04-06T08:06:27.000Z">
+<meta property="article:modified_time" content="2020-04-07T03:51:34.152Z">
+<meta property="article:author" content="Xya Fred">
+<meta property="article:tag" content="跨域问题">
+<meta property="article:tag" content="同源策略">
+<meta property="article:tag" content="XSS攻击">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://q76oz3v1b.bkt.clouddn.com/JS%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98%E4%BE%8B%E5%AD%90.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/06/JS%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>JS跨域问题 | Natsun Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Natsun Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">留下记忆中的美好</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/06/JS%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS跨域问题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-06 16:06:27" itemprop="dateCreated datePublished" datetime="2020-04-06T16:06:27+08:00">2020-04-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-07 11:51:34" itemprop="dateModified" datetime="2020-04-07T11:51:34+08:00">2020-04-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>所谓的  <strong>同源</strong>  是指<strong>域名、协议、端口号</strong> 相同。不同的客户端脚本（javascript，ActionScript）在没有授权的情况下，不能读取对方资源。简单来说，浏览器允许包含在页面A的脚本访问第二个页面B的数据资源，这一切是建立在A和B页面是同源的基础上。</p>
+<blockquote>
+<p>同源策略 是由Netscape提出的一个著名的安全策略，现在所有支持JavaScript 的浏览器都会使用这个策略。实际上，这种策略只是一个规范，并不是强制要求，各大厂商的浏览器只是针对同源策略的一种实现。它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。</p>
+</blockquote>
+<h4 id="什么是跨域？"><a href="#什么是跨域？" class="headerlink" title="什么是跨域？"></a>什么是跨域？</h4><p>跨域就是<strong>从一个域名的网页去请求另一个域名的资源</strong>。比如从<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 页面去请求 <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a> 的资源,出于安全方面的考虑，页面中的JavaScript在<strong>请求非同源的资源</strong>时就会出 <strong>跨域问题</strong> ，这时，由于同源策略，我们的请求会被浏览器禁止。</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/JS%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98%E4%BE%8B%E5%AD%90.png" alt="跨域问题例子"></p>
+<p>浏览器执行JavaScript脚本时，会检查这个脚本属于哪个页面，如果不是同源页面，就不会被执行。</p>
+<h4 id="为什么要跨域？"><a href="#为什么要跨域？" class="headerlink" title="为什么要跨域？"></a>为什么要跨域？</h4><p>最主要的原因便是<strong>安全问题</strong>：如果一个网页可以随意访问另一个网页的资源，那么就有可能在客户完全不知情的情况下出现安全问题。举个例子</p>
+<ol>
+<li>用户访问银行账户，登陆网银进行操作，登陆的信息通过cookie保存在了浏览器</li>
+<li>用户不小心访问了一个钓鱼网站</li>
+<li>钓鱼网站执行脚本，在浏览器页面拿到了银行和cookie，比如用户、登陆token等</li>
+<li>如果此时浏览器不予限制，并且银行没有安全处理，那么用户的信息便可能会泄露</li>
+</ol>
+<hr>
+<h3 id="解决跨域问题的方法"><a href="#解决跨域问题的方法" class="headerlink" title="解决跨域问题的方法"></a>解决跨域问题的方法</h3><h4 id="跨域资源共享（CORS）"><a href="#跨域资源共享（CORS）" class="headerlink" title="跨域资源共享（CORS）"></a>跨域资源共享（CORS）</h4><blockquote>
+<p>CORS（Cross-Origin Resource Sharing）跨域资源共享，定义了必须在访问跨域资源时，浏览器与服务器如何沟通。CORS背后的基本思想是使用自定义的HTTP头部让浏览器与服务器进行沟通，从而决定请求或响应是应该成功还是失败。</p>
+</blockquote>
+<p>服务器端对于CORS的支持，主要是通过设置Accesss-Control-Allow-Origin来进行。如果浏览器检测到相应设置，就允许AJAX进行跨域访问。</p>
+<p>只需要在后台中加上<strong>响应头来允许域请求</strong>！在被请求的Response header中加入以下设置，就可以实现Ajax跨域访问。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 指定允许其他域名访问</span><br><span class="line">&#39;Access-Control-Allow-Origin: *&#39;	&#x2F;&#x2F; 或指定其他域</span><br><span class="line">&#x2F;&#x2F; 响应类型</span><br><span class="line">&#39;Access-Control-Allow-Methods: GET,POST&#39;</span><br><span class="line">&#x2F;&#x2F; 响应头设置</span><br><span class="line">&#39;Access-Control-Allow-Headers: x-request-with,content-type&#39;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="通过JSONP跨域"><a href="#通过JSONP跨域" class="headerlink" title="通过JSONP跨域"></a>通过JSONP跨域</h4><h5 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h5><p>JSONP是JSON with Padding的缩写，是应用JSON的一种新方法，只不过是<strong>被包含在函数调用中的json</strong>。JSONP由两个部分组成：<strong>回调函数</strong>和<strong>数据</strong>。回调函数是当响应到来时应该在页面中调用的函数，而数据就是传入回调函数中的JSON数据</p>
+<h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><p>通过script标签引入异步加载的js文件，当js文件加载成功后会调用url参数中的回调函数，并会把我们需要的数据作为参数传入。即<strong>用JavaScript动态加载一个js文件，同时定义一个回调函数给script执行</strong>。</p>
+<h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><p>有个a.html页面，它里面的代码需要利用ajax获取一个不同域上的json数据，假设这个json数据地址是<a href="http://example.com/data.php,那么a.html中的代码就可以这样：" target="_blank" rel="noopener">http://example.com/data.php,那么a.html中的代码就可以这样：</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">		function dosomething(jsondata)&#123;</span><br><span class="line">        &#x2F;&#x2F;处理获得的json数据</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;http:&#x2F;&#x2F;example.com&#x2F;data.php?callback&#x3D;dosomething&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。所以jsonp是需要<strong>服务器端的页面</strong>进行相应的配合的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$callback &#x3D; $_GET[&#39;callback&#39;];&#x2F;&#x2F;得到回调函数名</span><br><span class="line">$data &#x3D; array(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;);&#x2F;&#x2F;要返回的数据</span><br><span class="line">echo $callback.&#39;(&#39;.json_encode($data).&#39;)&#39;;&#x2F;&#x2F;输出</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>最终，输出结果为：<code>dosomething([&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]);</code></p>
+<h5 id="JSONP的优缺点"><a href="#JSONP的优缺点" class="headerlink" title="JSONP的优缺点"></a>JSONP的优缺点</h5><ul>
+<li>优点：不受同源策略的限制；兼容性更好；在更古老的浏览器中可以运行，不需要<code>XMLHTTPRequest</code>或者<code>ActiveX</code>的支持；请求完毕后可以通过调用callback的方式回传结果。</li>
+<li>缺点：只<strong>支持GET请求</strong>而不支持POST等其他类型的请求；只支持跨域HTTP请求这种情况，不能解决不同域的两个页面之间如何进行JavaScript调用的问题。</li>
+</ul>
+<h5 id="CORS和JSONP对比"><a href="#CORS和JSONP对比" class="headerlink" title="CORS和JSONP对比"></a>CORS和JSONP对比</h5><p>CORS与JSONP相比，无疑更为先进、方便和可靠。</p>
+<ol>
+<li><p>JSONP只能实现GET请求，而CORS支持所有类型的HTTP请求</p>
+</li>
+<li><p>使用CORS，开发者可以使用普通的XMLHTTPRequest发起请求和获得数据，比起JSONP有更好的错误处理。</p>
+</li>
+</ol>
+<h4 id="通过修改document-domain来跨子域"><a href="#通过修改document-domain来跨子域" class="headerlink" title="通过修改document.domain来跨子域"></a>通过修改<code>document.domain</code>来跨子域</h4><p>浏览器的同源策略使得我们<strong>不能通过AJAX的方法</strong>去请求不同源中的文档，而且限制了浏览器中<strong>不同域的框架之间是不能进行js的交互操作</strong>的。</p>
+<p><strong>不同的框架之间是可以获取window对象的，但却无法获取相应的属性和方法。</strong>比如，有一个页面，它的地址是<code>http://www.example.com/a.html</code> ， 在这个页面里面有一个<code>iframe</code>，它的src是<code>http://example.com/b.html</code>, 很显然，这个页面与它里面的<code>iframe</code>框架是不同域的，所以我们是无法通过在页面中书写js代码来获取<code>iframe</code>中的东西的。</p>
+<p>通过修改<code>document.domain</code>将域名设置成自身或更高一级的父域，且主域必须相同。</p>
+<ol>
+<li>在页面 <code>http://www.example.com/a.html</code> 中设置<code>document.domain</code>:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe id &#x3D; &quot;iframe&quot; src&#x3D;&quot;http:&#x2F;&#x2F;example.com&#x2F;b.html&quot; onload &#x3D; &quot;test()&quot;&gt;&lt;&#x2F;iframe&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">    document.domain &#x3D; &#39;example.com&#39;;	&#x2F;&#x2F;设置成主域</span><br><span class="line">    function test()&#123;</span><br><span class="line">    		&#x2F;&#x2F;contentWindow 可取得子窗口的 window 对象</span><br><span class="line">        alert(document.getElementById(&#39;￼iframe&#39;).contentWindow); </span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在页面 <code>http://example.com/b.html</code> 中也设置<code>document.domain</code>:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">		&#x2F;&#x2F;在iframe载入这个页面也设置document.domain，使之与主页面的document.domain相同</span><br><span class="line">    document.domain &#x3D; &#39;example.com&#39;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="使用window-name来进行跨域"><a href="#使用window-name来进行跨域" class="headerlink" title="使用window.name来进行跨域"></a>使用<code>window.name</code>来进行跨域</h4><p>window对象有一个name属性，该属性有一个特征：<strong>即在一个窗口的生命周期内，窗口载入的所有页面都是共享一个<code>window.name</code>的，每个页面对<code>window.name</code>都有读写权限</strong>，<code>window.name</code>是持久存在一个窗口载入过的所有页面中的，并不会因新页面的载入而进行重置。</p>
+<p>注意，<code>window.name</code>的值只能是字符串的形式，这个字符串的大小最大能允许2M左右甚至更大的一个容量，具体取决于不同的浏览器。</p>
+<h4 id="使用HTML5的window-postMessage实现跨域"><a href="#使用HTML5的window-postMessage实现跨域" class="headerlink" title="使用HTML5的window.postMessage实现跨域"></a>使用HTML5的<code>window.postMessage</code>实现跨域</h4><p><code>**window.postMessage**(message,targetOrigin)</code>  方法是html5新引进的特性，可以使用它来向其它的window对象发送消息，无论这个window对象是属于同源或不同源，目前IE8+、FireFox、Chrome、Opera等浏览器都已经支持window.postMessage方法。</p>
+<p>调用postMessage方法的window对象是指要接收消息的那一个window对象，该方法的第一个参数message为要发送的消息，类型只能为字符串；第二个参数targetOrigin用来限定接收消息的那个window对象所在的域，如果不想限定域，可以使用通配符 *  </p>
+<p>需要接收消息的window对象，可是通过<strong>监听自身的message事件</strong>来获取传过来的消息，消息内容<strong>储存在该事件对象的data属性</strong>中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 这是 http:&#x2F;&#x2F;test.com&#x2F;a.html 的代码 --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function onLoad()&#123;</span><br><span class="line">		var iframe &#x3D; document.getELementById(&#39;iframe&#39;);</span><br><span class="line">		var win &#x3D; iframe.contentWindow;		&#x2F;&#x2F; 获取window对象</span><br><span class="line">		win.postMessage(&quot;俺是来自页面a的消息！&quot;,&quot;*&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;iframe id&#x3D;&quot;iframe&quot; src&#x3D;&quot;http:&#x2F;&#x2F;test.com&#x2F;b.html&quot; onload&#x3D;&quot;onLoad()&quot;&gt;&lt;&#x2F;iframe&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 这是 http:&#x2F;&#x2F;test.com&#x2F;b.html 的代码 --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">window.onmessage &#x3D; function(e)&#123;</span><br><span class="line">		var e &#x3D; e || event;</span><br><span class="line">		alert(e.data);</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="web-sockets"><a href="#web-sockets" class="headerlink" title="web sockets"></a>web sockets</h4><p>web sockets是一种浏览器的API，它的目标是在一个单独的持久连接上提供全双工、双向通信。(同源策略对web sockets不适用)</p>
+<p>web sockets原理：在js创建了web socket之后，会有一个HTTP请求发送到浏览器以发起连接。取得服务器响应后，建立的连接会使用HTTP升级从HTTP协议交换为web socket协议。</p>
+<p>只有在支持web socket协议的服务器上才能正常工作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;http-&gt;ws;  https-&gt;wss</span><br><span class="line">var socket &#x3D; new WebSockt(&#39;ws:&#x2F;&#x2F;www.baidu.com&#39;);</span><br><span class="line">socket.send(&#39;hello WebSockt&#39;);</span><br><span class="line">socket.onmessage &#x3D; function(event)&#123;</span><br><span class="line">    var data &#x3D; event.data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="XSS和CRSF攻击"><a href="#XSS和CRSF攻击" class="headerlink" title="XSS和CRSF攻击"></a>XSS和CRSF攻击</h3><h4 id="XSS跨站脚本攻击（代码注入的一种）"><a href="#XSS跨站脚本攻击（代码注入的一种）" class="headerlink" title="XSS跨站脚本攻击（代码注入的一种）"></a>XSS跨站脚本攻击（代码注入的一种）</h4><p> XSS, 即为（Cross Site Scripting）, 中文名为跨站脚本,  是发生在目标用户的浏览器层面上的，当渲染DOM树的过程成发生了不在预期内执行的JS代码时，就发生了XSS攻击。</p>
+<p>攻击者可以使用户在浏览器中<strong>执行其预定义的恶意脚本</strong>，实际上是在目标网站的作用域下执行了这段js代码，其导致的危害可想而知，如劫持用户会话，插入恶意内容、重定向用户、使用恶意软件劫持用户浏览器、繁殖<a href="https://baike.baidu.com/item/XSS蠕虫/22777013" target="_blank" rel="noopener">XSS蠕虫</a>，甚至破坏网站、修改路由器配置信息等。</p>
+<h4 id="XSS防御措施"><a href="#XSS防御措施" class="headerlink" title="XSS防御措施"></a>XSS防御措施</h4><p>XSS防御的总体思路是：</p>
+<ul>
+<li><p>在不需要HTML输入的地方对HTML标签及一些特殊字符进行过滤，将其转化为不被浏览器解析执行的字符。 </p>
+</li>
+<li><p>对输入(和URL参数)进行过滤，对输出进行编码。也就是对提交的所有内容进行过滤，对url中的参数进行过滤，过滤掉会导致脚本执行的相关内容；</p>
+</li>
+</ul>
+<h4 id="CSRF跨站请求伪造"><a href="#CSRF跨站请求伪造" class="headerlink" title="CSRF跨站请求伪造"></a>CSRF跨站请求伪造</h4><p>CSRF（Cross Site Request  Forgery，跨站请求伪造），字面理解意思就是在别的站点伪造了一个请求。专业术语来说就是在受害者访问一个网站时，其 Cookie  还没有过期的情况下，攻击者伪造一个链接地址发送受害者并欺骗让其点击，从而形成 CSRF 攻击。 </p>
+<h4 id="CSRF防御措施"><a href="#CSRF防御措施" class="headerlink" title="CSRF防御措施"></a>CSRF防御措施</h4><p>防御CSRF 攻击主要有三种策略：</p>
+<ul>
+<li>验证 HTTP Referer 字段；</li>
+<li>在请求地址中添加 token 并验证；</li>
+<li>在 HTTP 头中自定义属性并验证。 </li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/" rel="tag"># 跨域问题</a>
+              <a href="/tags/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/" rel="tag"># 同源策略</a>
+              <a href="/tags/XSS%E6%94%BB%E5%87%BB/" rel="tag"># XSS攻击</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/04/JS%E5%BC%82%E6%AD%A5Promise/" rel="prev" title="JS异步Promise">
+      <i class="fa fa-chevron-left"></i> JS异步Promise
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/07/JSONP%E4%B8%8EAJAX%E5%AE%9E%E7%8E%B0/" rel="next" title="JSONP与AJAX实现">
+      JSONP与AJAX实现 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#同源策略"><span class="nav-number">1.</span> <span class="nav-text">同源策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是跨域？"><span class="nav-number">1.2.</span> <span class="nav-text">什么是跨域？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要跨域？"><span class="nav-number">1.3.</span> <span class="nav-text">为什么要跨域？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决跨域问题的方法"><span class="nav-number">2.</span> <span class="nav-text">解决跨域问题的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#跨域资源共享（CORS）"><span class="nav-number">2.1.</span> <span class="nav-text">跨域资源共享（CORS）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过JSONP跨域"><span class="nav-number">2.2.</span> <span class="nav-text">通过JSONP跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#原理"><span class="nav-number">2.2.2.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#例子"><span class="nav-number">2.2.3.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JSONP的优缺点"><span class="nav-number">2.2.4.</span> <span class="nav-text">JSONP的优缺点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CORS和JSONP对比"><span class="nav-number">2.2.5.</span> <span class="nav-text">CORS和JSONP对比</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过修改document-domain来跨子域"><span class="nav-number">2.3.</span> <span class="nav-text">通过修改document.domain来跨子域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用window-name来进行跨域"><span class="nav-number">2.4.</span> <span class="nav-text">使用window.name来进行跨域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用HTML5的window-postMessage实现跨域"><span class="nav-number">2.5.</span> <span class="nav-text">使用HTML5的window.postMessage实现跨域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web-sockets"><span class="nav-number">2.6.</span> <span class="nav-text">web sockets</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS和CRSF攻击"><span class="nav-number">3.</span> <span class="nav-text">XSS和CRSF攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#XSS跨站脚本攻击（代码注入的一种）"><span class="nav-number">3.1.</span> <span class="nav-text">XSS跨站脚本攻击（代码注入的一种）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XSS防御措施"><span class="nav-number">3.2.</span> <span class="nav-text">XSS防御措施</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSRF跨站请求伪造"><span class="nav-number">3.3.</span> <span class="nav-text">CSRF跨站请求伪造</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSRF防御措施"><span class="nav-number">3.4.</span> <span class="nav-text">CSRF防御措施</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xya Fred"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Xya Fred</p>
+  <div class="site-description" itemprop="description">Welcome to Natsun Blog~</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xya Fred</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>
