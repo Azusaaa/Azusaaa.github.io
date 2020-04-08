@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="通过举多个例子进行说明 例子1：遍历数组12345678910const arr1 &#x3D;[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];&#x2F;&#x2F; for...in 返回数组的下标for(let i in arr1)&amp;#123;	console.log(i)	&#x2F;&#x2F; 0,1,2&amp;#125;&#x2F;&#x2F; for...">
+  <meta name="description" content="Git是啥？ GIt是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。  Git和SVN的主要区别SVN是集中版本控制系统，版本库集中存放在中央服务器，而干活时用的都是自己的电脑，所以首先要从中央服务器得到最新版本，干完活后需要把自己做完的活推送到中央服务器。集中式版本控制系统是必须联网才能工作，如果在局域网还可以，带宽够大，速度够快，如果在互联网下，如果网速慢的话">
 <meta property="og:type" content="article">
-<meta property="og:title" content="for...in和for...of">
-<meta property="og:url" content="http://yoursite.com/2020/03/20/for-in-%E5%92%8C-for-of/index.html">
+<meta property="og:title" content="git操作指北">
+<meta property="og:url" content="http://yoursite.com/2020/04/08/git%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8C%97%E5%8C%97/index.html">
 <meta property="og:site_name" content="Natsun Blog">
-<meta property="og:description" content="通过举多个例子进行说明 例子1：遍历数组12345678910const arr1 &#x3D;[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];&#x2F;&#x2F; for...in 返回数组的下标for(let i in arr1)&amp;#123;	console.log(i)	&#x2F;&#x2F; 0,1,2&amp;#125;&#x2F;&#x2F; for...">
+<meta property="og:description" content="Git是啥？ GIt是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。  Git和SVN的主要区别SVN是集中版本控制系统，版本库集中存放在中央服务器，而干活时用的都是自己的电脑，所以首先要从中央服务器得到最新版本，干完活后需要把自己做完的活推送到中央服务器。集中式版本控制系统是必须联网才能工作，如果在局域网还可以，带宽够大，速度够快，如果在互联网下，如果网速慢的话">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-20T12:31:33.000Z">
-<meta property="article:modified_time" content="2020-03-20T14:19:46.593Z">
+<meta property="article:published_time" content="2020-04-08T04:21:40.000Z">
+<meta property="article:modified_time" content="2020-04-08T06:14:50.591Z">
 <meta property="article:author" content="Xya Fred">
-<meta property="article:tag" content="for...in&#x2F;of">
+<meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/03/20/for-in-%E5%92%8C-for-of/">
+<link rel="canonical" href="http://yoursite.com/2020/04/08/git%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8C%97%E5%8C%97/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>for...in和for...of | Natsun Blog</title>
+  <title>git操作指北 | Natsun Blog</title>
   
 
 
@@ -160,7 +160,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/for-in-%E5%92%8C-for-of/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/08/git%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8C%97%E5%8C%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -173,7 +173,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          for...in和for...of
+          git操作指北
         </h1>
 
         <div class="post-meta">
@@ -184,7 +184,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-20 20:31:33 / 修改时间：22:19:46" itemprop="dateCreated datePublished" datetime="2020-03-20T20:31:33+08:00">2020-03-20</time>
+              <time title="创建时间：2020-04-08 12:21:40 / 修改时间：14:14:50" itemprop="dateCreated datePublished" datetime="2020-04-08T12:21:40+08:00">2020-04-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -192,7 +192,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                  <a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a>
                 </span>
             </span>
 
@@ -207,37 +207,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>通过举多个例子进行说明</p>
-<h4 id="例子1：遍历数组"><a href="#例子1：遍历数组" class="headerlink" title="例子1：遍历数组"></a>例子1：遍历数组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const arr1 &#x3D;[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];</span><br><span class="line">&#x2F;&#x2F; for...in 返回数组的下标</span><br><span class="line">for(let i in arr1)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; 0,1,2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; for...of 返回数组的元素</span><br><span class="line">for(let i of arr1)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; a,b,c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="Git是啥？"><a href="#Git是啥？" class="headerlink" title="Git是啥？"></a>Git是啥？</h3><blockquote>
+<p>GIt是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。</p>
+</blockquote>
+<h3 id="Git和SVN的主要区别"><a href="#Git和SVN的主要区别" class="headerlink" title="Git和SVN的主要区别"></a>Git和SVN的主要区别</h3><p>SVN是<strong>集中版本控制系统</strong>，版本库集中存放在中央服务器，而干活时用的都是自己的电脑，所以首先要从中央服务器得到最新版本，干完活后需要把自己做完的活推送到中央服务器。集中式版本控制系统是<strong>必须联网才能工作</strong>，如果在局域网还可以，带宽够大，速度够快，如果在互联网下，如果网速慢的话，就纳闷了。</p>
+<p>Git是<strong>分布式版本控制系统</strong>，每个人的电脑就是一个完整的版本库，这样工作的时候就不需要联网了。如果要实现多人协作，则只需要把各自修改的内容进行更新并推给对方即可。</p>
+<h3 id="Git操作"><a href="#Git操作" class="headerlink" title="Git操作"></a>Git操作</h3><h4 id="对仓库进行初始化"><a href="#对仓库进行初始化" class="headerlink" title="对仓库进行初始化"></a>对仓库进行初始化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
 
+<p>该命令可以把当前目录变成Git可以管理的目录</p>
+<h4 id="把文件添加到版本库"><a href="#把文件添加到版本库" class="headerlink" title="把文件添加到版本库"></a>把文件添加到版本库</h4><p>第一步，用<code>git add</code>告诉Git，把文件<strong>添加</strong>到仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add readme.txt</span><br></pre></td></tr></table></figure>
 
+<p>第二部，用<code>git commit</code>告诉Git，把文件<strong>提交</strong>到仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m &quot;wrote a readme file&quot;</span><br></pre></td></tr></table></figure>
 
-<h4 id="例子2：给数组手动添加属性"><a href="#例子2：给数组手动添加属性" class="headerlink" title="例子2：给数组手动添加属性"></a>例子2：给数组手动添加属性</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const arr2 &#x3D; [&#39;a&#39;, &#39;b&#39;];</span><br><span class="line">arr2.name &#x3D; &#39;c&#39;;</span><br><span class="line">&#x2F;&#x2F; for..in循环可以遍历出&#39;name&#39;这个键名，for..of结果则为 a, b</span><br><span class="line">for(let i in arr2)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F;0,1,name</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中<code>git commit</code>命令，<code>-m</code>后面输入的是本次提交的说明，可以输入任意内容，方便以后在历史记录中找到改动记录。</p>
+<p>命令执行成功后，会显示<code>1 file changed</code>：1个文件被改动（我们新添加的readme.txt文件）；<code>x insertions</code>：插入了x行内容（readme.txt有x行内容）</p>
+<h4 id="查看仓库状态"><a href="#查看仓库状态" class="headerlink" title="查看仓库状态"></a>查看仓库状态</h4><p>以我的hexo博客仓库为例，执行<code>git status</code>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">No commits yet</span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line">        .gitignore</span><br><span class="line">        _config.yml</span><br><span class="line">        package-lock.json</span><br><span class="line">        package.json</span><br><span class="line">        scaffolds&#x2F;</span><br><span class="line">        source&#x2F;</span><br><span class="line">        themes&#x2F;</span><br><span class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span><br></pre></td></tr></table></figure>
 
-
-
-<h4 id="例子3：遍历对象"><a href="#例子3：遍历对象" class="headerlink" title="例子3：遍历对象"></a>例子3：遍历对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const json &#x3D; &#123;&quot;a&quot;:1, &quot;b&quot;:2, &quot;c&quot;:3&#125;;</span><br><span class="line">&#x2F;&#x2F; for..in遍历获取对象的key值 (对应键值对key-value)</span><br><span class="line">for(let i in json)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; a,b,c</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; for..of报错</span><br><span class="line">for(let i of json)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; TypeError: json is not iterable</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="for-in-的特点："><a href="#for-in-的特点：" class="headerlink" title="for..in 的特点："></a>for..in 的特点：</h4><ul>
-<li>for..in 语句用于对<strong>数组</strong>或<strong>对象</strong>的属性进行循环操作</li>
-<li>for..in 循环中的代码每执行一次，就会对数组元素或者对象的属性进行一次操作</li>
-<li>for..in 语句会遍历一个对象的<strong>可枚举属性</strong>（包括继承而来的属性）。</li>
-</ul>
-<h4 id="for-of-的特点："><a href="#for-of-的特点：" class="headerlink" title="for..of 的特点："></a>for..of 的特点：</h4><ul>
-<li>for..of 语句在<strong>可迭代对象</strong>(包括<strong>Array，Map，Set，String，arguments对象</strong>等)上创建一个迭代循环，调用自定义迭代钩子，并为每个不同属性的值执行语句。</li>
-<li>一个数据结构只要部署了<code>Symbol.iterator</code>属性，就被视为 <strong>iterator接口</strong>，就可以for..in</li>
-<li>for..of 可以与<code>break continue</code>和<code>return</code>配合使用（即可以随时退出循环，比forEach强</li>
-</ul>
-<hr>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
-<li>for..in 遍历的是<strong>key值</strong>，for..of遍历的是<strong>value值</strong>，因此前者更适合遍历对象</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Object.prototype.objCustom &#x3D; function() &#123;&#125;; </span><br><span class="line">Array.prototype.arrCustom &#x3D; function() &#123;&#125;;</span><br><span class="line"> </span><br><span class="line">let iterable &#x3D; [3, 5, 7];</span><br><span class="line">iterable.foo &#x3D; &#39;hello&#39;;</span><br><span class="line"> </span><br><span class="line">for (let i in iterable) &#123;</span><br><span class="line">  console.log(i); &#x2F;&#x2F; 0, 1, 2, &quot;foo&quot;, &quot;arrCustom&quot;, &quot;objCustom&quot;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">for (let i in iterable) &#123;</span><br><span class="line">  if (iterable.hasOwnProperty(i)) &#123;</span><br><span class="line">    console.log(i); &#x2F;&#x2F; 0, 1, 2, &quot;foo&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">for (let i of iterable) &#123;</span><br><span class="line">  console.log(i); &#x2F;&#x2F; 3, 5, 7</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>for...in</code> 语句以原始插入顺序迭代对象的可枚举属性。</p>
-<p><code>for...of</code> 语句遍历可迭代对象定义要迭代的数据。</p>
 
     </div>
 
@@ -247,7 +235,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/for-in-of/" rel="tag"># for...in/of</a>
+              <a href="/tags/git/" rel="tag"># git</a>
           </div>
 
         
@@ -256,13 +244,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/03/17/JS%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="prev" title="JS数据缓存">
-      <i class="fa fa-chevron-left"></i> JS数据缓存
+    <a href="/2020/04/07/%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E5%AE%8C%E6%88%90/" rel="prev" title="从输入URL到页面加载完成">
+      <i class="fa fa-chevron-left"></i> 从输入URL到页面加载完成
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/03/24/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E7%89%A9%E7%90%86%E5%B1%82/" rel="next" title="【计算机网络】第二章：物理层">
-      【计算机网络】第二章：物理层 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -322,7 +307,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#例子1：遍历数组"><span class="nav-number">1.</span> <span class="nav-text">例子1：遍历数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子2：给数组手动添加属性"><span class="nav-number">2.</span> <span class="nav-text">例子2：给数组手动添加属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子3：遍历对象"><span class="nav-number">3.</span> <span class="nav-text">例子3：遍历对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#for-in-的特点："><span class="nav-number">4.</span> <span class="nav-text">for..in 的特点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#for-of-的特点："><span class="nav-number">5.</span> <span class="nav-text">for..of 的特点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git是啥？"><span class="nav-number">1.</span> <span class="nav-text">Git是啥？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git和SVN的主要区别"><span class="nav-number">2.</span> <span class="nav-text">Git和SVN的主要区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git操作"><span class="nav-number">3.</span> <span class="nav-text">Git操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对仓库进行初始化"><span class="nav-number">3.1.</span> <span class="nav-text">对仓库进行初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#把文件添加到版本库"><span class="nav-number">3.2.</span> <span class="nav-text">把文件添加到版本库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看仓库状态"><span class="nav-number">3.3.</span> <span class="nav-text">查看仓库状态</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

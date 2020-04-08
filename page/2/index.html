@@ -157,6 +157,226 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/25/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%91%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/25/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%91%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" class="post-title-link" itemprop="url">【计算机网络】第三章：数据链路层</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-25 15:16:09 / 修改时间：22:30:29" itemprop="dateCreated datePublished" datetime="2020-03-25T15:16:09+08:00">2020-03-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="数据链路层的基本概念"><a href="#数据链路层的基本概念" class="headerlink" title="数据链路层的基本概念"></a>数据链路层的基本概念</h3><h4 id="数据链路层的简单模型"><a href="#数据链路层的简单模型" class="headerlink" title="数据链路层的简单模型"></a>数据链路层的简单模型</h4><p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%913%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E7%AE%80%E5%8D%95%E6%A8%A1%E5%9E%8B.png" alt="数据链路层简单模型"></p>
+<h4 id="数据链路层的信道类型"><a href="#数据链路层的信道类型" class="headerlink" title="数据链路层的信道类型"></a>数据链路层的信道类型</h4><ul>
+<li>点对点信道。这类信道使用<strong>一对一</strong>的点对点通信方式。</li>
+<li>广播信道。这类信道使用<strong>一对多</strong>的广播通信方式，因此过程比较复杂。广播信道上连接的主机很多，因此必须使用专用的<strong>共享信道协议</strong>来协调这些主机的数据发送。</li>
+</ul>
+<h4 id="链路与数据链路"><a href="#链路与数据链路" class="headerlink" title="链路与数据链路"></a>链路与数据链路</h4><blockquote>
+<p><strong>链路</strong>：一条点对点的物理线路段，中间没有任何其他的交换节点。<em>一条链路只是一条通路的一个组成部分</em>。</p>
+</blockquote>
+<blockquote>
+<p><strong>数据链路</strong>：除了物理线路外，还必须有通信协议来控制这些数据的传输。若把实现这些协议的硬件和软件加到链路上，就构成了数据链路。</p>
+<ul>
+<li>现在最常用的办法是使用适配器（即网卡）来实现这些协议的硬件和软件</li>
+<li>一般的适配器都包括了数据链路层和物理层这两层的功能。</li>
+</ul>
+</blockquote>
+<h4 id="帧"><a href="#帧" class="headerlink" title="帧"></a>帧</h4><p>在网络层，给数据包增加了接收端和发送端的IP地址。在数据链路层里，增加了<strong>帧头帧尾</strong>，MAC地址和校验值。</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%913%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E6%A6%82%E5%BF%B5%E5%B8%A7.png" alt="帧"></p>
+<p>数据链路层像一个数字管道（常常在两个对等的数据链路层之间画出一个数字管道，而在这条数字管道上传输的数据单位是<strong>帧</strong></p>
+<h3 id="数据链路层的三个基本问题"><a href="#数据链路层的三个基本问题" class="headerlink" title="数据链路层的三个基本问题"></a>数据链路层的三个基本问题</h3><h4 id="封装成帧"><a href="#封装成帧" class="headerlink" title="封装成帧"></a>封装成帧</h4><p>类似一句话一个帧，必须知道<strong>开始</strong>和<strong>结束</strong>的位置。</p>
+<p>封装成帧就是在一段数据的前后分别添加首部和尾部，然后就构成了一个帧。确定帧的界限。【首部和尾部的一个重要作用就是进行帧定界。</p>
+<h4 id="透明传输"><a href="#透明传输" class="headerlink" title="透明传输"></a>透明传输</h4><p>用<strong>字节填充法</strong>解决透明传输问题。</p>
+<p>发送端的数据链路层在数据中出现控制字符“SOH”（帧开始符）或“ETO”（帧结束符）的前面插入一个转义字符“ESC“（其十六进制编码是1B）。</p>
+<p>字符填充或字节填充——接收端的数据链路层在将数据送往网络层之前删除的转义字符。如果转义字符也在数据当中，那么应在转义字符前插入一个转义字符。当接收端收到连续的两个转义字符时，就删除其中前面的一个。</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%913%E9%80%8F%E6%98%8E%E4%BC%A0%E8%BE%93%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6.png" alt="透明传输转义字符"></p>
+<h4 id="差错控制"><a href="#差错控制" class="headerlink" title="差错控制"></a>差错控制</h4><p>传输过程中可能会产生别特差错：1可能会变成0，而0也可能变成1.</p>
+<p>在一段时间内，传输错误的比特占所传输比特总数的比率叫做<strong>误码率</strong>BER（Bit Error Rate）。<strong>误码率与信噪比有很大关系</strong>。为了保证数据传输的可靠性，在计算机网络传输数据时，必须采用各种<strong>差错检测措施</strong>。</p>
+<ul>
+<li>循环冗余检测CRC  —–&gt; （<strong>考研会考！！</strong>）</li>
+</ul>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%913%E5%BE%AA%E7%8E%AF%E5%86%97%E4%BD%99%E6%A3%80%E9%AA%8CCRC.png" alt="循环冗余检测"></p>
+<p>小结：CRC差错检验技术</p>
+<p>仅使用循环冗余检验CRC差错检测技术只能做到无差错接受（accept）</p>
+<ul>
+<li>“无差错接受“是指：凡是接受的帧（即不包括丢弃的帧），我们可以以非常接近1的概率认为这些帧在传输过程中没有差错。也就是说：”凡是接收端数据链路层接受的帧都没有传输差错“（由差错的帧都丢弃不接受了）</li>
+</ul>
+<p>要做到“可靠传输”就必须加上确认和重传</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E7%89%A9%E7%90%86%E5%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/24/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E7%89%A9%E7%90%86%E5%B1%82/" class="post-title-link" itemprop="url">【计算机网络】第二章：物理层</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-24 20:41:29" itemprop="dateCreated datePublished" datetime="2020-03-24T20:41:29+08:00">2020-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-25 15:17:58" itemprop="dateModified" datetime="2020-03-25T15:17:58+08:00">2020-03-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="物理层定义的标准"><a href="#物理层定义的标准" class="headerlink" title="物理层定义的标准"></a>物理层定义的标准</h3><p>物理层解决如何在链接各种计算机的传输媒体上传输<strong>数据比特流</strong>，而不是指具体的传输媒体。<br>物理层的主要任务：确定传输媒体的接口的一些特性，包括，<br>机械特性：接口形状，大小，引线数量<br>电气特性：例如规定电压范围(-5V-5V)<br>功能特性：例如规定-5V上0，+5V是1<br>过程特性：也称规程特性，规定建立连接时各个相关部件的工作步骤<br><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B.png" alt="数据通信模型"></p>
+<h4 id="通信的目的是传送消息"><a href="#通信的目的是传送消息" class="headerlink" title="通信的目的是传送消息"></a>通信的目的是传送消息</h4><p><strong>数据(data)</strong>——运送消息的实体。<br><strong>信号(signal)</strong>——数据的电气或电磁的表现。<br><strong>模拟信号</strong>——代表信息的参数的取值是连续的。<br><strong>数字信号</strong>——代表信息的参数的取值是离散的。<br><strong>码元(code)</strong>——在使用时间域的波形表示数字信号时，代表不同离散数值的基本波形。<br>在数字通信中常常用时间间隔相同的符号表示一个二进制数字，这样的时间间隔内的信号称为<strong>二进制码元</strong>。这个间隔称为<strong>码元长度</strong>，1 code可以携带n bit信息量(此时电压会有多个取值，例如1，2，…,7V，而不是只有2个取值)</p>
+<h4 id="信道的概念"><a href="#信道的概念" class="headerlink" title="信道的概念"></a>信道的概念</h4><p>信道一般表示向一个方向传输信息的媒体。所以通信线路往往包含一条发送信息的信道和一条接收信息的信道。<br><strong>单向通信</strong>(单工通信)——只能有一个方向的通信，没有反向交互。<br><strong>双向交替通信</strong>(半双工通信)——通信的双方都可以发送信息，但是不能双方同时发送或接收。<br><strong>双向同时通信</strong>(全双工通信)——通信的双发可以同时发送和接收。</p>
+<h4 id="什么是基带-baseband-和带通-base-pass-信号？"><a href="#什么是基带-baseband-和带通-base-pass-信号？" class="headerlink" title="什么是基带(baseband)和带通(base pass)信号？"></a>什么是基带(baseband)和带通(base pass)信号？</h4><ul>
+<li><p>基带信号(基本频率信号)——来自信源的信号，例如计算机输出的代表各种文字或图像文件的数据信号都属于基带信号。基带信号就是发出的直接表达了要传输的信息的信号，比如说我们说话的声波。</p>
+</li>
+<li><p>带通信号——把基带信号经过<strong>载波调制</strong>后，把信号的频率范围迁移到较高的频段以便在信道中传输(即仅在一段频率范围内能够通过信道)</p>
+</li>
+</ul>
+<p>因此在传输<strong>距离较近</strong>时，采用<strong>基带传输</strong>方式(衰减不大，信号内容不会变化)。传输<strong>距离较远</strong>时，采用<strong>带通传输</strong>方式，例如从计算机到监视器，打印机等外设的信号。</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E8%B0%83%E5%88%B6.png" alt="信号调制方法"></p>
+<h4 id="常用编码方式"><a href="#常用编码方式" class="headerlink" title="常用编码方式"></a>常用编码方式</h4><p>单极性不归零编码：只使用一个电压值，高电平表示1，低电平表示0<br>双极性不归零编码：用幅值相等的正负电平表示二进制数1和0<br>单极性归零编码：发送码1时高电平在整个码元期间只持续一段时间，其余时间返回零电平<br>双极性归零编码：正负零三个电平，信号本事携带同步信息</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F.png" alt="常用的编码方式"></p>
+<p>曼彻斯特编码：单极性编码的缺点是没有办法区分此时是没有信号，还是有信号，但是信号是0</p>
+<blockquote>
+<p>这种编码方式是bit中间有信号，低-高跳转表示0，高-低跳转表示1，一个时钟周期只可以表示一个bit，并且必须通过两次采样才能得到一个bit。它能携带时钟信号，而且能区分此时是没有信号还是信号为0.</p>
+</blockquote>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%9B%BC%E5%BD%BB%E6%96%AF%E7%89%B9%E7%BC%96%E7%A0%81.png" alt="曼彻斯特编码"></p>
+<p>差分曼彻斯特编码：抗干扰能力比曼彻斯特编码更强。bit与bit之间有信号跳变，表示下一个bit为0，bit与bit之间没有信号跳变，表示下一个bit为1</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E5%B7%AE%E5%88%86%E6%9B%BC%E5%BD%BB%E6%96%AF%E7%89%B9%E7%BC%96%E7%A0%81.png" alt="差分曼彻斯特编码"></p>
+<h3 id="物理层下面的传输媒体"><a href="#物理层下面的传输媒体" class="headerlink" title="物理层下面的传输媒体"></a>物理层下面的传输媒体</h3><p>集线器：</p>
+<p>工作特点是在网络中只起到<strong>信号放大</strong>和<strong>重发</strong>作用，目的是扩大网络的传输范围，而<strong>不具备信号的定向传送能力</strong>。由于安全性的问题，现在被<strong>交换机</strong>取代</p>
+<p>最大传输距离是100m；</p>
+<p>集线器是一个大的冲突域(意思是某个时间点只能是2台设备进行通信)。</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E4%BC%A0%E8%BE%93%E8%AE%BE%E5%A4%87%E9%9B%86%E7%BA%BF%E5%99%A8.png" alt="集线器"></p>
+<h3 id="信道复用技术"><a href="#信道复用技术" class="headerlink" title="信道复用技术"></a>信道复用技术</h3><p>复用（multiplexing）是通信技术中的基本概念</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E4%BF%A1%E9%81%93%E5%A4%8D%E7%94%A8%E6%8A%80%E6%9C%AF.png" alt="信道复用技术"></p>
+<h4 id="频分复用FDM（Frequency-Division-Multiplexing）"><a href="#频分复用FDM（Frequency-Division-Multiplexing）" class="headerlink" title="频分复用FDM（Frequency Division Multiplexing）"></a>频分复用FDM（Frequency Division Multiplexing）</h4><p>用户在分配到一定频带后，在通信过程中自始至终都占用这个频带。频带复用的所用用户在同样的时间占用不同的带宽资源（这里的“带宽”是频率带宽而非数据的发送速率）</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E9%A2%91%E5%88%86%E5%A4%8D%E7%94%A8FDM.png" alt="频分复用"></p>
+<h4 id="时分复用TDM（Time-Division-Multiplexing）"><a href="#时分复用TDM（Time-Division-Multiplexing）" class="headerlink" title="时分复用TDM（Time Division Multiplexing）"></a>时分复用TDM（Time Division Multiplexing）</h4><p><strong>时分复用</strong>则是将时间划分为一段段等长的<strong>时分复用帧</strong>（TDM帧）。每一个时分复用的用户在每一个TDM帧中占用固定序号的时隙。每一个用户所占用的时隙是<strong>周期性</strong>出现的（其周期就是TDM帧的长度对应的时间）</p>
+<p>TDM信号也称为<strong>等时信号</strong>。时分复用的所有用户是在不同的时间占用同样的频带宽度。</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%97%B6%E5%88%86%E5%A4%8D%E7%94%A8TDM.png" alt="时分复用实现机制"></p>
+<p>缺点：时分复用可能造成线路资源浪费。由于计算机数据的突发性质，用户对分配到的子信道的利用率一般不高。</p>
+<h4 id="波分复用WDM（Wavelength-Division-Multiplexing）"><a href="#波分复用WDM（Wavelength-Division-Multiplexing）" class="headerlink" title="波分复用WDM（Wavelength Division Multiplexing）"></a>波分复用WDM（Wavelength Division Multiplexing）</h4><p>实质就是<strong>频分复用</strong></p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%B3%A2%E5%88%86%E5%A4%8D%E7%94%A8WDM.png" alt="波分复用"></p>
+<h4 id="码分复用CDM（Code-Division-Multiplexing）"><a href="#码分复用CDM（Code-Division-Multiplexing）" class="headerlink" title="码分复用CDM（Code Division Multiplexing）"></a>码分复用CDM（Code Division Multiplexing）</h4><p>常用名词是<strong>码分多址CDMA</strong>（Code Division Multiple Access）</p>
+<p>各用户使用经过特殊挑选的不同码型，因此彼此不会造成干扰。</p>
+<p>这种系统发送的信号有很强的抗干扰能力，其频谱类似于白噪声，不易被敌人发现。   </p>
+<p>每一个比特时间划分为m个短的间隔，称为<strong>码片(chip)</strong>。</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E7%A0%81%E5%88%86%E5%A4%8D%E7%94%A8CDM.png" alt="码分复用"></p>
+<blockquote>
+<p>任何一个码片向量和该码片向量自己的规格化内积都是1.</p>
+<p>任何一个码片向量和该码片反码向量的规格化内积都是-1.</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/for-in-%E5%92%8C-for-of/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1012,199 +1232,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/12/JavaScript%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/12/JavaScript%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">JavaScript事件循环机制</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-12 13:51:07" itemprop="dateCreated datePublished" datetime="2020-03-12T13:51:07+08:00">2020-03-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-05 14:30:20" itemprop="dateModified" datetime="2020-04-05T14:30:20+08:00">2020-04-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<h4 id="EventLoop相关概念"><a href="#EventLoop相关概念" class="headerlink" title="EventLoop相关概念"></a><code>EventLoop</code>相关概念</h4><ol>
-<li><strong>堆(Heap)</strong></li>
-</ol>
-<p>堆表示一大块非结构化的内存区域，对象、数据被存放在堆中</p>
-<ol start="2">
-<li><strong>栈(Stack)</strong></li>
-</ol>
-<p>栈在<code>JavaScript</code>中又称为执行栈、调用栈，是一种后进先出的数组结构，<code>JavaScript</code>有一个主线程(<code>main thread</code>) 和 调用栈(<code>call-stack</code>)，主线所有的任务都会被放在调用栈等待主线程执行。</p>
-<p>JS调用栈采用的是后进先出的规则，当函数执行的时候，会被添加到栈的顶部，当执行栈执行完成后，就会从栈顶移除，直到栈内被清空。</p>
-<p><strong>举个栗子：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function foo(b)&#123;</span><br><span class="line">  var a &#x3D; 10;</span><br><span class="line">  return a + b + 11;</span><br><span class="line">&#125;	</span><br><span class="line"></span><br><span class="line">function bar(x)&#123;</span><br><span class="line">  var y &#x3D; 3;</span><br><span class="line">  return foo(x * y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(bar(7)); &#x2F;&#x2F;返回结果 42</span><br></pre></td></tr></table></figure>
-
-<p><em>注：这里的堆栈，是数据结构的堆栈，不是内存中的堆栈（内存中的堆栈，堆存放引用类型的数据，栈存放基本类型的数据</em></p>
-<ol start="3">
-<li>队列(Queue)</li>
-</ol>
-<p>队列即任务队列、消息队列<code>Task Queue</code>，是一种先进先出的数据结构。</p>
-<hr>
-<h4 id="同步任务与异步任务"><a href="#同步任务与异步任务" class="headerlink" title="同步任务与异步任务"></a>同步任务与异步任务</h4><p>因为<code>JavaScript</code>是单线程的，所谓的单线程是指 JS 引擎中负责解释和执行<code>javascript</code>的线程只有一个，称之为”主线程“</p>
-<p>除了主线程外，还存在着其他线程。例如：处理<code>AJAX</code>请求的线程、处理<code>DOM</code>事件的线程、定时器线程、读写文件的线程（例如<code>Node.js</code>）等等。</p>
-<p>因此，JS所有的任务分为两种：同步任务，异步任务。</p>
-<p><strong>同步任务</strong> 是调用立即得到结果的任务，同步任务在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行下一个任务；</p>
-<p><strong>异步任务</strong> 是调用后无法立即得到结果，需要额外的操作才能得到预期结果的任务。异步任务<em>不进入主线程</em>，而是进入“任务队列(<code>Task Queue</code>)”的任务。只有“任务队列”通知主线程，某个异步任务可以执行了，该任务才会进入主线程执行。</p>
-<p>JS引擎遇到异步任务（DOM事件监听、网络请求、<code>setTimeOut</code>计时器等），会交给<strong>相应的线程</strong>单独去维护异步任务，等待某个时机（计时器结束、网络请求成功、用户点击DOM），然后由事件触发线程， 将异步对应的<strong>回调函数</strong>加入消息队列中，消息队列中的回调函数等待被执行。</p>
-<hr>
-<h4 id="消息队列和事件循环"><a href="#消息队列和事件循环" class="headerlink" title="消息队列和事件循环"></a>消息队列和事件循环</h4><p>异步过程中，工作线程在异步操作完成后需要通知主线程，那么通知机制是怎么样的呢？就是利用<strong>消息队列和事件循环</strong>。</p>
-<p>简单来说，异步运行机制如下：</p>
-<ol>
-<li>所有同步任务都在主线程上执行，形成一个<strong>执行栈</strong></li>
-<li>主线程之外，还存在一个<strong>任务队列</strong>，只要异步任务有了运行结果，就会在该队列中放置一个事件。</li>
-<li>一旦<strong>执行栈</strong>中的所有同步任务执行完毕，系统就会读取<strong>任务队列</strong>。那些对应的异步任务，于是结束等待状态，进入执行栈开始执行。</li>
-<li>主线程不断重复上面三个步骤。</li>
-</ol>
-<p>实际上，主线程只会做一件事情，就是从消息队列中取信息、执行信息，再反复循环。当消息队列为空时，就会等待消息队列变成非空。这种机制就叫做<strong>事件循环机制<code>EventLoop</code></strong>，取一个消息并执行的过程叫做一次循环。</p>
-<p><strong>再举个例子：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">console.log(&#39;script start&#39;)</span><br><span class="line"></span><br><span class="line">setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">  console.log(&#39;timer 1 over&#39;)</span><br><span class="line">&#125;, 1000)</span><br><span class="line"></span><br><span class="line">setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">  console.log(&#39;timer 2 over&#39;)</span><br><span class="line">&#125;, 0)</span><br><span class="line"></span><br><span class="line">console.log(&#39;script end&#39;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; script start</span><br><span class="line">&#x2F;&#x2F; script end</span><br><span class="line">&#x2F;&#x2F; timer 2 over</span><br><span class="line">&#x2F;&#x2F; timer 1 over</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="宏任务和微任务"><a href="#宏任务和微任务" class="headerlink" title="宏任务和微任务"></a>宏任务和微任务</h4><p>同步和异步的执行机制在<code>ES5</code>的情况下够用了，但<code>ES6</code>会存在一些问题。</p>
-<p><code>Promise</code>同样是用来处理异步的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">console.log(&#39;script start&#39;)</span><br><span class="line"></span><br><span class="line">setTimeout(function() &#123;</span><br><span class="line">    console.log(&#39;timer over&#39;)</span><br><span class="line">&#125;, 0)</span><br><span class="line"></span><br><span class="line">Promise.resolve().then(function() &#123;</span><br><span class="line">    console.log(&#39;promise1&#39;)</span><br><span class="line">&#125;).then(function() &#123;</span><br><span class="line">    console.log(&#39;promise2&#39;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">console.log(&#39;script end&#39;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; script start</span><br><span class="line">&#x2F;&#x2F; script end</span><br><span class="line">&#x2F;&#x2F; promise1</span><br><span class="line">&#x2F;&#x2F; promise2</span><br><span class="line">&#x2F;&#x2F; timer over</span><br></pre></td></tr></table></figure>
-
-<p>由此延伸出了新概念：<strong>宏任务<code>macrotask</code></strong> 和 <strong>微任务<code>microtask</code></strong>。</p>
-<p>所有任务分为<strong>宏任务</strong>和<strong>微任务</strong>两种。</p>
-<ul>
-<li><strong>宏任务<code>macrotask</code></strong>：<code>setTimeout</code>、<code>setInterva</code>、<code>setImmediate</code>、<code>I/O</code>、<code>UI Rendering</code></li>
-<li><strong>微任务<code>microtask</code></strong>：<code>Process.nextTick(node独有)</code>、<code>Promise.then</code>、<code>Object.observe(已废弃)</code></li>
-</ul>
-<p>在执行线程时，JS引擎会将所有任务按照类别分到这两个队列中。待主线程执行完毕后，会先执行 <strong>微任务</strong> 队列所有任务。然后再在 <strong>宏任务</strong> 队列中取出第一个任务，执行完毕后取出 <strong>微任务</strong> 队列中的所有任务顺序执行；之后再取 <strong>宏任务</strong> ，周而复始，直至两个队列的任务全部取完。</p>
-<p>上述例子中，JS从上到下执行，所以先打印了<code>script start</code>。接着遇到了<code>setTimeout</code>，将其加入<strong>宏任务</strong>队列；遇到了<code>Promise</code>，将其加入<strong>微任务</strong>队列中。最后执行打印了<code>script end</code>，主线程执行完毕！</p>
-<p>接着JS引擎便执行<strong>微任务</strong>队列中的所有任务，打印出 <code>Promise1</code> 和 <code>Promise2</code>，最后再执行一个<strong>宏任务</strong>，打印<code>setTimeout</code>中的结果 <code>timer over</code>。</p>
-<hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">function testSometing() &#123;</span><br><span class="line">    console.log(&quot;执行testSometing&quot;);</span><br><span class="line">    return &quot;testSometing&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">async function testAsync() &#123;</span><br><span class="line">    console.log(&quot;执行testAsync&quot;);</span><br><span class="line">    return Promise.resolve(&quot;hello async&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">async function test() &#123;</span><br><span class="line">    console.log(&quot;test start...&quot;);</span><br><span class="line">    const v1 &#x3D; await testSometing();</span><br><span class="line">    console.log(v1);</span><br><span class="line">    const v2 &#x3D; await testAsync();</span><br><span class="line">    console.log(v2);</span><br><span class="line">    console.log(v1, v2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test();</span><br><span class="line">var promise &#x3D; new Promise((resolve, reject)&#x3D;&gt; &#123; </span><br><span class="line">		console.log(&quot;promise start..&quot;); </span><br><span class="line">		resolve(&quot;promise&quot;);</span><br><span class="line">		&#125;);</span><br><span class="line">promise.then((val)&#x3D;&gt; console.log(val));</span><br><span class="line">console.log(&quot;test end...&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 结果为：</span><br><span class="line">test start...</span><br><span class="line">执行testSometing</span><br><span class="line">promise start..</span><br><span class="line">test end...</span><br><span class="line">testSometing</span><br><span class="line">执行testAsync</span><br><span class="line">promise</span><br><span class="line">hello async</span><br><span class="line">testSometing hello async</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/08/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/08/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="post-title-link" itemprop="url">我的第一篇文章</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-08 22:07:18" itemprop="dateCreated datePublished" datetime="2020-03-08T22:07:18+08:00">2020-03-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-11 11:24:58" itemprop="dateModified" datetime="2020-03-11T11:24:58+08:00">2020-03-11</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>hello，文章内容测试desu</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1277,20 +1304,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
