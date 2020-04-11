@@ -157,6 +157,323 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/14/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/14/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">【计算机网络】第一章：概述</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-14 17:20:55" itemprop="dateCreated datePublished" datetime="2020-03-14T17:20:55+08:00">2020-03-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-24 21:09:02" itemprop="dateModified" datetime="2020-03-24T21:09:02+08:00">2020-03-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="计算机网络的性能"><a href="#计算机网络的性能" class="headerlink" title="计算机网络的性能"></a>计算机网络的性能</h3><h4 id="1、速率"><a href="#1、速率" class="headerlink" title="1、速率"></a>1、速率</h4><p>连接在计算机网络上的主机在数字信道上传送数据位数的速率，也称<code>data rate &amp; bit rate</code>，单位是b/s, kb/s, Mb/s, Gb/s。和正常理解的网速关系是 网速÷8 = 速率</p>
+<h4 id="2、带宽"><a href="#2、带宽" class="headerlink" title="2、带宽"></a>2、带宽</h4><p>数据通信领域中，数字信道所能传输的最高速率，单位是b/s，kb/s，Mb/s，Gb/s</p>
+<h4 id="3、吞吐量"><a href="#3、吞吐量" class="headerlink" title="3、吞吐量"></a>3、吞吐量</h4><p>即单位时间内通过某个网络的数据量，单位是b/s，Mb/s等</p>
+<h4 id="4、时延"><a href="#4、时延" class="headerlink" title="4、时延"></a>4、时延</h4><p>分为<em>发送时延、传播时延、处理时延和排队时延</em>。</p>
+<p>发送时延 = 数据块长度（比特）/ 信道带宽（比特/秒）</p>
+<p>传播时延 = 信道长度（米）/ 信号在信道上的传播速率（米/秒）</p>
+<p>处理时延，即网络结点存储转发处理时间；排队时延，网络结点缓存队列排队时间</p>
+<h4 id="5、时延带宽积"><a href="#5、时延带宽积" class="headerlink" title="5、时延带宽积"></a>5、时延带宽积</h4><p>时延带宽积 = 传播时延 x 带宽，用于确认有多少数据在链路上</p>
+<h4 id="6、往返时间RRT（Round-Trip-Time）"><a href="#6、往返时间RRT（Round-Trip-Time）" class="headerlink" title="6、往返时间RRT（Round-Trip Time）"></a>6、往返时间RRT（Round-Trip Time）</h4><p>从发送方发送数据开始，到发送方收到接收方确认</p>
+<h4 id="7、利用率"><a href="#7、利用率" class="headerlink" title="7、利用率"></a>7、利用率</h4><p>信道利用率：有数据通过时间 / (有+无)数据通过时间</p>
+<p>网络利用率：信道利用率加权平均值</p>
+<p>网络当前时延D = 网络空闲时时延D0 / (1 - 信道利用率U)</p>
+<hr>
+<h3 id="计算机网络的体系结构"><a href="#计算机网络的体系结构" class="headerlink" title="计算机网络的体系结构"></a>计算机网络的体系结构</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><blockquote>
+<p>ISO：国际标准化组织</p>
+<p>OSI/RM：互联网法律上的国际标准</p>
+<p>TCP/IP Suite：因特网事实上的国际标准</p>
+<p>NetWork Protocols：数据交换遵守的规则、标准或约定</p>
+<p>网络体系结构：计算机网络各层及其协议的集合 </p>
+</blockquote>
+<h4 id="OSI参考模型（从高到低"><a href="#OSI参考模型（从高到低" class="headerlink" title="OSI参考模型（从高到低"></a>OSI参考模型（从高到低</h4><ul>
+<li>应用层——所有能产生网络流量和与用户交互的程序</li>
+<li>表示层——在传输之前是否进行加密 或 压缩 处理，二进制或ASCII码表示（开发人员需要考虑的层</li>
+<li>会话层——服务端和客户端建立的会话（查木马netstat -nb，看需求端和网站之间的连接</li>
+<li>传输层——可靠传输（建立会话），流量控制，不可靠传输（一个数据包即可，不需要建立会话，例如向DNS查询网站IP地址）</li>
+<li>网络层——负责选择最佳路径，规划IP地址(ipv4和ipv6变化只会影响网络层)</li>
+<li>数据链路层——帧的开始和结束，还有透明传输，差错校验(纠错由传输层解决)</li>
+<li>物理层——定义网络设备接口标准，电气标准(电压)，如何在物理链路上传输的更快</li>
+</ul>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%911OSI%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B.png" alt="OSI参考模型"></p>
+<h4 id="OSI-网络排错与网络安全"><a href="#OSI-网络排错与网络安全" class="headerlink" title="OSI 网络排错与网络安全"></a>OSI 网络排错与网络安全</h4><p>每一层都为上一层提供服务，一旦某一层崩了，上面所有层都崩了，所以排查问题从最上层(物理层)排查；</p>
+<h5 id="1、物理层故障"><a href="#1、物理层故障" class="headerlink" title="1、物理层故障"></a>1、物理层故障</h5><p>查看链接状态，发送和接收的数据包数值（网线接口之类的</p>
+<h5 id="2、数据链路层故障"><a href="#2、数据链路层故障" class="headerlink" title="2、数据链路层故障"></a>2、数据链路层故障</h5><p>Mac地址冲突，2个一样的Mac地址同时访问；ADSL(非对称数字用户线路)欠费；两端的接口网速没有协商一致；计算机连接到其它VLAN(虚拟互联网)中。</p>
+<h5 id="3、网络层故障"><a href="#3、网络层故障" class="headerlink" title="3、网络层故障"></a>3、网络层故障</h5><p>配置错误的IP地址，子网掩码，网关；数据有没有通过各个网关到达指定位置；防火墙设置</p>
+<h5 id="4、应用层故障"><a href="#4、应用层故障" class="headerlink" title="4、应用层故障"></a>4、应用层故障</h5><p>SQL注入漏洞 上传漏洞 分布式攻击（密码学DNS有讲过</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/13/JS%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/13/JS%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/" class="post-title-link" itemprop="url">JS深拷贝和浅拷贝</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-13 22:59:23" itemprop="dateCreated datePublished" datetime="2020-03-13T22:59:23+08:00">2020-03-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-07 20:29:09" itemprop="dateModified" datetime="2020-04-07T20:29:09+08:00">2020-04-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<h3 id="JavaScript的变量类型"><a href="#JavaScript的变量类型" class="headerlink" title="JavaScript的变量类型"></a>JavaScript的变量类型</h3><h4 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h4><p>undefined、null、Boolean、number和string，外加symbol(ES6新增)。变量是直接按值存放的，存放在<strong>栈内存中的简单数据段</strong>，可以直接访问。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 1;</span><br><span class="line">b &#x3D; a; &#x2F;&#x2F; 栈内存会开辟一个新的内存空间，此时b和a都是相互独立的</span><br><span class="line">b &#x3D; 2;</span><br><span class="line">console.log(a); &#x2F;&#x2F; 1</span><br></pre></td></tr></table></figure>
+
+<h4 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h4><p>存放在<strong>堆内存中的对象</strong>，变量保存的是一个指针，这个指针指向另一个位置。当需要访问引用类型（如对象，数组等）的值时，首先会从栈中获得该对象的地址指针，然后再从堆内存中取得所需的数据。</p>
+<hr>
+<h3 id="深拷贝和浅拷贝的区别"><a href="#深拷贝和浅拷贝的区别" class="headerlink" title="深拷贝和浅拷贝的区别"></a>深拷贝和浅拷贝的区别</h3><p>深拷贝和浅拷贝最根本的区别在于是否真正获取了<strong>对象的复制实体</strong>，而非<strong>引用</strong>。</p>
+<p>深拷贝在计算机中开辟了一块内存地址用于存放复制的对象，而浅拷贝仅仅是指向被拷贝的内存地址，如果原地址中对象被改变了，那么浅拷贝出来的对象也会相应改变。</p>
+<hr>
+<h3 id="深拷贝与浅拷贝的实现方式"><a href="#深拷贝与浅拷贝的实现方式" class="headerlink" title="深拷贝与浅拷贝的实现方式"></a>深拷贝与浅拷贝的实现方式</h3><h4 id="实现浅拷贝的方法"><a href="#实现浅拷贝的方法" class="headerlink" title="实现浅拷贝的方法"></a>实现浅拷贝的方法</h4><h5 id="（1）for···in只循环一层"><a href="#（1）for···in只循环一层" class="headerlink" title="（1）for···in只循环一层"></a>（1）for···in只循环一层</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 只复制第一层的浅拷贝</span><br><span class="line">function simpleCopy(obj1) &#123;</span><br><span class="line">	var obj2 &#x3D; Array.isArray(obj1) ? [] : &#123;&#125;;</span><br><span class="line">	for (let i in obj1) &#123;</span><br><span class="line">  	obj2[i] &#x3D; obj1[i];</span><br><span class="line">  &#125;</span><br><span class="line">  return obj2;</span><br><span class="line">&#125;</span><br><span class="line">var obj1 &#x3D; &#123;</span><br><span class="line">	a: 1,</span><br><span class="line">  b: 2,</span><br><span class="line">  c: &#123;</span><br><span class="line">  	d: 3</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var obj2 &#x3D; simpleCopy(obj1);</span><br><span class="line">obj2.a &#x3D; 3;</span><br><span class="line">obj2.c.d &#x3D; 4;</span><br><span class="line">alert(obj1.a); 		&#x2F;&#x2F; 1</span><br><span class="line">alert(obj2.a); 		&#x2F;&#x2F; 3</span><br><span class="line">alert(obj1.c.d); 	&#x2F;&#x2F; 4</span><br><span class="line">alert(obj2.c.d); 	&#x2F;&#x2F; 4</span><br></pre></td></tr></table></figure>
+
+<h5 id="（2）Object-assign方法"><a href="#（2）Object-assign方法" class="headerlink" title="（2）Object.assign方法"></a>（2）Object.assign方法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var obj &#x3D; &#123;</span><br><span class="line">	a: 1,</span><br><span class="line">	b: 2</span><br><span class="line">&#125;</span><br><span class="line">var obj1 &#x3D; Object.assign(&#123;&#125;,obj);</span><br><span class="line">boj1.a &#x3D; 3;</span><br><span class="line">console.log(obj.a) 	&#x2F;&#x2F; 3</span><br></pre></td></tr></table></figure>
+
+<h5 id="（3）直接用-赋值"><a href="#（3）直接用-赋值" class="headerlink" title="（3）直接用 = 赋值"></a>（3）直接用 <code>=</code> 赋值</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let a&#x3D;[0,1,2,3,4], b&#x3D;a;</span><br><span class="line">console.log(a&#x3D;&#x3D;&#x3D;b);		&#x2F;&#x2F; true</span><br><span class="line">a[0]&#x3D;1;</span><br><span class="line">console.log(a);				&#x2F;&#x2F;[1,1,2,3,4]</span><br><span class="line">console.log(b);				&#x2F;&#x2F;[1,1,2,3,4]</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="实现深拷贝的方法"><a href="#实现深拷贝的方法" class="headerlink" title="实现深拷贝的方法"></a>实现深拷贝的方法</h4><h5 id="（1）采用递归去拷贝所有层级属性"><a href="#（1）采用递归去拷贝所有层级属性" class="headerlink" title="（1）采用递归去拷贝所有层级属性"></a>（1）采用递归去拷贝所有层级属性</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function deepClone(obj)&#123;</span><br><span class="line">	let objClone &#x3D; Array.isArray(obj)? [] : &#123;&#125;;</span><br><span class="line">	if(obj &amp;&amp; typeof obj&#x3D;&#x3D;&#x3D;&quot;object&quot;)&#123;</span><br><span class="line">		for(key in obj)&#123;</span><br><span class="line">			if(obj.hasOwnProperty(key))&#123;</span><br><span class="line">				&#x2F;&#x2F;判断obj子元素是否为对象，如果是，递归复制</span><br><span class="line">				if(obj[key] &amp;&amp; typeof obj[key] &#x3D;&#x3D;&#x3D; &quot;object&quot;)&#123;</span><br><span class="line">					objClone[key] &#x3D; deepClone(obj[key]);</span><br><span class="line">				&#125;else&#123;</span><br><span class="line">					&#x2F;&#x2F;如果不是，简单复制</span><br><span class="line">					objClone[key] &#x3D; obj[key];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return objClone;</span><br><span class="line">&#125;    </span><br><span class="line">let a&#x3D;[1,2,3,4],</span><br><span class="line">b&#x3D;deepClone(a);</span><br><span class="line">a[0]&#x3D;2;</span><br><span class="line">console.log(a);		&#x2F;&#x2F;[2,2,3,4]</span><br><span class="line">console.log(b);		&#x2F;&#x2F;[1,2,3,4]</span><br></pre></td></tr></table></figure>
+
+<h5 id="（2）通过JSON-parse-JSON-stringify-实现深拷贝"><a href="#（2）通过JSON-parse-JSON-stringify-实现深拷贝" class="headerlink" title="（2）通过JSON.parse(JSON.stringify())实现深拷贝"></a>（2）通过JSON.parse(JSON.stringify())实现深拷贝</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function deepClone2(obj) &#123;</span><br><span class="line">  var _obj &#x3D; JSON.stringify(obj),</span><br><span class="line">    objClone &#x3D; JSON.parse(_obj);</span><br><span class="line">  return objClone;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>注：<code>JSON.parse(JSON.stringify())</code>无法实现对对象中方法的深拷贝，会显示undefined</em></p>
+<h5 id="（3）通过jQuery中的extend方法实现深拷贝"><a href="#（3）通过jQuery中的extend方法实现深拷贝" class="headerlink" title="（3）通过jQuery中的extend方法实现深拷贝"></a>（3）通过<code>jQuery</code>中的<code>extend</code>方法实现深拷贝</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var array &#x3D; [1,2,3,4];</span><br><span class="line">var newArray &#x3D; $.extend(true,[],array); &#x2F;&#x2F; true为深拷贝，false为浅拷贝</span><br></pre></td></tr></table></figure>
+
+<h5 id="（4）如果对象的value是基本类型的话，也可以用Object-assign来实现深拷贝，但要把它赋值给一个空对象"><a href="#（4）如果对象的value是基本类型的话，也可以用Object-assign来实现深拷贝，但要把它赋值给一个空对象" class="headerlink" title="（4）如果对象的value是基本类型的话，也可以用Object.assign来实现深拷贝，但要把它赋值给一个空对象"></a>（4）如果对象的value是基本类型的话，也可以用<code>Object.assign</code>来实现深拷贝，但要把它赋值给一个空对象</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var obj &#x3D; &#123;</span><br><span class="line">	a: 1,</span><br><span class="line">	b: 2</span><br><span class="line">&#125;</span><br><span class="line">var obj1 &#x3D; Object.assign(&#123;&#125;, obj); &#x2F;&#x2F; obj赋值给一个空&#123;&#125;</span><br><span class="line">obj1.a &#x3D; 3;</span><br><span class="line">console.log(obj.a)；&#x2F;&#x2F; 1</span><br></pre></td></tr></table></figure>
+
+<h5 id="（5）用slice实现对数组的深拷贝"><a href="#（5）用slice实现对数组的深拷贝" class="headerlink" title="（5）用slice实现对数组的深拷贝"></a>（5）用slice实现对数组的深拷贝</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 当数组里面的值是基本数据类型，比如String，Number，Boolean时，属于深拷贝</span><br><span class="line">&#x2F;&#x2F; 当数组里面的值是引用数据类型，比如Object，Array时，属于浅拷贝</span><br><span class="line">var arr1 &#x3D; [&quot;1&quot;,&quot;2&quot;,&quot;3&quot;]; </span><br><span class="line">var arr2 &#x3D; arr1.slice(0);</span><br><span class="line">arr2[1] &#x3D; &quot;9&quot;;</span><br><span class="line">console.log(&quot;数组的原始值：&quot; + arr1 );		&#x2F;&#x2F;1,2,3</span><br><span class="line">console.log(&quot;数组的新值：&quot; + arr2 );		 &#x2F;&#x2F;1,9,3</span><br></pre></td></tr></table></figure>
+
+<h5 id="（6）用concat实现对数组的深拷贝"><a href="#（6）用concat实现对数组的深拷贝" class="headerlink" title="（6）用concat实现对数组的深拷贝"></a>（6）用concat实现对数组的深拷贝</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 当数组里面的值是基本数据类型，比如String，Number，Boolean时，属于深拷贝</span><br><span class="line">var arr1 &#x3D; [&quot;1&quot;,&quot;2&quot;,&quot;3&quot;];</span><br><span class="line">var arr2 &#x3D; arr1.concat();</span><br><span class="line">arr2[1] &#x3D; &quot;9&quot;;</span><br><span class="line">console.log(&quot;数组的原始值：&quot; + arr1 );</span><br><span class="line">console.log(&quot;数组的新值：&quot; + arr2 );</span><br><span class="line">&#x2F;&#x2F; 当数组里面的值是引用数据类型，比如Object，Array时，属于浅拷贝</span><br><span class="line">var arr1 &#x3D; [&#123;a:1&#125;,&#123;b:2&#125;,&#123;c:3&#125;];</span><br><span class="line">var arr2 &#x3D; arr1.concat();</span><br><span class="line">arr2[0].a &#x3D; &quot;9&quot;;</span><br><span class="line">console.log(&quot;数组的原始值：&quot; + arr1[0].a ); &#x2F;&#x2F; 数组的原始值：9</span><br><span class="line">console.log(&quot;数组的新值：&quot; + arr2[0].a ); &#x2F;&#x2F; 数组的新值：9</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/12/%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0hexo%E5%88%B0github-pages%E9%A1%B5%E9%9D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/12/%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0hexo%E5%88%B0github-pages%E9%A1%B5%E9%9D%A2/" class="post-title-link" itemprop="url">部署本地hexo到github pages页面</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-12 14:18:56" itemprop="dateCreated datePublished" datetime="2020-03-12T14:18:56+08:00">2020-03-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-14 23:39:03" itemprop="dateModified" datetime="2020-03-14T23:39:03+08:00">2020-03-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="方法1：使用hexo-deploy部署"><a href="#方法1：使用hexo-deploy部署" class="headerlink" title="方法1：使用hexo deploy部署"></a>方法1：使用<code>hexo deploy</code>部署</h4><ol>
+<li>使用<code>git bash</code>安装扩展</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install  hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>找到blog目录下的配置文件<code>_config.yml</code>，用编辑器打开此文件找到其中的deploy字段进行配置</li>
+</ol>
+<blockquote>
+<p>type: git</p>
+<p>repo: <a href="mailto:git@github.com">git@github.com</a>:azusaaa/azusaaa.github.io.git</p>
+<p>branch: master</p>
+</blockquote>
+<ol start="3">
+<li>在命令行中执行</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g </span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="方法2：-使用git-push部署"><a href="#方法2：-使用git-push部署" class="headerlink" title="方法2： 使用git push部署"></a>方法2： 使用<code>git push</code>部署</h4><ol>
+<li>进入博客所在根目录</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd blog</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>初始化博客</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>把public文件夹上传到github仓库中</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ cd public</span><br><span class="line">$ git init (初始化本地仓库)</span><br><span class="line">$ git add . (把本地文件加到仓库中)</span><br><span class="line">$ git commit -m &quot;XXXXX&quot; (设置提交信息，内容自拟)</span><br><span class="line">$ git remote add origin git@github.com:azusaaa&#x2F;azusaaa.github.io.git (本地仓库连接远程仓库)</span><br><span class="line">$ git push -u origin master (push文件到仓库中)</span><br></pre></td></tr></table></figure>
+
+<p>以上步骤部署成功后，在浏览器中输入你的repository名字即可看到你的github page了~</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/12/JavaScript%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -488,20 +805,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
