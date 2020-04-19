@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="TCP&#x2F;IP 中有两个具有代表性的传输层协议，分别是TCP和UDP。 一、TCP&#x2F;IP网络模型TCP&#x2F;IP是互联网相关的各类协议族的总称，比如：TCP，UDP，IP，FTP，HTTP，ICMP，SMTP 等都属于 TCP&#x2F;IP 族内的协议。 TCP&#x2F;IP模型是互联网的基础，它是一系列网络协议的总称。这些协议可以划分为四层，分别为链路层、网络层、传输层和应用层。  链路层：负责封装和解封装IP报文，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP和UDP的区别">
+<meta property="og:url" content="http://yoursite.com/2020/04/14/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
+<meta property="og:site_name" content="Natsun Blog">
+<meta property="og:description" content="TCP&#x2F;IP 中有两个具有代表性的传输层协议，分别是TCP和UDP。 一、TCP&#x2F;IP网络模型TCP&#x2F;IP是互联网相关的各类协议族的总称，比如：TCP，UDP，IP，FTP，HTTP，ICMP，SMTP 等都属于 TCP&#x2F;IP 族内的协议。 TCP&#x2F;IP模型是互联网的基础，它是一系列网络协议的总称。这些协议可以划分为四层，分别为链路层、网络层、传输层和应用层。  链路层：负责封装和解封装IP报文，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://graph.baidu.com/resource/1262b7e17e838f74a57a401586838459.jpg">
+<meta property="article:published_time" content="2020-04-14T04:22:48.000Z">
+<meta property="article:modified_time" content="2020-04-14T06:27:44.382Z">
+<meta property="article:author" content="Xya Fred">
+<meta property="article:tag" content="TCP">
+<meta property="article:tag" content="UDP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://graph.baidu.com/resource/1262b7e17e838f74a57a401586838459.jpg">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/14/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>TCP和UDP的区别 | Natsun Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Natsun Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">留下记忆中的美好</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/14/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TCP和UDP的区别
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-14 12:22:48 / 修改时间：14:27:44" itemprop="dateCreated datePublished" datetime="2020-04-14T12:22:48+08:00">2020-04-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>TCP/IP 中有两个具有代表性的传输层协议，分别是<code>TCP</code>和<code>UDP</code>。</p>
+<h3 id="一、TCP-IP网络模型"><a href="#一、TCP-IP网络模型" class="headerlink" title="一、TCP/IP网络模型"></a>一、<code>TCP/IP</code>网络模型</h3><p><code>TCP/IP</code>是互联网相关的各类协议族的总称，比如：<code>TCP，UDP，IP，FTP，HTTP，ICMP，SMTP</code> 等都属于 <code>TCP/IP</code> 族内的协议。</p>
+<p><code>TCP/IP</code>模型是互联网的基础，它是一系列网络协议的总称。这些协议可以划分为四层，分别为<strong>链路层</strong>、<strong>网络层</strong>、<strong>传输层</strong>和<strong>应用层</strong>。</p>
+<ul>
+<li>链路层：负责封装和解封装IP报文，发送和接受ARP/RARP报文等。</li>
+<li>网络层：负责路由以及把分组报文发送给目标网络或者主机。</li>
+<li>传输层：负责对报文进行分组和重组，并以TCP或UDP协议格式封装报文。</li>
+<li>应用层：负责向用户提供应用程序，比如HTTP、FTP、Telnet、DNS、SMTP等。</li>
+</ul>
+<p><img src="https://graph.baidu.com/resource/1262b7e17e838f74a57a401586838459.jpg" alt="TCP概念模型"></p>
+<h3 id="二、UDP（User-Data-Protocol）"><a href="#二、UDP（User-Data-Protocol）" class="headerlink" title="二、UDP（User Data Protocol）"></a>二、UDP（User Data Protocol）</h3><p>UDP协议全称是用户数据报协议，在网络中它与TCP一样用于处理数据包，是一种无连接的协议，数据在发送端时经过各层都要附上相应层的协议头和协议尾。UDP有不提供数据包分组、组装和不能对数据包进行排序的缺点，也就是说，在报文发送之后，是无法得知是否安全完整到达的。</p>
+<p>UDP有如下几个特点：</p>
+<h4 id="1、面向无连接"><a href="#1、面向无连接" class="headerlink" title="1、面向无连接"></a>1、面向无连接</h4><p>UDP是不需要和TCP一样在发送数据前进行三次握手建立连接的，<strong>想发送数据随时可以发送</strong>。并且也只是数据报文的搬运工，不会对报文进行任何拆分和拼接操作。</p>
+<p>再对传输步骤具体化就是：</p>
+<ul>
+<li>在发送端，应用层将数据传递给传输层的UDP协议，UDP只会给数据增加一个UDP表示这是UDP协议，然后就传递给网络层。</li>
+<li>在接收端，网络层将数据传递给传输层，UDP只去除IP报文头就传输诶给应用层，不会进行任何拼接操作。</li>
+</ul>
+<h4 id="2、有单播、多播、广播的功能"><a href="#2、有单播、多播、广播的功能" class="headerlink" title="2、有单播、多播、广播的功能"></a>2、有单播、多播、广播的功能</h4><p>UDP不仅支持一对一的传输方式，还支持一对多，多对多，多对一的方式。</p>
+<h4 id="3、UDP是面向报文的"><a href="#3、UDP是面向报文的" class="headerlink" title="3、UDP是面向报文的"></a>3、UDP是面向报文的</h4><p>发送方的UDP对应用程序交下来的报文，在添加首部后就交付传输层。UDP对应用层交下来的报文，既不合并，也不拆分，而是保留这些报文的边界。因此，应用程序必须选择合适大小的报文</p>
+<h4 id="4、不可靠性"><a href="#4、不可靠性" class="headerlink" title="4、不可靠性"></a>4、不可靠性</h4><p>UDP<strong>没有拥塞控制</strong>，一直会以恒定的速度发送数据，即使网络条件不好，也不会对发送速率进行调整。这样在网络条件不好的情况下可能导致丢包。</p>
+<p>但其优点也很明显，在某些实时性要求高的场景（如电话会议），就需要使用UDP而不是TCP。</p>
+<h4 id="5、头部开销小，传输数据报文时很高效"><a href="#5、头部开销小，传输数据报文时很高效" class="headerlink" title="5、头部开销小，传输数据报文时很高效"></a>5、头部开销小，传输数据报文时很高效</h4><p>UDP 头部包含了以下几个数据：</p>
+<ul>
+<li>两个十六位的端口号，分别为源端口（可选字段）和目标端口</li>
+<li>整个数据报文的长度</li>
+<li>整个数据报文的检验和（IPv4 可选 字段），该字段用于发现头部信息和数据中的错误</li>
+</ul>
+<p>因此 UDP 的头部开销小，只有八字节，相比 TCP 的至少二十字节要少得多，在传输数据报文时是很高效的</p>
+<h3 id="三、TCP（Transmission-Control-Protocol）"><a href="#三、TCP（Transmission-Control-Protocol）" class="headerlink" title="三、TCP（Transmission Control Protocol）"></a>三、TCP（Transmission Control Protocol）</h3><p>TCP协议全称是传输控制协议是一种面向连接的、可靠的、基于字节流的传输层通信协议，由 IETF 的RFC 793定义。TCP 是面向连接的、可靠的流协议。流就是指不间断的数据结构，你可以把它想象成排水管中的水流。</p>
+<p>TCP具有如下几个特点：</p>
+<h4 id="1、面向连接"><a href="#1、面向连接" class="headerlink" title="1、面向连接"></a>1、面向连接</h4><p>需要通过TCP三次握手建立可靠连接。</p>
+<h4 id="2、仅支持单播传输"><a href="#2、仅支持单播传输" class="headerlink" title="2、仅支持单播传输"></a>2、仅支持单播传输</h4><p>每条TCP传输连接只能进行点对点的数据传输，不支持多播和广播传输方式。</p>
+<h4 id="3、面向字节流"><a href="#3、面向字节流" class="headerlink" title="3、面向字节流"></a>3、面向字节流</h4><p>TCP不像UDP一样对报文独立进行传输，而是在不保留报文边界的情况下以字节流方式进行传输。</p>
+<h4 id="4、可靠传输"><a href="#4、可靠传输" class="headerlink" title="4、可靠传输"></a>4、可靠传输</h4><p>TCP为了保证报文传输的可靠性，就给每个包一个序号，同时序号也保证了传送到接收端的包的按序接收。然后接收端实体对已成功收到的字节发回一个相应的确认（ACK）；如果发送端在合理的往返时延（RTT）内未收到确认（ACK），那么对应的数据就会被重传。</p>
+<h4 id="5、提供拥塞控制"><a href="#5、提供拥塞控制" class="headerlink" title="5、提供拥塞控制"></a>5、提供拥塞控制</h4><p>当网络出现拥塞时，TCP能减小向网络注入数据的速率和数量以缓解拥塞。</p>
+<h3 id="TCP和UDP的区别"><a href="#TCP和UDP的区别" class="headerlink" title="TCP和UDP的区别"></a>TCP和UDP的区别</h3><table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">UDP</th>
+<th align="left">TCP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">是否连接</td>
+<td align="left">无连接</td>
+<td align="left">面向连接</td>
+</tr>
+<tr>
+<td align="left">是否可靠</td>
+<td align="left">不可靠传输，不使用流量控制和拥塞控制</td>
+<td align="left">可靠传输，使用流量控制和拥塞控制</td>
+</tr>
+<tr>
+<td align="left">连接对象个数</td>
+<td align="left">支持一对一，一对多，多对一和多对多交互通信</td>
+<td align="left">只能是一对一通信</td>
+</tr>
+<tr>
+<td align="left">传输方式</td>
+<td align="left">面向报文</td>
+<td align="left">面向字节流</td>
+</tr>
+<tr>
+<td align="left">首部开销</td>
+<td align="left">首部开销小，仅8字节</td>
+<td align="left">首部最小20字节，最大60字节</td>
+</tr>
+<tr>
+<td align="left">适用场景</td>
+<td align="left">适用于实时应用（IP电话、视频会议、直播等）</td>
+<td align="left">适用于要求可靠传输的应用，例如文件传输</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/TCP/" rel="tag"># TCP</a>
+              <a href="/tags/UDP/" rel="tag"># UDP</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/14/Get%E5%92%8CPOST%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="prev" title="Get和POST的区别">
+      <i class="fa fa-chevron-left"></i> Get和POST的区别
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/14/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/" rel="next" title="前端安全">
+      前端安全 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、TCP-IP网络模型"><span class="nav-number">1.</span> <span class="nav-text">一、TCP&#x2F;IP网络模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、UDP（User-Data-Protocol）"><span class="nav-number">2.</span> <span class="nav-text">二、UDP（User Data Protocol）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、面向无连接"><span class="nav-number">2.1.</span> <span class="nav-text">1、面向无连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、有单播、多播、广播的功能"><span class="nav-number">2.2.</span> <span class="nav-text">2、有单播、多播、广播的功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、UDP是面向报文的"><span class="nav-number">2.3.</span> <span class="nav-text">3、UDP是面向报文的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、不可靠性"><span class="nav-number">2.4.</span> <span class="nav-text">4、不可靠性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、头部开销小，传输数据报文时很高效"><span class="nav-number">2.5.</span> <span class="nav-text">5、头部开销小，传输数据报文时很高效</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、TCP（Transmission-Control-Protocol）"><span class="nav-number">3.</span> <span class="nav-text">三、TCP（Transmission Control Protocol）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、面向连接"><span class="nav-number">3.1.</span> <span class="nav-text">1、面向连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、仅支持单播传输"><span class="nav-number">3.2.</span> <span class="nav-text">2、仅支持单播传输</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、面向字节流"><span class="nav-number">3.3.</span> <span class="nav-text">3、面向字节流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、可靠传输"><span class="nav-number">3.4.</span> <span class="nav-text">4、可靠传输</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、提供拥塞控制"><span class="nav-number">3.5.</span> <span class="nav-text">5、提供拥塞控制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP和UDP的区别"><span class="nav-number">4.</span> <span class="nav-text">TCP和UDP的区别</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xya Fred"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Xya Fred</p>
+  <div class="site-description" itemprop="description">Welcome to Natsun Blog~</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xya Fred</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>

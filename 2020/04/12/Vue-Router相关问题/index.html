@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="vue-router的实现原理核心更新视图但不重新请求页面（改变url地址但不向浏览器请求） 实现方式 hash模式  hash（#）是URL的锚点，单单改变锚点的位置，浏览器只会滚动到相应位置，不会重新加载网页，也就是说#是用来指导浏览器动作的，对服务器端完全无用，HTTP请求也不会包括#后面的内容；同时，使用hash模式每切换一次路由，都会在浏览器的访问历史中增加一个记录。  history模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue-Router相关问题">
+<meta property="og:url" content="http://yoursite.com/2020/04/12/Vue-Router%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Natsun Blog">
+<meta property="og:description" content="vue-router的实现原理核心更新视图但不重新请求页面（改变url地址但不向浏览器请求） 实现方式 hash模式  hash（#）是URL的锚点，单单改变锚点的位置，浏览器只会滚动到相应位置，不会重新加载网页，也就是说#是用来指导浏览器动作的，对服务器端完全无用，HTTP请求也不会包括#后面的内容；同时，使用hash模式每切换一次路由，都会在浏览器的访问历史中增加一个记录。  history模">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-12T14:36:28.000Z">
+<meta property="article:modified_time" content="2020-04-17T13:04:37.017Z">
+<meta property="article:author" content="Xya Fred">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="Vue-Router">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/12/Vue-Router%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Vue-Router相关问题 | Natsun Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Natsun Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">留下记忆中的美好</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/12/Vue-Router%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue-Router相关问题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-12 22:36:28" itemprop="dateCreated datePublished" datetime="2020-04-12T22:36:28+08:00">2020-04-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-17 21:04:37" itemprop="dateModified" datetime="2020-04-17T21:04:37+08:00">2020-04-17</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="vue-router的实现原理"><a href="#vue-router的实现原理" class="headerlink" title="vue-router的实现原理"></a>vue-router的实现原理</h3><h4 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h4><p>更新视图但不重新请求页面（改变url地址但不向浏览器请求）</p>
+<h4 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h4><ul>
+<li>hash模式</li>
+</ul>
+<p>hash（#）是URL的锚点，单单改变锚点的位置，浏览器只会滚动到相应位置，不会重新加载网页，也就是说<code>#</code>是用来指导浏览器动作的，对服务器端完全无用，HTTP请求也不会包括#后面的内容；同时，使用<code>hash</code>模式每切换一次路由，都会在浏览器的访问历史中增加一个记录。</p>
+<ul>
+<li>history模式</li>
+</ul>
+<p><code>HTML5 history</code> API提供了一种功能，能让开发人员在不刷新整个页面的情况下修改站点。（就是利用<code>HTML5 history</code> API来完成URL跳转而无需重新加载页面。</p>
+<ul>
+<li>demo</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Hash模式</span><br><span class="line">URL：xxx.com&#x2F;#&#x2F;id&#x3D;5</span><br><span class="line">请求地址为：xxx.com		&#x3D;&gt;  OKK</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; History模式</span><br><span class="line">URL：xxx.com&#x2F;id&#x3D;5</span><br><span class="line">请求地址为xxx.com&#x2F;id&#x3D;5		&#x3D;&gt;  若后端无对应路由处理，返回404错误；</span><br></pre></td></tr></table></figure>
+
+<h3 id="vue-router有几种钩子函数？具体是什么及其参数"><a href="#vue-router有几种钩子函数？具体是什么及其参数" class="headerlink" title="vue-router有几种钩子函数？具体是什么及其参数"></a>vue-router有几种钩子函数？具体是什么及其参数</h3><h4 id="1、全局路由（路由守卫）"><a href="#1、全局路由（路由守卫）" class="headerlink" title="1、全局路由（路由守卫）"></a>1、全局路由（路由守卫）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach((to, from, next) &#x3D;&gt; &#123;</span><br><span class="line">	console.log(&quot;Do something&quot;);</span><br><span class="line">  next();		&#x2F;&#x2F; 如果要跳转的话，一定要next</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">router.afterEach((to, from) &#x3D;&gt; &#123;</span><br><span class="line">	if(to.meta.title)&#123;</span><br><span class="line">		window.document.title &#x3D; to.meta.title;</span><br><span class="line">	&#125;esle&#123;</span><br><span class="line">		window.document.title &#x3D; &quot;默认标题&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、针对单个路由的钩子函数（beforeEnter）"><a href="#2、针对单个路由的钩子函数（beforeEnter）" class="headerlink" title="2、针对单个路由的钩子函数（beforeEnter）"></a>2、针对单个路由的钩子函数（beforeEnter）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var router &#x3D; new Router(&#123;</span><br><span class="line">	routers: [</span><br><span class="line">		&#123;</span><br><span class="line">			name: &quot;Test&quot;,</span><br><span class="line">			path: &quot;&#x2F;test&quot;,</span><br><span class="line">			component: Test,</span><br><span class="line">			beforeEnter(to, from, next)&#123;</span><br><span class="line">				if(to.path&#x3D;&#x3D;&#x3D;&quot;&#x2F;test&quot;)&#123;</span><br><span class="line">					alert(&quot;请登录！&quot;);</span><br><span class="line">					next(false); &#x2F;&#x2F; 禁止跳转</span><br><span class="line">				&#125;else&#123;</span><br><span class="line">					next();</span><br><span class="line">				&#125;</span><br><span class="line">					</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、针对组件的钩子函数（放在组件中与data、methods同级）"><a href="#3、针对组件的钩子函数（放在组件中与data、methods同级）" class="headerlink" title="3、针对组件的钩子函数（放在组件中与data、methods同级）"></a>3、针对组件的钩子函数（放在组件中与data、methods同级）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 这个路由钩子函数比生命周期beforeCreate函数先执行</span><br><span class="line">&#x2F;&#x2F; 所以this实例还没有创建出来</span><br><span class="line">beforeRouteEnter(to, from, next)&#123; </span><br><span class="line">	console.log(&quot;beforeRouteEnter&quot;)</span><br><span class="line">	console.log(this) &#x2F;&#x2F;这时this还是undefinde</span><br><span class="line">	next((vm) &#x3D;&gt; &#123; </span><br><span class="line">		&#x2F;&#x2F; 通过&#96;vm&#96;访问组件实例</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;,</span><br><span class="line">&#x2F;&#x2F; 可以解决二级导航时，页面只渲染一次的问题，</span><br><span class="line">&#x2F;&#x2F; 也就是导航是否更新了，是否需要更新</span><br><span class="line">beforeRouteUpdate(to, from, next)&#123;</span><br><span class="line">	console.log(&#39;beforeRouteUpdate&#39;)</span><br><span class="line">	next();</span><br><span class="line">&#125;,</span><br><span class="line">&#x2F;&#x2F; 当离开组件时，是否允许离开</span><br><span class="line">beforeRouteLeave(to, from, next)&#123;</span><br><span class="line">	next()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="router和-route的区别"><a href="#router和-route的区别" class="headerlink" title="$router和$route的区别"></a><code>$router</code>和<code>$route</code>的区别</h3><h4 id="router"><a href="#router" class="headerlink" title="router"></a><code>router</code></h4><p><code>router</code>是<code>VueRouter</code>的一个对象，通过<code>Vue.use(VueRouter)</code>和<code>VueRouter</code>构造函数得到一个router的实例对象，这个对象中是一个全局的对象，他包含了所有的路由包含了许多关键的对象和属性。</p>
+<h5 id="Demo：history对象"><a href="#Demo：history对象" class="headerlink" title="Demo：history对象"></a>Demo：<strong>history对象</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &quot;切换路由&quot;的本质是向history栈中添加一个路由</span><br><span class="line">$router.push(&#123;path:&#39;home&#39;&#125;);</span><br><span class="line">&#x2F;&#x2F; &quot;替换路由&quot;，没有历史记录</span><br><span class="line">$router.replace(&#123;path:&#39;home&#39;&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="route"><a href="#route" class="headerlink" title="route"></a><code>route</code></h4><p><code>route</code>是一个跳转的路由对象，每一个路由都会有一个route对象，是一个局部的对象，可以获取对应的name，path，params，query等</p>
+<ul>
+<li><p>$route.path<br>字符串，等于当前路由对象的路径，会被解析为绝对路径，如 “/home/news” 。</p>
+</li>
+<li><p>$route.params<br>对象，包含路由中的动态片段和全匹配片段的键值对</p>
+</li>
+<li><p>$route.query<br>对象，包含路由中查询参数的键值对。例如，对于 /home/news/detail/01?favorite=yes ，会得到$route.query.favorite == ‘yes’ 。</p>
+</li>
+<li><p>$route.router<br>路由规则所属的路由器（以及其所属的组件）。</p>
+</li>
+<li><p>$route.matched<br> 数组，包含当前匹配的路径中所包含的所有片段所对应的配置参数对象。</p>
+</li>
+<li><p>$route.name<br>当前路径的名字，如果没有使用具名路径，则名字为空。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+              <a href="/tags/Vue-Router/" rel="tag"># Vue-Router</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/12/Vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" rel="prev" title="Vue组件通信">
+      <i class="fa fa-chevron-left"></i> Vue组件通信
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/14/Get%E5%92%8CPOST%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="next" title="Get和POST的区别">
+      Get和POST的区别 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-router的实现原理"><span class="nav-number">1.</span> <span class="nav-text">vue-router的实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心"><span class="nav-number">1.1.</span> <span class="nav-text">核心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现方式"><span class="nav-number">1.2.</span> <span class="nav-text">实现方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-router有几种钩子函数？具体是什么及其参数"><span class="nav-number">2.</span> <span class="nav-text">vue-router有几种钩子函数？具体是什么及其参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、全局路由（路由守卫）"><span class="nav-number">2.1.</span> <span class="nav-text">1、全局路由（路由守卫）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、针对单个路由的钩子函数（beforeEnter）"><span class="nav-number">2.2.</span> <span class="nav-text">2、针对单个路由的钩子函数（beforeEnter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、针对组件的钩子函数（放在组件中与data、methods同级）"><span class="nav-number">2.3.</span> <span class="nav-text">3、针对组件的钩子函数（放在组件中与data、methods同级）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#router和-route的区别"><span class="nav-number">3.</span> <span class="nav-text">$router和$route的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#router"><span class="nav-number">3.1.</span> <span class="nav-text">router</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Demo：history对象"><span class="nav-number">3.1.1.</span> <span class="nav-text">Demo：history对象</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#route"><span class="nav-number">3.2.</span> <span class="nav-text">route</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xya Fred"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Xya Fred</p>
+  <div class="site-description" itemprop="description">Welcome to Natsun Blog~</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xya Fred</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>

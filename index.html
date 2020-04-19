@@ -157,7 +157,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/11/JS%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/18/CSS%E5%9F%BA%E7%A1%80%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -171,7 +171,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/04/11/JS%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">JS性能优化</a>
+            <a href="/2020/04/18/CSS%E5%9F%BA%E7%A1%80%E9%A2%98/" class="post-title-link" itemprop="url">CSS基础题</a>
         </h1>
 
         <div class="post-meta">
@@ -180,8 +180,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-04-11 16:56:18" itemprop="dateCreated datePublished" datetime="2020-04-11T16:56:18+08:00">2020-04-11</time>
+              <time title="创建时间：2020-04-18 11:52:02 / 修改时间：15:16:49" itemprop="dateCreated datePublished" datetime="2020-04-18T11:52:02+08:00">2020-04-18</time>
             </span>
 
           
@@ -195,7 +196,1088 @@
     <div class="post-body" itemprop="articleBody">
 
       
+          <h2 id="CSS相关"><a href="#CSS相关" class="headerlink" title="CSS相关"></a>CSS相关</h2><h3 id="CSS新特新"><a href="#CSS新特新" class="headerlink" title="CSS新特新"></a>CSS新特新</h3><ul>
+<li>flex布局</li>
+<li>grid布局</li>
+<li>盒模型定义</li>
+<li>过渡 <code>transition</code></li>
+<li>动画 <code>animation</code></li>
+<li>选择器</li>
+<li>边框、阴影（box-shadow）</li>
+<li>媒体查询，用于监听屏幕尺寸的变化</li>
+</ul>
+<h3 id="CSS盒模型"><a href="#CSS盒模型" class="headerlink" title="CSS盒模型"></a>CSS盒模型</h3><ul>
+<li>标准盒子模型（W3C）</li>
+</ul>
+<p>宽度 = 内容的宽度（content）+ border + padding + margin</p>
+<ul>
+<li>低版本盒子模型（IE）</li>
+</ul>
+<p>宽度 = 内容宽度（content + border + padding）+ margin</p>
+<ul>
+<li>CSS如何设置？</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">box-sizing: content-box		(W3C)</span><br><span class="line">box-sizing: border-box		(IE)</span><br></pre></td></tr></table></figure>
+
+<h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p><strong>块级格式化上下文</strong>（Block Formatting Context）。BFC是W3C规范中的一个概念，它是一个独立的容器，决定了元素如何对其内容进行定位，以及与其他内容的关系和相互作用。</p>
+<p>一个页面是由很多个 Box 组成的，元素的类型和 display 属性，决定了这个 Box 的类型。不同类型的 Box，会参与不同的 Formatting Context（决定如何渲染文档的容器），因此Box内的元素会以不同的方式渲染，也就是说BFC内部的元素和外部的元素不会互相影响。</p>
+<h4 id="触发BFC的条件"><a href="#触发BFC的条件" class="headerlink" title="触发BFC的条件"></a>触发BFC的条件</h4><ul>
+<li>根元素，即 HTML</li>
+<li>float的值不为 none（默认）</li>
+<li>overflow的值不为 visible（默认）</li>
+<li>display的值为 inline-block、table-cell、table-caption</li>
+<li>position的值为 absolute 或 fixed</li>
+</ul>
+<h3 id="CSS居中"><a href="#CSS居中" class="headerlink" title="CSS居中"></a>CSS居中</h3><h4 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h4><ul>
+<li><strong>行内元素或类行类元素</strong>（如文本和链接）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text-align: center;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>块级元素</strong></li>
+</ul>
+<p>设置<code>margin-left</code>和<code>margin-right</code>为auto，前提<code>width</code>已设定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.div&#123;</span><br><span class="line">	margin: 0 auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>多个块级元素</strong></li>
+</ul>
+<p>通过修改他们的<code>display</code>值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.inline-block-center div&#123;</span><br><span class="line">	display: inline-block;</span><br><span class="line">	text-align: left;</span><br><span class="line">&#125;</span><br><span class="line">.flex-block-center div&#123;</span><br><span class="line">	display: flex;</span><br><span class="line">	justify-content: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h4><ul>
+<li><strong>单行</strong></li>
+</ul>
+<p>对于单行行内或文本元素，只需要为他们添加等值的 <code>padding-top</code> 和 <code>padding-bottom</code> 即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.link &#123;</span><br><span class="line">	padding-top: 30px;</span><br><span class="line">	padding-bottom: 30px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（未完待续……）</p>
+<p><a href="https://www.w3cplus.com/css/centering-css-complete-guide.html" target="_blank" rel="noopener">居中参考链接</a></p>
+<h2 id="HTML相关"><a href="#HTML相关" class="headerlink" title="HTML相关"></a>HTML相关</h2><h4 id="HTML5新特性"><a href="#HTML5新特性" class="headerlink" title="HTML5新特性"></a>HTML5新特性</h4><ul>
+<li>绘画的canvas元素</li>
+<li>提供了播放音频文件的标准，如<code>&lt;audio&gt;,&lt;video&gt;</code></li>
+<li>语义化标签，如<code>&lt;header&gt;,&lt;footer&gt;,&lt;article&gt;,&lt;aside&gt;</code></li>
+<li>HTML5 Geolocation（地理定位）drag（拖放）history（历史记录）API</li>
+<li>Web Storage</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/17/JS%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
           
+            <a href="/2020/04/17/JS%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" class="post-title-link" itemprop="url">JS事件委托</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-17 21:20:10" itemprop="dateCreated datePublished" datetime="2020-04-17T21:20:10+08:00">2020-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-18 11:49:32" itemprop="dateModified" datetime="2020-04-18T11:49:32+08:00">2020-04-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="JS事件流"><a href="#JS事件流" class="headerlink" title="JS事件流"></a>JS事件流</h3><p>可以理解为事件发生时，响应事件的顺序。这个顺序按照一个流进行的，这就是事件流。事件流包括三个阶段，分别是<strong>捕获阶段</strong>、<strong>目标阶段</strong>和<strong>冒泡阶段</strong>。</p>
+<ul>
+<li><strong>事件冒泡流</strong>：自然响应事件的顺序是从里到外</li>
+<li><strong>事件捕获流</strong>：自然响应事件的顺序是从外到里</li>
+</ul>
+<p>可以用“<strong>事件监听</strong>”的方式绑定事件流的形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 第三个参数设置为 false 则为捕获流，设置为 true 则为冒泡流</span><br><span class="line">button.addEventListener(&quot;click&quot;, function()&#123;&#125;, false)</span><br></pre></td></tr></table></figure>
+
+<h4 id="阻止事件冒泡的方法："><a href="#阻止事件冒泡的方法：" class="headerlink" title="阻止事件冒泡的方法："></a>阻止事件冒泡的方法：</h4><ul>
+<li><code>Event.stopPropagation()</code>（W3C标准）</li>
+<li><code>Window.cancelBubble = true</code>（IE标准）</li>
+</ul>
+<h4 id="阻止默认事件的方法："><a href="#阻止默认事件的方法：" class="headerlink" title="阻止默认事件的方法："></a>阻止默认事件的方法：</h4><p>指目标元素的默认行为，比如a标签会跳转链接 form会提交表单</p>
+<ul>
+<li><code>Event.preventDefault()</code>（W3C）</li>
+<li><code>window.event.returnValue = false</code>（IE）</li>
+</ul>
+<h3 id="事件委托（也叫事件代理）"><a href="#事件委托（也叫事件代理）" class="headerlink" title="事件委托（也叫事件代理）"></a>事件委托（也叫事件代理）</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>利用事件冒泡，在所有需要绑定相同事件的子元素的父元素上绑定对应事件。</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>提高性能，减少事件的注册，减少对DOM元素的操作。</p>
+<h4 id="手写实现事件代理的浏览器兼容"><a href="#手写实现事件代理的浏览器兼容" class="headerlink" title="手写实现事件代理的浏览器兼容"></a>手写实现事件代理的浏览器兼容</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function bindEvent(obj, type, fn)&#123;</span><br><span class="line">	if(obj.addEventListener)&#123;</span><br><span class="line">		obj.addEventListener(type, eventFn);</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		obj.attachEvent(&quot;on&quot;+type, eventFn)</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	function eventFn(ev)&#123;</span><br><span class="line">		var ev &#x3D; ev || window.event;</span><br><span class="line">		var target &#x3D; ev.target || ev.srcElement;</span><br><span class="line">		fn &amp;&amp; fn(target, ev);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/14/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/14/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/" class="post-title-link" itemprop="url">前端安全</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-14 14:29:57 / 修改时间：20:34:00" itemprop="dateCreated datePublished" datetime="2020-04-14T14:29:57+08:00">2020-04-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">前端优化</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="XSS和CRSF攻击"><a href="#XSS和CRSF攻击" class="headerlink" title="XSS和CRSF攻击"></a>XSS和CRSF攻击</h3><h4 id="XSS跨站脚本攻击（代码注入的一种）"><a href="#XSS跨站脚本攻击（代码注入的一种）" class="headerlink" title="XSS跨站脚本攻击（代码注入的一种）"></a>XSS跨站脚本攻击（代码注入的一种）</h4><p> XSS, 即为（Cross Site Scripting）, 中文名为跨站脚本,  是发生在目标用户的浏览器层面上的，当渲染DOM树的过程成发生了不在预期内执行的JS代码时，就发生了XSS攻击。</p>
+<p>攻击者可以使用户在浏览器中<strong>执行其预定义的恶意脚本</strong>，实际上是在目标网站的作用域下执行了这段js代码，其导致的危害可想而知，如劫持用户会话，插入恶意内容、重定向用户、使用恶意软件劫持用户浏览器、繁殖<a href="https://baike.baidu.com/item/XSS蠕虫/22777013" target="_blank" rel="noopener">XSS蠕虫</a>，甚至破坏网站、修改路由器配置信息等。</p>
+<h4 id="XSS防御措施"><a href="#XSS防御措施" class="headerlink" title="XSS防御措施"></a>XSS防御措施</h4><p>XSS防御的总体思路是：</p>
+<ul>
+<li>在不需要HTML输入的地方对HTML标签及一些特殊字符进行过滤，将其转化为不被浏览器解析执行的字符。 </li>
+<li>对输入(和URL参数)进行过滤，对输出进行编码。也就是对提交的所有内容进行过滤，对url中的参数进行过滤，过滤掉会导致脚本执行的相关内容；</li>
+</ul>
+<h4 id="CSRF跨站请求伪造"><a href="#CSRF跨站请求伪造" class="headerlink" title="CSRF跨站请求伪造"></a>CSRF跨站请求伪造</h4><p>CSRF（Cross Site Request  Forgery，跨站请求伪造），字面理解意思就是在别的站点伪造了一个请求。专业术语来说就是在受害者访问一个网站时，其 Cookie  还没有过期的情况下，攻击者伪造一个链接地址发送受害者并欺骗让其点击，从而形成 CSRF 攻击。 </p>
+<h4 id="CSRF防御措施"><a href="#CSRF防御措施" class="headerlink" title="CSRF防御措施"></a>CSRF防御措施</h4><p>防御CSRF 攻击主要有三种策略：</p>
+<ul>
+<li>验证 HTTP Referer 字段；</li>
+<li>在请求地址中添加 token 并验证；</li>
+<li>在 HTTP 头中自定义属性并验证。 </li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/14/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/14/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">TCP和UDP的区别</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-14 12:22:48 / 修改时间：14:27:44" itemprop="dateCreated datePublished" datetime="2020-04-14T12:22:48+08:00">2020-04-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>TCP/IP 中有两个具有代表性的传输层协议，分别是<code>TCP</code>和<code>UDP</code>。</p>
+<h3 id="一、TCP-IP网络模型"><a href="#一、TCP-IP网络模型" class="headerlink" title="一、TCP/IP网络模型"></a>一、<code>TCP/IP</code>网络模型</h3><p><code>TCP/IP</code>是互联网相关的各类协议族的总称，比如：<code>TCP，UDP，IP，FTP，HTTP，ICMP，SMTP</code> 等都属于 <code>TCP/IP</code> 族内的协议。</p>
+<p><code>TCP/IP</code>模型是互联网的基础，它是一系列网络协议的总称。这些协议可以划分为四层，分别为<strong>链路层</strong>、<strong>网络层</strong>、<strong>传输层</strong>和<strong>应用层</strong>。</p>
+<ul>
+<li>链路层：负责封装和解封装IP报文，发送和接受ARP/RARP报文等。</li>
+<li>网络层：负责路由以及把分组报文发送给目标网络或者主机。</li>
+<li>传输层：负责对报文进行分组和重组，并以TCP或UDP协议格式封装报文。</li>
+<li>应用层：负责向用户提供应用程序，比如HTTP、FTP、Telnet、DNS、SMTP等。</li>
+</ul>
+<p><img src="https://graph.baidu.com/resource/1262b7e17e838f74a57a401586838459.jpg" alt="TCP概念模型"></p>
+<h3 id="二、UDP（User-Data-Protocol）"><a href="#二、UDP（User-Data-Protocol）" class="headerlink" title="二、UDP（User Data Protocol）"></a>二、UDP（User Data Protocol）</h3><p>UDP协议全称是用户数据报协议，在网络中它与TCP一样用于处理数据包，是一种无连接的协议，数据在发送端时经过各层都要附上相应层的协议头和协议尾。UDP有不提供数据包分组、组装和不能对数据包进行排序的缺点，也就是说，在报文发送之后，是无法得知是否安全完整到达的。</p>
+<p>UDP有如下几个特点：</p>
+<h4 id="1、面向无连接"><a href="#1、面向无连接" class="headerlink" title="1、面向无连接"></a>1、面向无连接</h4><p>UDP是不需要和TCP一样在发送数据前进行三次握手建立连接的，<strong>想发送数据随时可以发送</strong>。并且也只是数据报文的搬运工，不会对报文进行任何拆分和拼接操作。</p>
+<p>再对传输步骤具体化就是：</p>
+<ul>
+<li>在发送端，应用层将数据传递给传输层的UDP协议，UDP只会给数据增加一个UDP表示这是UDP协议，然后就传递给网络层。</li>
+<li>在接收端，网络层将数据传递给传输层，UDP只去除IP报文头就传输诶给应用层，不会进行任何拼接操作。</li>
+</ul>
+<h4 id="2、有单播、多播、广播的功能"><a href="#2、有单播、多播、广播的功能" class="headerlink" title="2、有单播、多播、广播的功能"></a>2、有单播、多播、广播的功能</h4><p>UDP不仅支持一对一的传输方式，还支持一对多，多对多，多对一的方式。</p>
+<h4 id="3、UDP是面向报文的"><a href="#3、UDP是面向报文的" class="headerlink" title="3、UDP是面向报文的"></a>3、UDP是面向报文的</h4><p>发送方的UDP对应用程序交下来的报文，在添加首部后就交付传输层。UDP对应用层交下来的报文，既不合并，也不拆分，而是保留这些报文的边界。因此，应用程序必须选择合适大小的报文</p>
+<h4 id="4、不可靠性"><a href="#4、不可靠性" class="headerlink" title="4、不可靠性"></a>4、不可靠性</h4><p>UDP<strong>没有拥塞控制</strong>，一直会以恒定的速度发送数据，即使网络条件不好，也不会对发送速率进行调整。这样在网络条件不好的情况下可能导致丢包。</p>
+<p>但其优点也很明显，在某些实时性要求高的场景（如电话会议），就需要使用UDP而不是TCP。</p>
+<h4 id="5、头部开销小，传输数据报文时很高效"><a href="#5、头部开销小，传输数据报文时很高效" class="headerlink" title="5、头部开销小，传输数据报文时很高效"></a>5、头部开销小，传输数据报文时很高效</h4><p>UDP 头部包含了以下几个数据：</p>
+<ul>
+<li>两个十六位的端口号，分别为源端口（可选字段）和目标端口</li>
+<li>整个数据报文的长度</li>
+<li>整个数据报文的检验和（IPv4 可选 字段），该字段用于发现头部信息和数据中的错误</li>
+</ul>
+<p>因此 UDP 的头部开销小，只有八字节，相比 TCP 的至少二十字节要少得多，在传输数据报文时是很高效的</p>
+<h3 id="三、TCP（Transmission-Control-Protocol）"><a href="#三、TCP（Transmission-Control-Protocol）" class="headerlink" title="三、TCP（Transmission Control Protocol）"></a>三、TCP（Transmission Control Protocol）</h3><p>TCP协议全称是传输控制协议是一种面向连接的、可靠的、基于字节流的传输层通信协议，由 IETF 的RFC 793定义。TCP 是面向连接的、可靠的流协议。流就是指不间断的数据结构，你可以把它想象成排水管中的水流。</p>
+<p>TCP具有如下几个特点：</p>
+<h4 id="1、面向连接"><a href="#1、面向连接" class="headerlink" title="1、面向连接"></a>1、面向连接</h4><p>需要通过TCP三次握手建立可靠连接。</p>
+<h4 id="2、仅支持单播传输"><a href="#2、仅支持单播传输" class="headerlink" title="2、仅支持单播传输"></a>2、仅支持单播传输</h4><p>每条TCP传输连接只能进行点对点的数据传输，不支持多播和广播传输方式。</p>
+<h4 id="3、面向字节流"><a href="#3、面向字节流" class="headerlink" title="3、面向字节流"></a>3、面向字节流</h4><p>TCP不像UDP一样对报文独立进行传输，而是在不保留报文边界的情况下以字节流方式进行传输。</p>
+<h4 id="4、可靠传输"><a href="#4、可靠传输" class="headerlink" title="4、可靠传输"></a>4、可靠传输</h4><p>TCP为了保证报文传输的可靠性，就给每个包一个序号，同时序号也保证了传送到接收端的包的按序接收。然后接收端实体对已成功收到的字节发回一个相应的确认（ACK）；如果发送端在合理的往返时延（RTT）内未收到确认（ACK），那么对应的数据就会被重传。</p>
+<h4 id="5、提供拥塞控制"><a href="#5、提供拥塞控制" class="headerlink" title="5、提供拥塞控制"></a>5、提供拥塞控制</h4><p>当网络出现拥塞时，TCP能减小向网络注入数据的速率和数量以缓解拥塞。</p>
+<h3 id="TCP和UDP的区别"><a href="#TCP和UDP的区别" class="headerlink" title="TCP和UDP的区别"></a>TCP和UDP的区别</h3><table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">UDP</th>
+<th align="left">TCP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">是否连接</td>
+<td align="left">无连接</td>
+<td align="left">面向连接</td>
+</tr>
+<tr>
+<td align="left">是否可靠</td>
+<td align="left">不可靠传输，不使用流量控制和拥塞控制</td>
+<td align="left">可靠传输，使用流量控制和拥塞控制</td>
+</tr>
+<tr>
+<td align="left">连接对象个数</td>
+<td align="left">支持一对一，一对多，多对一和多对多交互通信</td>
+<td align="left">只能是一对一通信</td>
+</tr>
+<tr>
+<td align="left">传输方式</td>
+<td align="left">面向报文</td>
+<td align="left">面向字节流</td>
+</tr>
+<tr>
+<td align="left">首部开销</td>
+<td align="left">首部开销小，仅8字节</td>
+<td align="left">首部最小20字节，最大60字节</td>
+</tr>
+<tr>
+<td align="left">适用场景</td>
+<td align="left">适用于实时应用（IP电话、视频会议、直播等）</td>
+<td align="left">适用于要求可靠传输的应用，例如文件传输</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/14/Get%E5%92%8CPOST%E7%9A%84%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/14/Get%E5%92%8CPOST%E7%9A%84%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">Get和POST的区别</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-14 10:40:39 / 修改时间：12:21:59" itemprop="dateCreated datePublished" datetime="2020-04-14T10:40:39+08:00">2020-04-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="两种HTTP请求方法：GET-和-POST"><a href="#两种HTTP请求方法：GET-和-POST" class="headerlink" title="两种HTTP请求方法：GET 和 POST"></a>两种HTTP请求方法：GET 和 POST</h3><ul>
+<li><strong>GET</strong> - 从指定的资源请求数据。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;test&#x2F;demo_form.asp?name1&#x3D;value1&amp;name2&#x3D;value2</span><br></pre></td></tr></table></figure>
+
+<p>GET用于<strong>信息获取</strong>，而且是<strong>安全</strong>的和<strong>幂等</strong>的。</p>
+<p>注：安全的意味着仅仅获取而不会修改信息。幂等的意味着对同一URL的多个请求应该返回同样的结果。*</p>
+<ul>
+<li><strong>POST</strong> - 向指定的资源提交要处理的数据 。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;test&#x2F;demo_form.asp HTTP&#x2F;1.1</span><br><span class="line">Host: w3schools.com</span><br><span class="line">name1&#x3D;value1&amp;name2&#x3D;value2</span><br></pre></td></tr></table></figure>
+
+<p>POST表示<strong>可能修改服务器上的资源的请求</strong>。</p>
+<h3 id="GET和POST的区别"><a href="#GET和POST的区别" class="headerlink" title="GET和POST的区别"></a>GET和POST的区别</h3><h4 id="1、数据可见性"><a href="#1、数据可见性" class="headerlink" title="1、数据可见性"></a>1、数据可见性</h4><ul>
+<li>GET请求参数会附在URL之后，对所有人可见（就是数据放在HTTP协议头中）</li>
+<li>POST请求参数放在Request Body中</li>
+</ul>
+<h4 id="2、数据类型"><a href="#2、数据类型" class="headerlink" title="2、数据类型"></a>2、数据类型</h4><ul>
+<li>GET只支持ASCII编码</li>
+<li>POST没有限制，也允许二进制数据</li>
+</ul>
+<h4 id="3、数据长度"><a href="#3、数据长度" class="headerlink" title="3、数据长度"></a>3、数据长度</h4><ul>
+<li>GET由于请求参数是放在URL中的，URL的长度是受限制的（最长为2048个字符）</li>
+<li>POST请求参数长度无限制</li>
+</ul>
+<h4 id="4、历史参数"><a href="#4、历史参数" class="headerlink" title="4、历史参数"></a>4、历史参数</h4><ul>
+<li>GET请求参数会随着URL被保留在浏览器历史中</li>
+<li>POST请求参数不会保存在浏览器历史中</li>
+</ul>
+<h4 id="5、后退按钮"><a href="#5、后退按钮" class="headerlink" title="5、后退按钮"></a>5、后退按钮</h4><ul>
+<li>GET后退或刷新无害</li>
+<li>POST数据会被重新提交（浏览器应该告知用户数据会被重新提交</li>
+</ul>
+<h4 id="6、缓存"><a href="#6、缓存" class="headerlink" title="6、缓存"></a>6、缓存</h4><ul>
+<li>GET能被缓存</li>
+<li>POST不能缓存</li>
+</ul>
+<h4 id="7、编码类型"><a href="#7、编码类型" class="headerlink" title="7、编码类型"></a>7、编码类型</h4><ul>
+<li>GET：<code>application/x-www-form-urlencoded</code></li>
+<li>POST：<code>application/x-www-form-urlencoded</code> 或 <code>multipart/form-data</code>。为二进制数据使用多重编码。</li>
+</ul>
+<h3 id="GET和POST的本质"><a href="#GET和POST的本质" class="headerlink" title="GET和POST的本质"></a>GET和POST的本质</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/12/Vue-Router%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/12/Vue-Router%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Vue-Router相关问题</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-12 22:36:28" itemprop="dateCreated datePublished" datetime="2020-04-12T22:36:28+08:00">2020-04-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-17 21:04:37" itemprop="dateModified" datetime="2020-04-17T21:04:37+08:00">2020-04-17</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="vue-router的实现原理"><a href="#vue-router的实现原理" class="headerlink" title="vue-router的实现原理"></a>vue-router的实现原理</h3><h4 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h4><p>更新视图但不重新请求页面（改变url地址但不向浏览器请求）</p>
+<h4 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h4><ul>
+<li>hash模式</li>
+</ul>
+<p>hash（#）是URL的锚点，单单改变锚点的位置，浏览器只会滚动到相应位置，不会重新加载网页，也就是说<code>#</code>是用来指导浏览器动作的，对服务器端完全无用，HTTP请求也不会包括#后面的内容；同时，使用<code>hash</code>模式每切换一次路由，都会在浏览器的访问历史中增加一个记录。</p>
+<ul>
+<li>history模式</li>
+</ul>
+<p><code>HTML5 history</code> API提供了一种功能，能让开发人员在不刷新整个页面的情况下修改站点。（就是利用<code>HTML5 history</code> API来完成URL跳转而无需重新加载页面。</p>
+<ul>
+<li>demo</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Hash模式</span><br><span class="line">URL：xxx.com&#x2F;#&#x2F;id&#x3D;5</span><br><span class="line">请求地址为：xxx.com		&#x3D;&gt;  OKK</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; History模式</span><br><span class="line">URL：xxx.com&#x2F;id&#x3D;5</span><br><span class="line">请求地址为xxx.com&#x2F;id&#x3D;5		&#x3D;&gt;  若后端无对应路由处理，返回404错误；</span><br></pre></td></tr></table></figure>
+
+<h3 id="vue-router有几种钩子函数？具体是什么及其参数"><a href="#vue-router有几种钩子函数？具体是什么及其参数" class="headerlink" title="vue-router有几种钩子函数？具体是什么及其参数"></a>vue-router有几种钩子函数？具体是什么及其参数</h3><h4 id="1、全局路由（路由守卫）"><a href="#1、全局路由（路由守卫）" class="headerlink" title="1、全局路由（路由守卫）"></a>1、全局路由（路由守卫）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach((to, from, next) &#x3D;&gt; &#123;</span><br><span class="line">	console.log(&quot;Do something&quot;);</span><br><span class="line">  next();		&#x2F;&#x2F; 如果要跳转的话，一定要next</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">router.afterEach((to, from) &#x3D;&gt; &#123;</span><br><span class="line">	if(to.meta.title)&#123;</span><br><span class="line">		window.document.title &#x3D; to.meta.title;</span><br><span class="line">	&#125;esle&#123;</span><br><span class="line">		window.document.title &#x3D; &quot;默认标题&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、针对单个路由的钩子函数（beforeEnter）"><a href="#2、针对单个路由的钩子函数（beforeEnter）" class="headerlink" title="2、针对单个路由的钩子函数（beforeEnter）"></a>2、针对单个路由的钩子函数（beforeEnter）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var router &#x3D; new Router(&#123;</span><br><span class="line">	routers: [</span><br><span class="line">		&#123;</span><br><span class="line">			name: &quot;Test&quot;,</span><br><span class="line">			path: &quot;&#x2F;test&quot;,</span><br><span class="line">			component: Test,</span><br><span class="line">			beforeEnter(to, from, next)&#123;</span><br><span class="line">				if(to.path&#x3D;&#x3D;&#x3D;&quot;&#x2F;test&quot;)&#123;</span><br><span class="line">					alert(&quot;请登录！&quot;);</span><br><span class="line">					next(false); &#x2F;&#x2F; 禁止跳转</span><br><span class="line">				&#125;else&#123;</span><br><span class="line">					next();</span><br><span class="line">				&#125;</span><br><span class="line">					</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、针对组件的钩子函数（放在组件中与data、methods同级）"><a href="#3、针对组件的钩子函数（放在组件中与data、methods同级）" class="headerlink" title="3、针对组件的钩子函数（放在组件中与data、methods同级）"></a>3、针对组件的钩子函数（放在组件中与data、methods同级）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 这个路由钩子函数比生命周期beforeCreate函数先执行</span><br><span class="line">&#x2F;&#x2F; 所以this实例还没有创建出来</span><br><span class="line">beforeRouteEnter(to, from, next)&#123; </span><br><span class="line">	console.log(&quot;beforeRouteEnter&quot;)</span><br><span class="line">	console.log(this) &#x2F;&#x2F;这时this还是undefinde</span><br><span class="line">	next((vm) &#x3D;&gt; &#123; </span><br><span class="line">		&#x2F;&#x2F; 通过&#96;vm&#96;访问组件实例</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;,</span><br><span class="line">&#x2F;&#x2F; 可以解决二级导航时，页面只渲染一次的问题，</span><br><span class="line">&#x2F;&#x2F; 也就是导航是否更新了，是否需要更新</span><br><span class="line">beforeRouteUpdate(to, from, next)&#123;</span><br><span class="line">	console.log(&#39;beforeRouteUpdate&#39;)</span><br><span class="line">	next();</span><br><span class="line">&#125;,</span><br><span class="line">&#x2F;&#x2F; 当离开组件时，是否允许离开</span><br><span class="line">beforeRouteLeave(to, from, next)&#123;</span><br><span class="line">	next()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="router和-route的区别"><a href="#router和-route的区别" class="headerlink" title="$router和$route的区别"></a><code>$router</code>和<code>$route</code>的区别</h3><h4 id="router"><a href="#router" class="headerlink" title="router"></a><code>router</code></h4><p><code>router</code>是<code>VueRouter</code>的一个对象，通过<code>Vue.use(VueRouter)</code>和<code>VueRouter</code>构造函数得到一个router的实例对象，这个对象中是一个全局的对象，他包含了所有的路由包含了许多关键的对象和属性。</p>
+<h5 id="Demo：history对象"><a href="#Demo：history对象" class="headerlink" title="Demo：history对象"></a>Demo：<strong>history对象</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &quot;切换路由&quot;的本质是向history栈中添加一个路由</span><br><span class="line">$router.push(&#123;path:&#39;home&#39;&#125;);</span><br><span class="line">&#x2F;&#x2F; &quot;替换路由&quot;，没有历史记录</span><br><span class="line">$router.replace(&#123;path:&#39;home&#39;&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="route"><a href="#route" class="headerlink" title="route"></a><code>route</code></h4><p><code>route</code>是一个跳转的路由对象，每一个路由都会有一个route对象，是一个局部的对象，可以获取对应的name，path，params，query等</p>
+<ul>
+<li><p>$route.path<br>字符串，等于当前路由对象的路径，会被解析为绝对路径，如 “/home/news” 。</p>
+</li>
+<li><p>$route.params<br>对象，包含路由中的动态片段和全匹配片段的键值对</p>
+</li>
+<li><p>$route.query<br>对象，包含路由中查询参数的键值对。例如，对于 /home/news/detail/01?favorite=yes ，会得到$route.query.favorite == ‘yes’ 。</p>
+</li>
+<li><p>$route.router<br>路由规则所属的路由器（以及其所属的组件）。</p>
+</li>
+<li><p>$route.matched<br> 数组，包含当前匹配的路径中所包含的所有片段所对应的配置参数对象。</p>
+</li>
+<li><p>$route.name<br>当前路径的名字，如果没有使用具名路径，则名字为空。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/12/Vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/12/Vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" class="post-title-link" itemprop="url">Vue组件通信</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-12 15:31:19" itemprop="dateCreated datePublished" datetime="2020-04-12T15:31:19+08:00">2020-04-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-13 17:42:31" itemprop="dateModified" datetime="2020-04-13T17:42:31+08:00">2020-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Props和-emit父子组件通信"><a href="#Props和-emit父子组件通信" class="headerlink" title="Props和$emit父子组件通信"></a>Props和$emit父子组件通信</h3><h4 id="（一）父组件向子组件使用props传值"><a href="#（一）父组件向子组件使用props传值" class="headerlink" title="（一）父组件向子组件使用props传值"></a>（一）父组件向子组件使用props传值</h4><ol>
+<li>一定要用<code>props</code>属性定义来自父组件的数据</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">	var vm &#x3D; new Vue(&#123;</span><br><span class="line">		el: &quot;#app&quot;,</span><br><span class="line">		data: &#123;</span><br><span class="line">			msg: &quot;这是父组件中的信息&quot;</span><br><span class="line">		&#125;,	</span><br><span class="line">		components: &#123;</span><br><span class="line">			son: &#123;</span><br><span class="line">				template: &#39;&lt;h1&gt;这是子组件 -- &#123;&#123;fatherInfo&#125;&#125;&lt;&#x2F;h1&gt;&#39;,</span><br><span class="line">				props: [&#39;fatherInfo&#39;]</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用<code>v-bind</code>简化指令，将数据传递到子组件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;son :fatherInfo&#x3D;&quot;msg&quot;&gt;&lt;&#x2F;son&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="（二）-emit子组件调用父组件方法并传递数据"><a href="#（二）-emit子组件调用父组件方法并传递数据" class="headerlink" title="（二）$emit子组件调用父组件方法并传递数据"></a>（二）$emit子组件调用父组件方法并传递数据</h4><p>原理：父组件将方法的引用，传递到子组件内部，子组件在内部调用父组件传递过来的方法，同时把要发送给父组件的数据，在调用方法的时候当作参数传递进去；</p>
+<p>父组件将方法的引用传递给子组件，其中，<code>getMsg</code>是父组件中<code>methods</code>中定义的方法名称，<code>func</code>是子组件调用传递过来方法时候的方法名称。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;son @func&#x3D;&quot;getMsg&quot;&gt;&lt;&#x2F;son&gt;</span><br></pre></td></tr></table></figure>
+
+<p>子组件内部通过<code>this.$emit(&#39;方法名&#39;, 要传递的数据)</code>方式，来调用父组件中的方法，同时把数据传递给父组件使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;template id&#x3D;&quot;container&quot;&gt;</span><br><span class="line">	&lt;son @func&#x3D;&quot;getMsg&quot;&gt;&lt;&#x2F;son&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	var vm &#x3D; new Vue(&#123;</span><br><span class="line">		el: &quot;#container&quot;,</span><br><span class="line">		data: &#123;&#125;,</span><br><span class="line">		methods:&#123;</span><br><span class="line">			getMsg(val)&#123;</span><br><span class="line">				console.log(&quot;这是父组件方法--&quot;+val)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		components: &#123;</span><br><span class="line">			son: &#123;</span><br><span class="line">				template:&quot;&lt;button @click&#x3D;&quot;sonMethod&quot;&gt;子组件按钮&lt;&#x2F;button&gt;&quot;,</span><br><span class="line">				data()&#123;</span><br><span class="line">					return&#123;</span><br><span class="line">						sonmsg: &quot;子组件数据&quot;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;,</span><br><span class="line">				methods:&#123;</span><br><span class="line">					sonMethod()&#123;</span><br><span class="line">						this.$emit(&quot;func&quot;,this.data.sonmsg);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Event-Bus与-emit-on"><a href="#Event-Bus与-emit-on" class="headerlink" title="Event Bus与$emit/$on"></a><code>Event Bus</code>与<code>$emit/$on</code></h3><p>通过一个空的Vue实例作为中央事件总线（事件中心），用它来触发事件和监听事件，巧妙轻量的实现任何组件间的通信，包括父子、兄弟、跨级。</p>
+<h4 id="具体实现方法"><a href="#具体实现方法" class="headerlink" title="具体实现方法"></a>具体实现方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var Event &#x3D; new Vue();</span><br><span class="line">Event.$emit(事件名, 数据);</span><br><span class="line">Event.$on(事件名, data &#x3D;&gt; &#123;&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h4><p>假设有ABC三个兄弟组件，C组件如何获取兄弟组件的数据？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;itany&quot;&gt;</span><br><span class="line">	&lt;my-a&gt;&lt;&#x2F;my-a&gt;</span><br><span class="line">	&lt;my-b&gt;&lt;&#x2F;my-b&gt;</span><br><span class="line">	&lt;my-c&gt;&lt;&#x2F;my-c&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;template id&#x3D;&quot;a&quot;&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&lt;h3&gt;A组件：&#123;&#123;name&#125;&#125;&lt;&#x2F;h3&gt;</span><br><span class="line">		&lt;button @click&#x3D;&quot;send&quot;&gt;将数据发给C组件&lt;&#x2F;button&gt;</span><br><span class="line">	&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;template id&#x3D;&quot;b&quot;&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&lt;h3&gt;B组件：&#123;&#123;age&#125;&#125;&lt;&#x2F;h3&gt;</span><br><span class="line">		&lt;button @click&#x3D;&quot;send&quot;&gt;将数据发给C组件&lt;&#x2F;button&gt;</span><br><span class="line">	&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;template id&#x3D;&quot;C&quot;&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&lt;h3&gt;C组件：&#123;&#123;name&#125;&#125;，&#123;&#123;age&#125;&#125;&lt;&#x2F;h3&gt;</span><br><span class="line">	&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var Event &#x3D; new Vue();</span><br><span class="line">var A &#x3D; &#123;</span><br><span class="line">	template: &quot;#a&quot;,</span><br><span class="line">	data()&#123;</span><br><span class="line">		return &#123;</span><br><span class="line">			name: &quot;Tom&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	methods: &#123;</span><br><span class="line">		send()&#123;</span><br><span class="line">			Event.$emit(&quot;data-a&quot;, this.name);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">var B &#x3D; &#123;</span><br><span class="line">	template: &quot;#b&quot;,</span><br><span class="line">	data()&#123;</span><br><span class="line">		retunr &#123;</span><br><span class="line">			age: 20</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	methods: &#123;</span><br><span class="line">		send()&#123;</span><br><span class="line">			Event.$emit(&quot;data-b&quot;, this.age);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">var C &#x3D; &#123;</span><br><span class="line">	template: &quot;#c&quot;,</span><br><span class="line">	data()&#123;</span><br><span class="line">		return &#123;</span><br><span class="line">			name: &quot;&quot;,</span><br><span class="line">			age: &quot;&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	mounted()&#123;</span><br><span class="line">		Event.$on(&quot;data-a&quot;,name &#x3D;&gt; &#123;</span><br><span class="line">			this.name &#x3D; name;</span><br><span class="line">		&#125;)</span><br><span class="line">		Event.$On(&quot;data-b&quot;, age &#x3D;&gt; &#123;</span><br><span class="line">			this.age &#x3D; age;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">var vm &#x3D; new Vue(&#123;</span><br><span class="line">	el: &quot;#itany&quot;,</span><br><span class="line">	components: &#123;</span><br><span class="line">		&quot;my-a&quot;: A,</span><br><span class="line">		&quot;my-b&quot;: B</span><br><span class="line">		&quot;my-c&quot;: C</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="attrs-listeners"><a href="#attrs-listeners" class="headerlink" title="$attrs/$listeners"></a><code>$attrs</code>/<code>$listeners</code></h3><p>多级组件嵌套需要传递数据时，通常使用的方法是通过vuex。但如果仅仅是传递数据，而不做中间处理，使用 vuex 处理，未免有点大材小用。为此Vue2.4 版本提供了另一种方法—-<code>$attrs</code>/<code>$listeners</code></p>
+<ul>
+<li><code>$attrs</code>：包含了父作用域中不被 prop 所识别 (且获取) 的特性绑定 (class 和 style  除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过<code>v-bind=&quot;$attrs&quot;</code>传入内部组件。通常配合 <code>inheritAttrs</code> （可以关闭自动挂载到组件根元素上的没有在props声明的属性）选项一起使用。</li>
+<li><code>$listeners</code>：包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。它可以通过 <code>v-on=&quot;$listeners&quot;</code> 传入内部组件</li>
+</ul>
+<h3 id="parent-children与-ref"><a href="#parent-children与-ref" class="headerlink" title="$parent / $children与 ref"></a><code>$parent</code> / <code>$children</code>与 <code>ref</code></h3><ul>
+<li><code>ref</code>：如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；如果用在子组件上，引用就指向组件实例</li>
+<li><code>$parent</code> / <code>$children</code>：访问父 / 子实例</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; component-a 子组件</span><br><span class="line">export default &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      title: &#39;Vue.js&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    sayHello () &#123;</span><br><span class="line">      window.alert(&#39;Hello&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 父组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;component-a ref&#x3D;&quot;comA&quot;&gt;&lt;&#x2F;component-a&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    mounted () &#123;</span><br><span class="line">      const comA &#x3D; this.$refs.comA;</span><br><span class="line">      console.log(comA.title);  &#x2F;&#x2F; Vue.js</span><br><span class="line">      comA.sayHello();  &#x2F;&#x2F; 弹窗</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>但是，这种方法的弊端是：无法在跨级或者兄弟间通信，那在这种情况下，就得靠<code>Vuex</code>和<code>EventBus</code>了。</p>
+<h3 id="Vuex（Vue状态管理模式）"><a href="#Vuex（Vue状态管理模式）" class="headerlink" title="Vuex（Vue状态管理模式）"></a>Vuex（Vue状态管理模式）</h3><p>Vuex采用<strong>集中式存储</strong>管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</p>
+<h4 id="什么时候用Vuex？"><a href="#什么时候用Vuex？" class="headerlink" title="什么时候用Vuex？"></a>什么时候用Vuex？</h4><p>Vuex 可以帮助我们管理共享状态，并附带了更多的概念和框架。这需要对短期和长期效益进行权衡。</p>
+<p>如果不打算开发大型单页应用，使用 Vuex 可能是繁琐冗余的。但是，如果需要构建一个中大型单页应用，如何更好地在组件外部管理状态，Vuex 将会成为自然而然的选择。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/12/Vue%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/12/Vue%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81/" class="post-title-link" itemprop="url">Vue双向数据绑定</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-12 11:20:44 / 修改时间：15:25:32" itemprop="dateCreated datePublished" datetime="2020-04-12T11:20:44+08:00">2020-04-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="Vue实现数据双向绑定原理"><a href="#Vue实现数据双向绑定原理" class="headerlink" title="Vue实现数据双向绑定原理"></a>Vue实现数据双向绑定原理</h4><p>Vue采用<strong>数据劫持</strong>配合<strong>发布-订阅者模式</strong>的方式，通过<code>Object.defineProperty()</code>来劫持各个属性的setter和getter，在数据变动时发布消息给订阅者，触发相应监听回调。</p>
+<h4 id="回顾Object-defineProperty"><a href="#回顾Object-defineProperty" class="headerlink" title="回顾Object.defineProperty()"></a>回顾<code>Object.defineProperty()</code></h4><ul>
+<li>使用语法</li>
+</ul>
+<blockquote>
+<p><code>Object.defineProperty(obj, prop, descriptor)</code></p>
+</blockquote>
+<ul>
+<li><p>参数</p>
+<ul>
+<li>obj：目标对象</li>
+<li>prop：需要定义的属性或者方法名称</li>
+<li>descriptor：目标属性所拥有的特性</li>
+</ul>
+</li>
+<li><p>可供定义的特性列表</p>
+<ul>
+<li><strong>value</strong>：属性的值</li>
+<li><strong>writable</strong>：若为false，属性的值不能被重写</li>
+<li><strong>get</strong>：一旦目标属性被访问就会调回该方法，并将调用结果返回</li>
+<li><strong>set</strong>：一旦目标被赋值，就调用此方法</li>
+<li><strong>configurable</strong>：若为false，任何尝试删除/修改目标属性/属性特性（包括writable,configurable,enumerable）的行为将无效化。</li>
+<li><strong>enumerable</strong>：是否能通过<code>for in</code>循环遍历或在<code>Object.keys</code>中列举出来</li>
+<li><em>注意：set/get不能与value/writable同时存在</em></li>
+</ul>
+</li>
+<li><p>测试用例：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var data &#x3D; &#123;</span><br><span class="line">	name: &quot;azusa&quot;</span><br><span class="line">&#125;</span><br><span class="line">Object.keys(data).forEach(function(key)&#123;</span><br><span class="line">	Object.defineProperty(data, key, &#123;</span><br><span class="line">		enumerable: true,</span><br><span class="line">		configurable: true, </span><br><span class="line">		get: function()&#123;</span><br><span class="line">			console.log(&quot;Get!&quot;);</span><br><span class="line">		&#125;,</span><br><span class="line">		set: function()&#123;</span><br><span class="line">			console.log(&quot;监听到数据变化！&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/11/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/11/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">YAHOO 35条前端优化建议（转）</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-11 16:56:18" itemprop="dateCreated datePublished" datetime="2020-04-11T16:56:18+08:00">2020-04-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-14 14:32:23" itemprop="dateModified" datetime="2020-04-14T14:32:23+08:00">2020-04-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">前端优化</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Excetional Performance 团队总结出了一系列可以提高网站速度的方法。可以分为 7大类 35条。包括内容 、服务器 、 CSS 、 JavaScript 、Cookie 、图片 、移动应用 共七部分。</p>
+<p>[TOC]</p>
+<hr>
+<h3 id="内容部分"><a href="#内容部分" class="headerlink" title="内容部分"></a>内容部分</h3><h4 id="1、尽量减少HTTP请求"><a href="#1、尽量减少HTTP请求" class="headerlink" title="1、尽量减少HTTP请求"></a>1、尽量减少HTTP请求</h4><p>终端用户响应的时间中，有 80%用于下载各项内容。这部分时间包括下载页面中的图像、样式表、脚本、 Flash等。通过减少页面中的元素可以减少 HTTP请求的次数。这是提高网页速度的关键步骤。</p>
+<p><strong>合并文件</strong>是通过把所有的脚本放到一个文件中来减少HTTP请求的方法，如可以简单地把所有的 CSS文件都放入一个样式表中。当脚本或者样式表在不同页面中使用时需要做不同的修 改，这可能会相对麻烦点，但即便如此也要把这个方法作为改善页面性能的重要一步。</p>
+<p><strong>CSS Sprites</strong>是减少图像请求的有效方法。把所有的背景图像都放到一个图片文件中，然后通过 CSS的 background-image和 background-position属性来显示图片的不同部分图片地图是把多张图片整合到一张图片中。虽然文件的总体大小不会改变，但是可以减少 HTTP请求次数。图片地图只有在图片的所有组成部分在页面中是紧挨在一起的时候才能 使用，如导航栏。确定图片的坐标和可能会比较繁琐且容易出错，同时使用图片地图导航也不具有可读性，因此不推荐这种方法</p>
+<p><strong>内联图像</strong>是使用 data:URL scheme的方法把图像数据加载页面中。这可能会增加页面的大 小。把内联图像放到样式表（可缓存）中可以减少 HTTP请求同时又避免增加页面文件的大小。但是内联图像现在还没有得到主流浏览器的支持。     </p>
+<h4 id="2、减少DNS查找次数"><a href="#2、减少DNS查找次数" class="headerlink" title="2、减少DNS查找次数"></a>2、减少DNS查找次数</h4><p>域名系统建立了主机名和IP地址间的映射，就像电话簿上人名和号码的映射一样。当你在浏览器输入<a href="http://www.yahoo.com/" target="_blank" rel="noopener">www.yahoo.com</a>的时候，浏览器就会联系DNS解析器返回服务器的IP地址。DNS是有成本的，它需要20到120毫秒去查找给定主机名的IP地址。在DNS查找完成之前，浏览器无法从主机名下载任何东西。</p>
+<p>DNS查找被缓存起来更高效，由用户的ISP（网络服务提供商）或者本地网络存在一个特殊的缓存服务器上，但还可以缓存在个人用户的计算机上。DNS信息被保存在操作系统的DNS   cache(微软Windows上的”DNS客户端服务”)里。大多数浏览器有独立于操作系统的自己的cache。只要浏览器在自己的cache里还保留着这条记录，它就不会向操作系统查询DNS。</p>
+<p>IE默认缓存DNS查找30分钟，写在DnsCacheTimeout注册表设置中。Firefox缓存1分钟，可以用network.dnsCacheExpiration配置项设置。(Fasterfox把缓存时间改成了1小时  P.S. Fasterfox是FF的一个提速插件)</p>
+<p>如果客户端的DNS cache是空的（包括浏览器的和操作系统的），DNS查找数等于页面上不同的主机名数，包括页面URL，图片，脚本文件，样式表，Flash对象等等组件中的主机名，减少不同的主机名就可以减少DNS查找。</p>
+<p>减少不同主机名的数量同时也减少了页面能够并行下载的组件数量，避免DNS查找削减了响应时间，而减少并行下载数量却增加了响应时间。我的原则是把组件分散在2到4个主机名下，这是同时减少DNS查找和允许高并发下载的折中方案。</p>
+<h4 id="3、避免重定向"><a href="#3、避免重定向" class="headerlink" title="3、避免重定向"></a>3、避免重定向</h4><p>重定向用301和302状态码，下面是一个有301状态码的HTTP头：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#96;HTTP&#x2F;1.1 301 Moved Permanently&#96;&#96;Location: http:&#x2F;&#x2F;example.com&#x2F;newuri&#96;&#96;Content-Type: text&#x2F;html&#96;</span><br></pre></td></tr></table></figure>
+
+<p>浏览器会自动跳转到Location域指明的URL。重定向需要的所有信息都在HTTP头部，而响应体一般是空的。其实额外的HTTP头，比如Expires和Cache-Control也表示重定向。除此之外还有别的跳转方式：refresh元标签和JavaScript，但如果你必须得做重定向，最好用标准的3xxHTTP状态码，主要是为了让返回按钮能正常使用。</p>
+<p>牢记重定向会拖慢用户体验，在用户和HTML文档之间插入重定向会延迟页面上的所有东西，页面无法渲染，组件也无法开始下载，直到HTML文档被送达浏览器。</p>
+<p>有一种常见的极其浪费资源的重定向，而且web开发人员一般都意识不到这一点，就是URL尾部缺少一个斜线的时候。例如，跳转到<a href="http://astrology.yahoo.com/astrology会返回一个重定向到http://astrology.yahoo.com/astrology/的301响应（注意添在尾部的斜线）。在Apache中可以用Alias，mod_rewrite或者DirectorySlash指令来取消不必要的重定向。" target="_blank" rel="noopener">http://astrology.yahoo.com/astrology会返回一个重定向到http://astrology.yahoo.com/astrology/的301响应（注意添在尾部的斜线）。在Apache中可以用Alias，mod_rewrite或者DirectorySlash指令来取消不必要的重定向。</a></p>
+<p>重定向最常见的用途是把旧站点连接到新的站点，还可以连接同一站点的不同部分，针对用户的不同情况（浏览器类型，用户帐号类型等等）做一些处理。用重定向来连接两个网站是最简单的，只需要少量的额外代码。虽然在这些时候使用重定向减少了开发人员的开发复杂度，但降低了用户体验。一种替代方案是用Alias和mod_rewrite，前提是两个代码路径都在相同的服务器上。如果是因为域名变化而使用了重定向，就可以创建一条CNAME（创建一个指向另一个域名的DNS记录作为别名）结合Alias或者mod_rewrite指令。</p>
+<h4 id="4、让AJAX可缓存"><a href="#4、让AJAX可缓存" class="headerlink" title="4、让AJAX可缓存"></a>4、让AJAX可缓存</h4><p>Ajax的一个好处是可以<strong>给用户提供即时反馈</strong>，因为它能够从后台服务器异步请求信息。然而，用了Ajax就无法保证用户在等待异步JavaScript和XML响应返回期间不会非常无聊。在很多应用程序中，用户能够一直等待取决于如何使用Ajax。例如，在基于web的电子邮件客户端中，用户为了寻找符合他们搜索标准的邮件消息，将会保持对Ajax请求返回结果的关注。重要的是，要记得<strong>“异步”并不意味着“即时”</strong>。</p>
+<p>要提高性能，优化这些Ajax响应至关重要。最重要的提高Ajax性能的方法就是让响应变得可缓存，就像在添上Expires或者Cache-Control HTTP头中讨论的一样。下面适用于Ajax的其它规则：</p>
+<ul>
+<li>Gzip组件</li>
+<li>减少DNS查找</li>
+<li>压缩JavaScript</li>
+<li>避免重定向</li>
+<li>配置ETags</li>
+</ul>
+<p>我们一起看看例子，一个Web  2.0的电子邮件客户端用了Ajax来下载用户的通讯录，以便实现自动完成功能。如果用户从上一次使用之后再没有修改过她的通讯录，而且Ajax响应是可缓存的，有尚未过期的Expires或者Cache-Control   HTTP头，那么之前的通讯录就可以从缓存中读出。必须通知浏览器，应该继续使用之前缓存的通讯录响应，还是去请求一个新的。可以通过给通讯录的Ajax   URL里添加一个表明用户通讯录最后修改时间的时间戳来实现，例如&amp;t=1190241612。如果通讯录从上一次下载之后再没有被修改过，时间戳不变，通讯录就将从浏览器缓存中直接读出，从而避免一次额外的HTTP往返消耗。如果用户已经修改了通讯录，时间戳也可以确保新的URL不会匹配缓存的响应，浏览器将请求新的通讯录条目。</p>
+<h4 id="5、延迟加载组件"><a href="#5、延迟加载组件" class="headerlink" title="5、延迟加载组件"></a>5、延迟加载组件</h4><p>可以凑近看看页面并问自己：什么才是一开始渲染页面所必须的？其余内容都可以等会儿。</p>
+<p>JavaScript是分隔onload事件之前和之后的一个理想选择。例如，如果有JavaScript代码和支持拖放以及动画的库，这些都可以先等会儿，因为拖放元素是在页面最初渲染之后的。其它可以延迟加载的部分包括隐藏内容（在某个交互动作之后才出现的内容）和折叠的图片。</p>
+<p>工具可帮你减轻工作量：YUI Image Loader可以延迟加载折叠的图片，还有YUI Get utility是一种引入JS和CSS的简单方法。Yahoo!主页就是一个例子，可以打开Firebug的网络面板仔细看看。</p>
+<p>最好让性能目标符合其它web开发最佳实践，比如“渐进增强”。如果客户端支持JavaScript，可以提高用户体验，但必须确保页面在不支持JavaScript时也能正常工作。所以，在确定页面运行正常之后，可以用一些延迟加载脚本增强它，以支持一些拖放和动画之类的华丽效果。</p>
+<h4 id="6、预加载组件"><a href="#6、预加载组件" class="headerlink" title="6、预加载组件"></a>6、预加载组件</h4><p>预加载可能看起来和延迟加载是相反的，但它其实有不同的目标。通过预加载组件可以<strong>充分利用浏览器空闲的时间来请求将来会用到的组件</strong>（图片，样式和脚本）。用户访问下一页的时候，大部分组件都已经在缓存里了，所以在用户看来页面会加载得更快。</p>
+<p>实际应用中有以下几种预加载的类型：</p>
+<ol>
+<li>无条件预加载——尽快开始加载，获取一些额外的组件。google.com就是一个sprite图片预加载的好例子，这个sprite图片并不是google.com主页需要的，而是搜索结果页面上的内容。</li>
+<li>条件性预加载——根据用户操作猜测用户将要跳转到哪里并据此预加载。在search.yahoo.com的输入框里键入内容后，可以看到那些额外组件是怎样请求加载的。</li>
+<li>提前预加载——在推出新设计之前预加载。经常在重新设计之后会听到：“这个新网站不错，但比以前更慢了”，一部分原因是用户访问先前的页面都是有旧缓存的，但新的却是一种空缓存状态下的体验。可以通过在将要推出新设计之前预加载一些组件来减轻这种负面影响，老站可以利用浏览器空闲的时间来请求那些新站需要的图片和脚本。</li>
+</ol>
+<h4 id="7、减少DOM元素的数量"><a href="#7、减少DOM元素的数量" class="headerlink" title="7、减少DOM元素的数量"></a>7、减少DOM元素的数量</h4><p>一个复杂的页面意味着要下载更多的字节，而且用JavaScript访问DOM也会更慢。举个例子，想要添加一个事件处理器的时候，循环遍历页面上的500个DOM元素和5000个DOM元素是有区别的。</p>
+<p>大量的DOM元素是一种征兆——页面上有些内容无关的标记需要清理。正在用嵌套表格来布局吗？还是为了修复布局问题而添了一堆的<div>s？或许应该用更好的语义化标记。</p>
+<p>YUI CSS utilities对布局有很大帮助：grids.css针对整体布局，fonts.css和reset.css可以用来去除浏览器的默认格式。这是个开始清理和思考标记的好机会，例如只在语义上有意义的时候使用<div>，而不是因为它能够渲染一个新行。</p>
+<p>DOM元素的数量很容易测试，只需要在Firebug的控制台里输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#96;document.getElementsByTagName(&#39;*&#39;).length&#96;</span><br></pre></td></tr></table></figure>
+
+<p>那么多少DOM元素才算是太多呢？可以参考其它类似的标记良好的页面，例如Yahoo!主页是一个相当繁忙的页面，但只有不到700个元素（HTML标签）。</p>
+<h4 id="8、划分内容到不同域名"><a href="#8、划分内容到不同域名" class="headerlink" title="8、划分内容到不同域名"></a>8、划分内容到不同域名</h4><p>浏览器一般会限制每个域的并行线程（一般为6个，甚至更少），使用不同的域名可以最大化下载线程，但注意保持在2-4个域名内，以避免DNS查询损耗。</p>
+<p>例如，动态内容放在<code>csspod.com</code>上，静态资源放在<code>static.csspod.com</code>上。这样还可以禁用静态资源域下的Cookie，减少数据传输，详见<code>Cookie 优化</code>。</p>
+<h4 id="9、尽量少用iframe"><a href="#9、尽量少用iframe" class="headerlink" title="9、尽量少用iframe"></a>9、尽量少用iframe</h4><p>用iframe可以把一个HTML文档插入到父文档里，重要的是明白iframe是如何工作的并高效地使用它。</p>
+<p><code>&lt;iframe&gt;</code>的优点：</p>
+<ol>
+<li>引入缓慢的第三方内容，比如标志和广告</li>
+<li>安全沙箱</li>
+<li>并行下载脚本</li>
+</ol>
+<p><code>&lt;iframe&gt;</code>的缺点：</p>
+<ol>
+<li>代价高昂，即使是空白的iframe</li>
+<li>阻塞页面加载</li>
+<li>非语义</li>
+</ol>
+<h4 id="10、杜绝404"><a href="#10、杜绝404" class="headerlink" title="10、杜绝404"></a>10、杜绝404</h4><p>HTTP请求代价高昂，完全没有必要用一个HTTP请求去获取一个无用的响应（比如404 Not Found），只会拖慢用户体验而没有任何好处。</p>
+<p>有些站点用的是有帮助的404——“你的意思是xxx？”，这样做有利于用户体验，，但也浪费了服务器资源（比如数据库等等）。最糟糕的是链接到的外部JavaScript有错误而且结果是404。首先，这种下载将阻塞并行下载。其次，浏览器会试图解析404响应体，因为它是JavaScript代码，需要找出其中可用的部分。</p>
+<h3 id="服务器部分"><a href="#服务器部分" class="headerlink" title="服务器部分"></a>服务器部分</h3><h4 id="11、使用CDN"><a href="#11、使用CDN" class="headerlink" title="11、使用CDN"></a>11、使用CDN</h4><p>用户与服务器的物理距离对响应时间也有影响。把内容部署在多个地理位置分散的服务器上能让用户更快地载入页面。但具体要怎么做呢？</p>
+<p>网站80-90%响应时间消耗在资源下载上，减少资源下载时间是性能优化的黄金法则。相比分布式架构的复杂和巨大投入，静态内容分发网络（CDN）可以以较低的投入，获得加载速度有效提升。</p>
+<p>内容分发网络（CDN）是一组分散在不同地理位置的web服务器，用来给用户更高效地发送内容。典型地，选择用来发送内容的服务器是基于网络距离的衡量标准的。例如：选跳数（hop）最少的或者响应时间最快的服务器。</p>
+<h4 id="12、添加Expires或Cache-Control响应头"><a href="#12、添加Expires或Cache-Control响应头" class="headerlink" title="12、添加Expires或Cache-Control响应头"></a>12、添加Expires或Cache-Control响应头</h4><ul>
+<li>静态内容：将 Expires 响应头设置为将来很远的时间，实现「永不过期」策略；</li>
+<li>动态内容：设置合适的 Cache-Control 响应头，让浏览器有条件地发起请求。</li>
+</ul>
+<blockquote>
+<p>Cache-Control头在HTTP/1.1规范中定义，取代了之前用来定义响应缓存策略的头（例如 Expires、Pragma）。当前的所有浏览器都支持Cache-Control，因此，使用它就够了。</p>
+</blockquote>
+<h4 id="13、启用Gzip"><a href="#13、启用Gzip" class="headerlink" title="13、启用Gzip"></a>13、启用Gzip</h4><p>前端工程师可以想办法明显地缩短通过网络传输HTTP请求和响应的时间。毫无疑问，终端用户的带宽速度，网络服务商，对等交换点的距离等等，都是开发团队所无法控制的。但还有别的能够影响响应时间的因素，压缩可以通过减少HTTP响应的大小来缩短响应时间。</p>
+<p>Gzip压缩通常可以减少70%的响应大小，对某些文件更可能高达90%，比Deflate更高效。主流 Web 服务器都有相应模块，而且绝大多数浏览器支持gzip解码。所以，应该对HTML、CSS、JS、XML、JSON等文本类型的内容启用压缩。</p>
+<blockquote>
+<p><strong>注意!!!</strong> 图片和 PDF 文件不要使用 gzip。它们本身已经压缩过，再使用 gzip 压缩不仅浪费 CPU 资源，而且还可能增加文件体积。</p>
+</blockquote>
+<p>从HTTP/1.1开始，<strong>web客户端</strong>就有了支持压缩的Accept-Encoding HTTP请求头。</p>
+<blockquote>
+<p>Accept-Encoding: gzip, deflate</p>
+</blockquote>
+<p>如果web服务器看到这个请求头，它就会用客户端列出的一种方式来压缩响应。<strong>web服务器</strong>通过Content-Encoding响应头来通知客户端。</p>
+<blockquote>
+<p>Content-Encoding: gzip</p>
+</blockquote>
+<h4 id="14、配置ETag"><a href="#14、配置ETag" class="headerlink" title="14、配置ETag"></a>14、配置ETag</h4><p><strong>实体标签</strong>（ETags），是服务器和浏览器用来决定浏览器缓存中组件与源服务器中的组件是否匹配的一种机制（“实体”也就是组件：图片，脚本，样式表等等）。添加ETags可以提供一种<strong>实体验证机制</strong>，比最后修改日期更加灵活。一个ETag是一个字符串，作为一个组件某一具体版本的唯一标识符。唯一的格式约束是字符串必须用引号括起来，源服务器用相应头中的ETag来指定组件的ETag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HTTP&#x2F;1.1 200 OK</span><br><span class="line">      Last-Modified: Tue, 12 Dec 2006 03:03:59 GMT</span><br><span class="line">      ETag: &quot;10c24bc-4ab-457e1c1f&quot;</span><br><span class="line">      Content-Length: 12195</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>然后，如果浏览器必须验证一个组件，它用If-None-Match请求头来把ETag传回源服务器。如果ETags匹配成功，会返回一个304状态码，这样就减少了12195个字节的响应体。Etag 通过文件版本标识，方便服务器判断请求的内容是否有更新，如果没有就响应 304，避免重新下载。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;i&#x2F;yahoo.gif HTTP&#x2F;1.1</span><br><span class="line">      Host: us.yimg.com</span><br><span class="line">      If-Modified-Since: Tue, 12 Dec 2006 03:03:59 GMT</span><br><span class="line">      If-None-Match: &quot;10c24bc-4ab-457e1c1f&quot;</span><br><span class="line">      HTTP&#x2F;1.1 304 Not Modified</span><br></pre></td></tr></table></figure>
+
+<h4 id="15、尽早输出（flush）缓冲"><a href="#15、尽早输出（flush）缓冲" class="headerlink" title="15、尽早输出（flush）缓冲"></a>15、尽早输出（flush）缓冲</h4><p>用户请求页面时，服务器通常需要花费200 ~ 500毫秒来组合 HTML 页面。在此期间，浏览器处于空闲、等待数据状态。使用PHP中的flush()函数，可以发送部分已经准备好的 HTML到浏览器，以便服务器还在忙于处理剩余页面时，浏览器可以提前开始获取资源。</p>
+<p>可以考虑在<code>&lt;/head&gt;</code>之后输出一次缓冲，HTML head一般比较容易生成，先发送以便浏览器开始获取<code>&lt;head&gt;</code>里引用的CSS等资源。</p>
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- css, js --&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;?php flush(); ?&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;!-- content --&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="16、AJAX请求使用GET方法"><a href="#16、AJAX请求使用GET方法" class="headerlink" title="16、AJAX请求使用GET方法"></a>16、AJAX请求使用GET方法</h4><p>浏览器执行XMLHttpRequest POST请求时分成两步，先发送Http Header，再发送data。而GET只使用一个TCP数据包（Http Header与data）发送数据，所以首选GET方法。</p>
+<p>根据HTTP规范，GET用于获取数据，POST则用于向服务器发送数据，所以Ajax请求数据时使用GET更符合规范。</p>
+<h4 id="17、避免图片src为空"><a href="#17、避免图片src为空" class="headerlink" title="17、避免图片src为空"></a>17、避免图片src为空</h4><p>图片src属性值为空字符串可能以下面两种形式出现：</p>
+<p>HTML:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src&#x3D;&quot;&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>JavaScript：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var img &#x3D; new Image(); </span><br><span class="line">img.src &#x3D; &quot;&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>虽然src属性为空字符串，但浏览器仍然会向服务器发起一个HTTP请求：</p>
+<ul>
+<li>IE 向页面所在的目录发送请求；</li>
+<li>Safari、Chrome、Firefox向页面本身发送请求；</li>
+<li>Opera不执行任何操作。</li>
+</ul>
+<p>空src产生请求的后果不容小觑：</p>
+<ul>
+<li>给服务器造成意外的流量负担，尤其时日 PV 较大时；</li>
+<li>浪费服务器计算资源；</li>
+<li>可能产生报错。</li>
+</ul>
+<blockquote>
+<p>空的href属性也存在类似问题。用户点击空链接时，浏览器也会向服务器发送HTTP请求，可以通过JavaScript阻止空链接的默认的行为。</p>
+</blockquote>
+<h3 id="Cookie部分"><a href="#Cookie部分" class="headerlink" title="Cookie部分"></a>Cookie部分</h3><h4 id="18、减少cookie大小"><a href="#18、减少cookie大小" class="headerlink" title="18、减少cookie大小"></a>18、减少cookie大小</h4><p>Cookie被用于身份认证、个性化设置等诸多用途。Cookie通过HTTP头在服务器和浏览器间来回传送，减少Cookie大小可以降低其对响应速度的影响。</p>
+<ul>
+<li>去除不必要的 Cookie；</li>
+<li>尽量压缩 Cookie 大小；</li>
+<li>注意设置 Cookie 的 domain 级别，如无必要，不要影响到 sub-domain；</li>
+<li>设置合适的过期时间。</li>
+</ul>
+<h4 id="19、静态资源使用无Cookie域名"><a href="#19、静态资源使用无Cookie域名" class="headerlink" title="19、静态资源使用无Cookie域名"></a>19、静态资源使用无Cookie域名</h4><p>静态资源一般无需使用Cookie，可以把它们放在使用二级域名或者专门域名的无Cookie服务器上，降低Cookie传送的造成的流量浪费，提高响应速度。</p>
+<h3 id="CSS部分"><a href="#CSS部分" class="headerlink" title="CSS部分"></a>CSS部分</h3><h4 id="20、把样式表放在-lt-head-gt-中"><a href="#20、把样式表放在-lt-head-gt-中" class="headerlink" title="20、把样式表放在&lt;head&gt;中"></a>20、把样式表放在<code>&lt;head&gt;</code>中</h4><p>把样式表放在<code>&lt;head&gt;</code>中可以让页面渐进渲染，尽早呈现视觉反馈，给用户加载速度很快的感觉。</p>
+<p>这对内容比较多的页面尤为重要，用户可以先查看已经下载渲染的内容，而不是盯着白屏等待。</p>
+<p>如果把样式表放在页面底部，一些浏览器为减少重绘，会在 CSS 加载完成以后才渲染页面，用户只能对着白屏干瞪眼，用户体验极差。把样式表放到文档的HEAD部分能让页面看起来加载地更快。</p>
+<h4 id="21、避免使用CSS表达式"><a href="#21、避免使用CSS表达式" class="headerlink" title="21、避免使用CSS表达式"></a>21、避免使用CSS表达式</h4><p>用CSS表达式动态设置CSS属性，是一种强大又危险的方式。从IE5开始支持，但从IE8起就不推荐使用了。例如，可以用CSS表达式把背景颜色设置成按小时交替的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">background-color: expression( (new Date()).getHours()%2 ? &quot;#B8D4FF&quot;: &quot;#F08A00&quot;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="22、选择link舍弃-import"><a href="#22、选择link舍弃-import" class="headerlink" title="22、选择link舍弃@import"></a>22、选择<code>link</code>舍弃<code>@import</code></h4><p>前面提到了一个最佳实践：为了实现逐步渲染，CSS应该放在顶部。</p>
+<p>在IE中用@import与在底部用<link>效果一样，所以最好不要用它。</p>
+<h4 id="23、避免使用滤镜（filter）"><a href="#23、避免使用滤镜（filter）" class="headerlink" title="23、避免使用滤镜（filter）"></a>23、避免使用滤镜（filter）</h4><p>AlphaImageLoader为IE5.5-IE8专有的技术，和CSS表达式一样，放进博物馆吧。IE专有的AlphaImageLoader滤镜可以用来修复IE7之前的版本中半透明PNG图片的问题。在图片加载过程中，这个滤镜会阻塞渲染，卡住浏览器，还会增加内存消耗而且是被应用到每个元素的，而不是每个图片，所以会存在一大堆问题。</p>
+<p><em>注意：这里说的不是CSS3 Filter</em></p>
+<h3 id="JavaScript部分"><a href="#JavaScript部分" class="headerlink" title="JavaScript部分"></a>JavaScript部分</h3><h4 id="24、脚本放在页面底部"><a href="#24、脚本放在页面底部" class="headerlink" title="24、脚本放在页面底部"></a>24、脚本放在页面底部</h4><p>浏览器下载脚本时，会阻塞其他资源并行下载，即使是来自不同域名的资源。因此，最好将脚本放在底部，以提高页面加载速度。</p>
+<p>一些特殊场景无法将脚本放到页面底部的，可以考虑<code>&lt;script&gt;</code>的以下属性：</p>
+<ul>
+<li>defer 属性；</li>
+<li>HTML5 新增的async属性。</li>
+</ul>
+<h4 id="26、使用外部JavaScript和CSS"><a href="#26、使用外部JavaScript和CSS" class="headerlink" title="26、使用外部JavaScript和CSS"></a>26、使用外部JavaScript和CSS</h4><p>外部JavaScript和CSS文件可以被浏览器缓存，在不同页面间重用，也能降低页面大小。</p>
+<p>当然，实际中也需要考虑代码的重用程度。如果仅仅是某个页面使用到的代码，可以考虑内嵌在页面中，减少HTTP请求数。另外，可以在首页加载完成以后，预先加载子页面的资源。</p>
+<h4 id="27、压缩JavaScript和CSS"><a href="#27、压缩JavaScript和CSS" class="headerlink" title="27、压缩JavaScript和CSS"></a>27、压缩JavaScript和CSS</h4><p>压缩代码可以移除非功能性的字符（注释、空格、空行等），减少文件大小，提高载入速度。</p>
+<p>使用快乐Webpack鸭！</p>
+<h4 id="28、移除重复的脚本"><a href="#28、移除重复的脚本" class="headerlink" title="28、移除重复的脚本"></a>28、移除重复的脚本</h4><p>重复的脚本不仅产生不必要的HTTP请求，而且重复解析执行浪费时间和计算资源。</p>
+<h4 id="29、尽量减少DOM访问"><a href="#29、尽量减少DOM访问" class="headerlink" title="29、尽量减少DOM访问"></a>29、尽量减少DOM访问</h4><p>用JavaScript访问DOM元素是很慢的，所以，为了让页面反应更迅速，应该：</p>
+<ul>
+<li>缓存已访问过的元素的索引</li>
+<li>使用DocumentFragment暂存DOM，整理好以后再插入DOM树；</li>
+<li>操作className，而不是多次读写style；</li>
+<li>避免使用JavaScript修复布局。</li>
+</ul>
+<h4 id="30、使用高效的事件处理"><a href="#30、使用高效的事件处理" class="headerlink" title="30、使用高效的事件处理"></a>30、使用高效的事件处理</h4><ul>
+<li>减少绑定事件监听的节点，如通过事件委托；</li>
+<li>尽早处理事件，在DOMContentLoaded即可进行，不用等到load以后。</li>
+</ul>
+<h3 id="图片部分"><a href="#图片部分" class="headerlink" title="图片部分"></a>图片部分</h3><h4 id="31、优化图片"><a href="#31、优化图片" class="headerlink" title="31、优化图片"></a>31、优化图片</h4><p>尝试把GIF格式转换成PNG格式，看看是否节省空间。在所有的PNG图片上运行pngcrush（或者其它PNG优化工具）。</p>
+<h4 id="32、优化CSS-Sprite"><a href="#32、优化CSS-Sprite" class="headerlink" title="32、优化CSS Sprite"></a>32、优化CSS Sprite</h4><p>水平排列Sprite中的图片，垂直排列会增加图片大小；</p>
+<p>Spirite中把颜色较近的组合在一起可以降低颜色数，理想状况是低于256色以适用PNG8格式；</p>
+<p>不要在Spirite的图像中间留有较大空隙。减少空隙虽然不太影响文件大小，但可以降低用户代理把图片解压为像素图的内存消耗，对移动设备更友好。</p>
+<p>所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<h4 id="33、不要在HTML中缩放图片"><a href="#33、不要在HTML中缩放图片" class="headerlink" title="33、不要在HTML中缩放图片"></a>33、不要在HTML中缩放图片</h4><p>不要使用<code>&lt;img&gt;</code>的width、height缩放图片，如果用到小图片，就使用相应大小的图片。如果需要</p>
+<p><code>&lt;img width=&quot;100&quot; height=&quot;100&quot; src=&quot;mycat.jpg&quot; alt=&quot;My Cat&quot; /&gt;</code></p>
+<p>那么图片本身（mycat.jpg）应该是100x100px的，而不是去缩小500x500px的图片。</p>
+<blockquote>
+<p>很多 CMS 和 CDN 都提供图片裁切功能。</p>
+</blockquote>
+<p><strong>补充</strong>：设置图片的宽和高，以免浏览器按照「猜」的宽高给图片保留的区域和实际宽高差异，产生重绘。</p>
+<h4 id="34、使用体积小，可缓存的fabicon-ico"><a href="#34、使用体积小，可缓存的fabicon-ico" class="headerlink" title="34、使用体积小，可缓存的fabicon.ico"></a>34、使用体积小，可缓存的fabicon.ico</h4><p>Favicon.ico一般存放在网站根目录下，无论是否在页面中设置，浏览器都会尝试请求这个文件。</p>
+<p>所以确保这个图标：</p>
+<ul>
+<li>存在（避免 404）；</li>
+<li>尽量小，最好小于 1K；</li>
+<li>设置较长的过期时间。</li>
+</ul>
+<blockquote>
+<p>对于较新的浏览器，可以使用PNG格式的favicon。</p>
+</blockquote>
+<h3 id="移动端部分"><a href="#移动端部分" class="headerlink" title="移动端部分"></a>移动端部分</h3><h4 id="35、保证所有组件都小于25K"><a href="#35、保证所有组件都小于25K" class="headerlink" title="35、保证所有组件都小于25K"></a>35、保证所有组件都小于25K</h4><p>这个限制是因为iPhone不能缓存大于25K的组件，注意这里指的是未压缩的大小。这就是为什么缩减内容本身也很重要，因为单纯的gzip可能不够。</p>
+<h4 id="36、打包内容为分段（multipart）文档"><a href="#36、打包内容为分段（multipart）文档" class="headerlink" title="36、打包内容为分段（multipart）文档"></a>36、打包内容为分段（multipart）文档</h4><p>把各个组件打包成一个像有附件的电子邮件一样的复合文档里，可以用一个HTTP请求获取多个组件（记住一点：HTTP请求是代价高昂的）。用这种方式的时候，要先检查用户代理是否支持（iPhone就不支持）。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>虽然YAHOO前端优化军规有如此之多，但经过分类，可以发现性能优化的切入点可以有以下几方面考虑：</p>
+<ul>
+<li><p>资源本身大小的压缩优化（想办法减少资源的体积）</p>
+</li>
+<li><p>网络请求的全过程（从URL请求到返回响应的每个环节）</p>
+</li>
+<li><p>浏览器渲染的全过程（拿到资源后浏览器渲染的每个环节）</p>
+<p><img src="https://graph.baidu.com/resource/126a7e144d2d8effd794d01586750769.jpg" alt="前端性能优化思维导图"></p>
+</li>
+</ul>
+
       
     </div>
 
@@ -245,7 +1327,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-11 12:11:53" itemprop="dateModified" datetime="2020-04-11T12:11:53+08:00">2020-04-11</time>
+                <time title="修改时间：2020-04-11 22:09:33" itemprop="dateModified" datetime="2020-04-11T22:09:33+08:00">2020-04-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,7 +1358,7 @@
 <li><strong>预编译</strong>。开发阶段常见的静态资源有：ES6/7规范的文件；less/sass等文件；独立的小图标等。使用构建工具在处理这些静态文件时，会做如下处理：ES6/7转译成ES5；将less/sass编译成css；sprite图片生成。</li>
 <li><strong>依赖打包</strong>。理清通过文件之间的依赖关系，将同步依赖的文件打包（主要为<code>npm</code>下载的包），减少http请求数量。</li>
 <li><strong>嵌入资源</strong>。将图片转成<code>base64</code>嵌入到css、js里，前端模板编译到js文件中，将js、css、html拆分成几个文件最后合并到一起。嵌入资源可以有效的减少http请求数，提升工程的可维护性。</li>
-<li><strong>文案压缩</strong>。减小文件体积，可以有效节省带宽。</li>
+<li><strong>文件压缩</strong>。减小文件体积，可以有效节省带宽。</li>
 <li>hash指纹。通过给文件名加入hash指纹，以应对浏览器缓存引起的静态资源更新问题，是前端静态资源实现增量更新的方案之一。</li>
 <li>代码审查。能够按照编码规范找到代码中的语法错误，避免上线文件的低级错误。</li>
 </ul>
@@ -358,1143 +1440,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/10/Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/10/Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="post-title-link" itemprop="url">Vue生命周期</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-04-10 14:45:21 / 修改时间：14:48:12" itemprop="dateCreated datePublished" datetime="2020-04-10T14:45:21+08:00">2020-04-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/08/HTML-CSS%E6%96%B0%E7%89%B9%E6%80%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/08/HTML-CSS%E6%96%B0%E7%89%B9%E6%80%A7/" class="post-title-link" itemprop="url">HTML/CSS新特性</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-08 17:52:49" itemprop="dateCreated datePublished" datetime="2020-04-08T17:52:49+08:00">2020-04-08</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/07/%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E5%AE%8C%E6%88%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/07/%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E5%AE%8C%E6%88%90/" class="post-title-link" itemprop="url">从输入URL到页面加载完成</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-07 21:55:25" itemprop="dateCreated datePublished" datetime="2020-04-07T21:55:25+08:00">2020-04-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-08 23:24:26" itemprop="dateModified" datetime="2020-04-08T23:24:26+08:00">2020-04-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="第一步：DNS解析和DNS查询"><a href="#第一步：DNS解析和DNS查询" class="headerlink" title="第一步：DNS解析和DNS查询"></a>第一步：DNS解析和DNS查询</h3><p>这里是寻找IP地址的过程。查询的时候客户机到DNS是递归查询，DNS机到别的DNS机之间发生的是迭代查询。</p>
-<p>首先是寻找DNS缓存：先浏览器，再找操作系统，</p>
-<p>如果没有的话会进行分级查询：本地DNS服务器、根域名服务器，COM顶级域名服务器、google.com域名服务器（权威DNS服务器）</p>
-<h3 id="第二步：TCP连接"><a href="#第二步：TCP连接" class="headerlink" title="第二步：TCP连接"></a>第二步：TCP连接</h3><p>（三次握手）=&gt; 为什么两次不可以</p>
-<blockquote>
-<p>seq：sequence序列号</p>
-<p>Syn：Synchronization 同步</p>
-<p>Ack：acknowledgement 答复</p>
-</blockquote>
-<h4 id="第一次握手：客户端-gt-服务端"><a href="#第一次握手：客户端-gt-服务端" class="headerlink" title="第一次握手：客户端 -&gt; 服务端"></a>第一次握手：客户端 -&gt; 服务端</h4><p><em>客户端有发送信息的能力</em></p>
-<p>建立连接，发送SYN = 1，seq = n</p>
-<h4 id="第二次握手：服务端-gt-客户端"><a href="#第二次握手：服务端-gt-客户端" class="headerlink" title="第二次握手：服务端 -&gt; 客户端"></a>第二次握手：服务端 -&gt; 客户端</h4><p><em>服务端有接收信息和发送信息的能力</em></p>
-<p>表示收到请求，发送SYN = 1（服务端同意建立连接），ack =  n + 1（确认收到客户端信息），seq = x（同时发送服务端自己的序列号）</p>
-<h4 id="第三次握手：客户端-gt-服务端"><a href="#第三次握手：客户端-gt-服务端" class="headerlink" title="第三次握手：客户端 - &gt; 服务端"></a>第三次握手：客户端 - &gt; 服务端</h4><p><em>客户端有接收信息的能力</em></p>
-<p>确认收到回复，发送SYN = 0（开始发送信息），ack = x + 1（确认），seq = n + 1</p>
-<h3 id="发送HTTP请求"><a href="#发送HTTP请求" class="headerlink" title="发送HTTP请求"></a>发送HTTP请求</h3><p>客户发送HTTP请求服务端发送报文</p>
-<h3 id="服务端处理请求"><a href="#服务端处理请求" class="headerlink" title="服务端处理请求"></a>服务端处理请求</h3><p>服务端处理客户端请求并发送一个HTTP报文</p>
-<h3 id="浏览器解析和渲染页面"><a href="#浏览器解析和渲染页面" class="headerlink" title="浏览器解析和渲染页面"></a>浏览器解析和渲染页面</h3><p>浏览器获得一个HTML文件，自上而下加载，下载和渲染同步进行，遇到CSS发送请求并行下载，图片则是异步请求，遇到js文件则挂起</p>
-<p>（ html =&gt; dom树 ）+（ css =&gt; cssom ）= render渲染树（不渲染：head，display:none）</p>
-<h3 id="连接结束"><a href="#连接结束" class="headerlink" title="连接结束"></a>连接结束</h3><p>（四次挥手）=&gt; 为什么三次不可以</p>
-<blockquote>
-<p>Fin：finish结束</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">客户端 -&gt; 服务端:</span><br><span class="line">客户端 -&gt; 服务端:</span><br><span class="line">客户端 -&gt; 服务端:</span><br><span class="line">客户端 -&gt; 服务端:</span><br></pre></td></tr></table></figure>
-
-<h4 id="第一次挥手"><a href="#第一次挥手" class="headerlink" title="第一次挥手"></a>第一次挥手</h4><p>客户端发送确认断开连接的请求</p>
-<h4 id="第二次挥手"><a href="#第二次挥手" class="headerlink" title="第二次挥手"></a>第二次挥手</h4><h4 id="第三次挥手"><a href="#第三次挥手" class="headerlink" title="第三次挥手"></a>第三次挥手</h4><h4 id="第四次挥手"><a href="#第四次挥手" class="headerlink" title="第四次挥手"></a>第四次挥手</h4><p>发完了</p>
-<p>知道发完了</p>
-<p>收完了</p>
-<p>知道收完了</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/07/HTTP%E5%8D%8F%E8%AE%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/07/HTTP%E5%8D%8F%E8%AE%AE/" class="post-title-link" itemprop="url">HTTP与HTTPS</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-07 15:58:09" itemprop="dateCreated datePublished" datetime="2020-04-07T15:58:09+08:00">2020-04-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-10 18:24:36" itemprop="dateModified" datetime="2020-04-10T18:24:36+08:00">2020-04-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h3><h4 id="HTTP协议介绍"><a href="#HTTP协议介绍" class="headerlink" title="HTTP协议介绍"></a>HTTP协议介绍</h4><p>HTTP协议（HyperText Transfer Protocol，超文本传输协议）是因特网上应用最为广泛的一种网络传输协议，所有的WWW文件都必须遵守这个标准。</p>
-<p>HTTP是<strong>基于TCP/IP通信协议</strong>来传递数据（HTML 文件, 图片文件, 查询结果等）</p>
-<p>HTTP是一个<strong>应用层协议</strong>，由<strong>请求和响应</strong>构成，是一个标准的客户端服务器模型。HTTP是一个<strong>无状态的协议</strong>。</p>
-<h4 id="HTTP协议工作流程"><a href="#HTTP协议工作流程" class="headerlink" title="HTTP协议工作流程"></a>HTTP协议工作流程</h4><p>一个http操作称为一个事务，其工作流程大概如下：</p>
-<ol>
-<li>用户在浏览器中键入需要访问的网页URL</li>
-<li>浏览器根据URL中的域名，通过DNS解析获得目标网页的IP地址</li>
-<li>在HTTP开始工作前，客户端会通过<code>TCP/IP协议</code>和服务端建立连接（TCP三次握手</li>
-<li>建立连接后，客户端会发送请求给服务端。</li>
-<li>服务器接到请求后，给予相应的响应信息。</li>
-<li>Web服务器向浏览器发送了请求数据后，关闭TCP连接。（如果浏览器或者服务器在其头信息加入了<code>Connection:keep-alive</code>，TCP连接在发送后会仍然保持打开状态。</li>
-</ol>
-<h4 id="HTTP请求报文"><a href="#HTTP请求报文" class="headerlink" title="HTTP请求报文"></a>HTTP请求报文</h4><p>客户端发送HTTP请求到服务器的请求消息格式包括有：</p>
-<p><strong>请求行</strong>（request line）、<strong>请求头</strong>（header）和<strong>请求正文</strong></p>
-<ul>
-<li>状态行：包括请求方式Method、资源路径URL、协议版本Version；</li>
-<li>请求头：包括一些访问的域名、用户代理、Cookie等信息；</li>
-<li>请求正文：就是HTTP请求的数据。</li>
-</ul>
-<h4 id="服务器响应消息"><a href="#服务器响应消息" class="headerlink" title="服务器响应消息"></a>服务器响应消息</h4><p>HTTP响应由三个部分组成，分别是：<strong>状态行</strong>、<strong>响应头</strong>和<strong>响应正文</strong>。</p>
-<ul>
-<li>状态行：包括协议版本Version、状态码Status Code、回应短语；</li>
-<li>响应头：包括搭建服务器的软件，发送响应的时间，回应数据的格式等信息；</li>
-<li>响应正文：就是响应的具体数据。</li>
-</ul>
-<h4 id="HTTP2"><a href="#HTTP2" class="headerlink" title="HTTP2"></a>HTTP2</h4><p>http2不是https，它相当于是http的下一代规范。特点为：</p>
-<ul>
-<li>多路复用。一个tcp/ip连接可以请求多个资源。</li>
-<li>首部压缩。http头部压缩，减少体积。</li>
-<li>二进制分帧。在应用层和传输层之间增加一个二进制分帧层，改善传输性能。</li>
-<li>服务器端推送。服务器可以对客户端的一个请求发出多个响应，可以主动通知客户端。</li>
-<li>请求优先级。</li>
-</ul>
-<hr>
-<h3 id="HTTPS协议"><a href="#HTTPS协议" class="headerlink" title="HTTPS协议"></a>HTTPS协议</h3><h4 id="HTTPS是什么？"><a href="#HTTPS是什么？" class="headerlink" title="HTTPS是什么？"></a>HTTPS是什么？</h4><blockquote>
-<p>超文本传输安全协议（英语：Hypertext Transfer Protocol Secure，缩写：HTTPS，常称为HTTP over TLS，HTTP over SSL或HTTP Secure）是一种通过计算机网络进行安全通信的传输协议。HTTPS经由HTTP进行通信，但<strong>利用SSL/TLS来加密数据包</strong>。HTTPS开发的主要目的，是<strong>提供对网站服务器的身份认证</strong>，保护交换数据的隐私与完整性</p>
-</blockquote>
-<h4 id="TLS、SSL又是什么？"><a href="#TLS、SSL又是什么？" class="headerlink" title="TLS、SSL又是什么？"></a>TLS、SSL又是什么？</h4><blockquote>
-<p><strong>传输层安全性协议</strong>（英语：Transport Layer Security，缩写作 <strong>TLS</strong>），及其前身<strong>安全套接层</strong>（Secure Sockets Layer，缩写作 <strong>SSL</strong>）是一种安全协议，目的是为互联网通信，提供安全及数据完整性保障。</p>
-</blockquote>
-<p>TLS/SSL 的功能实现主要依赖于三类基本算法：<strong>散列函数</strong>、<strong>对称加密</strong>和<strong>非对称加密</strong>，其利用非对称加密实现<strong>身份认证和密钥协商</strong>，对称加密算法采用<strong>协商的密钥对数据加密</strong>，基于散列函数<strong>验证信息的完整性</strong>。</p>
-<h4 id="HTTPS的工作原理"><a href="#HTTPS的工作原理" class="headerlink" title="HTTPS的工作原理"></a>HTTPS的工作原理</h4><ol>
-<li>客户端往服务器的443端口发起请求。</li>
-<li>服务器收到请求，将数字证书返回给浏览器（数字证书可以是CA颁布的，也可以是自制的，自制的需要客户端验证通过才可继续访问）</li>
-<li>客户端解析证书（由浏览器内置TLS完成）<ol>
-<li>首先浏览器先从内置的证书列表中索引，找到服务器下发证书的机构</li>
-<li>用机构的证书公钥解密得到证书的内容（包括网站的网址、网站的公钥、证书有效期等），验证数字签名的合法性。</li>
-<li>验证后，会生成一个随机值R，用证书公钥对该值进行加密再传给服务端，以后客户端和服务端就可通过该随机值R进行通信了。</li>
-</ol>
-</li>
-<li>服务端通过私钥解密信息。服务端获得该随机值R后，把内容通过该值R与对称加密算法进行加密传输给客户端。</li>
-<li>客户端通过之前生成的随机值R解密服务端传来的加密信息。</li>
-</ol>
-<h4 id="HTTPS的优点"><a href="#HTTPS的优点" class="headerlink" title="HTTPS的优点"></a>HTTPS的优点</h4><ul>
-<li><strong>SEO方面</strong></li>
-</ul>
-<p>谷歌曾在2014年8月份调整搜索引擎算法，并称“比起同等HTTP网站，采用HTTPS加密的网站在搜索结果中的排名将会更高”。</p>
-<ul>
-<li><strong>安全性</strong></li>
-</ul>
-<ol>
-<li>使用HTTPS协议<strong>可认证用户和服务器</strong>，确保数据发送到正确的客户机和服务器；</li>
-<li>HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，要比http协议安全，可<strong>防止数据在传输过程中不被窃取、改变，确保数据的完整性</strong>。</li>
-<li>HTTPS是现行架构下最安全的解决方案，大幅<strong>增加了中间人攻击的成本</strong>。</li>
-</ol>
-<h4 id="HTTPS的缺点"><a href="#HTTPS的缺点" class="headerlink" title="HTTPS的缺点"></a>HTTPS的缺点</h4><ul>
-<li>SSL证书要钱，越是功能强大的证书费用越高</li>
-<li>HTTPS连接缓存不如HTTP高效，大流量网站如非必要也不会采用，流量成本太高。</li>
-<li>HTTPS连接服务器端资源占用高很多，支持访客稍多的网站需要投入更大的成本。</li>
-<li>HTTPS协议握手阶段比较费时，网站的响应速度相比HTTP较慢。</li>
-</ul>
-<hr>
-<h3 id="HTTP与HTTPS的区别"><a href="#HTTP与HTTPS的区别" class="headerlink" title="HTTP与HTTPS的区别"></a>HTTP与HTTPS的区别</h3><ol>
-<li>http传输的数据都是未加密的，也就是明文的；https协议是由http和ssl协议构建的可进行加密传输和身份认证的网络协议，比http协议的安全性更高</li>
-<li>一般而言，http协议的端口为80，https的端口为443 </li>
-<li>http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比http协议安全。 </li>
-</ol>
-<h3 id="强缓存和弱缓存"><a href="#强缓存和弱缓存" class="headerlink" title="强缓存和弱缓存"></a>强缓存和弱缓存</h3><p>前后端的交互中，使用缓存能很大限度的提升效率。<strong>浏览器是依靠请求和响应中的的头信息来控制缓存的</strong>。</p>
-<p>而缓存可以简单的分为两种类型：<strong>强缓存（200 from cache）</strong>与<strong>协商缓存（304）</strong>。</p>
-<ul>
-<li>强缓存时，浏览器如果判断本地缓存未过期就直接使用，无需发起HTTP请求。</li>
-<li>弱缓存时，浏览器会向服务器发起http请求，然后服务端告诉浏览器文件未改变，让浏览器使用本地缓存。</li>
-</ul>
-<h3 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h3><p>1XX：信息状态码</p>
-<table>
-<thead>
-<tr>
-<th>状态码</th>
-<th>含义</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>100</td>
-<td>继续</td>
-<td>初始请求已接受，请客户端继续发送剩余部分</td>
-</tr>
-<tr>
-<td>101</td>
-<td>切换协议</td>
-<td>服务器根据客户端的请求切换协议。</td>
-</tr>
-</tbody></table>
-<p>2XX：成功状态码</p>
-<table>
-<thead>
-<tr>
-<th>状态码</th>
-<th>含义</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>200</strong></td>
-<td><strong>成功</strong></td>
-<td><strong>服务器已成功处理请求</strong></td>
-</tr>
-<tr>
-<td>201</td>
-<td>已创建</td>
-<td>请求成功并且服务器创建了新的资源</td>
-</tr>
-<tr>
-<td>202</td>
-<td>已接受</td>
-<td>服务器已接受请求但尚未处理</td>
-</tr>
-<tr>
-<td>203</td>
-<td>非授权信息</td>
-<td>服务器已成功处理请求，但返回的信息可能来自另一个来源</td>
-</tr>
-<tr>
-<td>204</td>
-<td>无内容</td>
-<td>服务器已成功处理请求，但没返回任何内容</td>
-</tr>
-<tr>
-<td>205</td>
-<td>重置内容</td>
-<td>服务器处理成功，用户终端应重置文档视图</td>
-</tr>
-<tr>
-<td>206</td>
-<td>部分内容</td>
-<td>服务器成功处理了部分GET请求</td>
-</tr>
-</tbody></table>
-<p>3XX：重定向状态码</p>
-<table>
-<thead>
-<tr>
-<th>状态码</th>
-<th>含义</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>300</td>
-<td>多种选择</td>
-<td>针对请求，服务器可以执行多种操作</td>
-</tr>
-<tr>
-<td>301</td>
-<td>永久移动</td>
-<td>请求的页面已永久跳转到新的url</td>
-</tr>
-<tr>
-<td>302</td>
-<td>临时移动</td>
-<td>临时移动。与301类似。但资源只是临时被移动。客户端应继续使用原有URI</td>
-</tr>
-<tr>
-<td>303</td>
-<td>查看其他位置</td>
-<td>查看其它地址。与301类似。使用GET和POST请求查看</td>
-</tr>
-<tr>
-<td><strong>304</strong></td>
-<td>未修改</td>
-<td>自从上次请求后，请求的网页未修改过。<strong>请求被重定向到客户端本地缓存</strong></td>
-</tr>
-<tr>
-<td>305</td>
-<td>使用代理</td>
-<td>请求者只能使用代理访问请求的网页</td>
-</tr>
-<tr>
-<td>307</td>
-<td>临时重定向</td>
-<td>临时重定向。与302类似。使用GET请求重定向</td>
-</tr>
-</tbody></table>
-<p>4XX：客户端错误状态码</p>
-<table>
-<thead>
-<tr>
-<th><strong>状态码</strong></th>
-<th><strong>含义</strong></th>
-<th><strong>描述</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>400</strong></td>
-<td><strong>错误请求</strong></td>
-<td><strong>服务器不理解请求的语法</strong></td>
-</tr>
-<tr>
-<td><strong>401</strong></td>
-<td><strong>未授权</strong></td>
-<td><strong>请求要求用户的身份验证</strong></td>
-</tr>
-<tr>
-<td><strong>403</strong></td>
-<td><strong>禁止</strong></td>
-<td><strong>服务器拒绝请求</strong></td>
-</tr>
-<tr>
-<td><strong>404</strong></td>
-<td><strong>未找到</strong></td>
-<td><strong>服务器找不到请求的页面</strong></td>
-</tr>
-<tr>
-<td><strong>405</strong></td>
-<td><strong>方法禁用</strong></td>
-<td><strong>禁用请求中指定的方法</strong></td>
-</tr>
-<tr>
-<td>406</td>
-<td>不接受</td>
-<td>无法使用请求的内容特性响应请求的页面</td>
-</tr>
-<tr>
-<td>407</td>
-<td>需要代理授权</td>
-<td>请求需要代理的身份认证</td>
-</tr>
-<tr>
-<td>408</td>
-<td>请求超时</td>
-<td>服务器等候请求时发生超时</td>
-</tr>
-<tr>
-<td>409</td>
-<td>冲突</td>
-<td>服务器在完成请求时发生冲突</td>
-</tr>
-<tr>
-<td>410</td>
-<td>已删除</td>
-<td>客户端请求的资源已经不存在</td>
-</tr>
-<tr>
-<td>411</td>
-<td>需要有效长度</td>
-<td>服务器不接受不含有效长度表头字段的请求</td>
-</tr>
-<tr>
-<td>412</td>
-<td>未满足前提条件</td>
-<td>服务器未满足请求者在请求中设置的其中一个前提条件</td>
-</tr>
-<tr>
-<td>413</td>
-<td>请求实体过大</td>
-<td>由于请求实体过大，服务器无法处理，因此拒绝请求</td>
-</tr>
-<tr>
-<td>414</td>
-<td>请求url过长</td>
-<td>请求的url过长，服务器无法处理</td>
-</tr>
-<tr>
-<td>415</td>
-<td>不支持格式</td>
-<td>服务器无法处理请求中附带媒体格式</td>
-</tr>
-<tr>
-<td>416</td>
-<td>范围无效</td>
-<td>客户端请求的范围无效</td>
-</tr>
-<tr>
-<td>417</td>
-<td>未满足期望</td>
-<td>服务器无法满足请求表头字段要求</td>
-</tr>
-</tbody></table>
-<p>5XX：服务端错误状态码</p>
-<table>
-<thead>
-<tr>
-<th>状态码</th>
-<th>含义</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>500</strong></td>
-<td><strong>服务器错误</strong></td>
-<td><strong>服务器内部错误，无法完成请求</strong></td>
-</tr>
-<tr>
-<td>501</td>
-<td>尚未实施</td>
-<td>服务器不具备完成请求的功能</td>
-</tr>
-<tr>
-<td>502</td>
-<td>错误网关</td>
-<td>服务器作为网关或代理出现错误</td>
-</tr>
-<tr>
-<td><strong>503</strong></td>
-<td><strong>服务不可用</strong></td>
-<td><strong>服务器目前无法使用</strong></td>
-</tr>
-<tr>
-<td>504</td>
-<td>网关超时</td>
-<td>网关或代理服务器，未及时获取请求</td>
-</tr>
-<tr>
-<td>505</td>
-<td>不支持版本</td>
-<td>服务器不支持请求中使用的HTTP协议版本</td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/07/JSONP%E4%B8%8EAJAX%E5%AE%9E%E7%8E%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/07/JSONP%E4%B8%8EAJAX%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">JSONP与AJAX实现</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-07 12:24:52" itemprop="dateCreated datePublished" datetime="2020-04-07T12:24:52+08:00">2020-04-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-08 14:18:09" itemprop="dateModified" datetime="2020-04-08T14:18:09+08:00">2020-04-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><h4 id="原理与实现步骤"><a href="#原理与实现步骤" class="headerlink" title="原理与实现步骤"></a>原理与实现步骤</h4><blockquote>
-<p>我们可知跨域问题的实现方式有多种，其中一种便是通过HTML标签实现跨域（如<code>&lt;img&gt; &lt;link&gt; &lt;script&gt;</code>），JSONP便是通过script标签这一特性实现的。</p>
-</blockquote>
-<p>（一）声明一个回调函数，其函数值作为参数值，要传递给跨域请求数据的服务器，函数的形式参数为服务器返回的数据。</p>
-<p>（二）创建一个script标签，把那个跨域的API数据接口地址，赋值给script的src，还要在这个地址中向服务器传递该函数名。通常使用<code>?</code>传递参数。</p>
-<p>（三）服务器接收请求，对数据进行拼接处理。</p>
-<p>（四）服务器通过HTTP协议把数据返回给客户端，客户端再调用之前的回调函数。</p>
-<h4 id="JSONP的实现"><a href="#JSONP的实现" class="headerlink" title="JSONP的实现"></a>JSONP的实现</h4><p>首先实现一个最简单的JSONP：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function jsonp(url)&#123;</span><br><span class="line">		const script &#x3D; document.createElement(&quot;script&quot;);</span><br><span class="line">		script.src &#x3D; url;</span><br><span class="line">		script.type &#x3D; &quot;type&#x2F;javascript&quot;;</span><br><span class="line">		document.body.appendChild(script);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>以上只是最基本的写法，要是想要使用需要定义全局的回调函数，还需进行改进：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function jsonp(&#123;url, params, callback&#125;)&#123;</span><br><span class="line">		window[callback] &#x3D;  callback;</span><br><span class="line">		const script &#x3D; document.createElement(&quot;script&quot;);</span><br><span class="line">		let arr &#x3D; [];</span><br><span class="line">		params &#x3D; &#123;...params, callback&#125;;</span><br><span class="line">		for(var key in params)&#123;</span><br><span class="line">				arr.push(&#96;$&#123;url&#125;&#x3D;$&#123;params[key]&#125;&#96;);</span><br><span class="line">		&#125;</span><br><span class="line">		script.src &#x3D; &#96;$&#123;url&#125;?$&#123;arr.join(&#39;&amp;&#39;)&#125;&#96;;</span><br><span class="line">		script.type &#x3D; &quot;type&#x2F;javascript&quot;;</span><br><span class="line">		document.body.appendChild(script);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>第二个函数改进了不足，但依旧存在不足之处：</p>
-<p>（1）没清楚生成的script标签</p>
-<p>（2）要写回调，很麻烦</p>
-<p>因此下面使用ES6的promise语法进行改进：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function jsonp(&#123;url, params, callback&#125;)&#123;</span><br><span class="line">		return new Promise((resolve,reject) &#x3D;&gt; &#123;</span><br><span class="line">				let script &#x3D; document.createElement(&quot;script&quot;);</span><br><span class="line">				window[callback] &#x3D; (data) &#x3D;&gt; &#123;</span><br><span class="line">						resolve(data);</span><br><span class="line">						&#x2F;&#x2F; 删除了script标签，原因应该是考虑同网页函数反复调用问题</span><br><span class="line">						document.body.removeChild(script);	</span><br><span class="line">				&#125;</span><br><span class="line">				params &#x3D; &#123; ...params, callback &#125;;</span><br><span class="line">				let arrs &#x3D; [];</span><br><span class="line">				for(var key in params)&#123;</span><br><span class="line">						arr.push(&#96;$&#123;key&#125;&#x3D;$&#123;params[key]&#125;&#96;);</span><br><span class="line">				&#125;</span><br><span class="line">				script.src &#x3D; &#96;$&#123;url&#125;?$&#123;arr.join(&#39;&amp;&#39;)&#125;&#96;;</span><br><span class="line">				script.type &#x3D; &quot;type&#x2F;javascript&quot;;</span><br><span class="line">				document.body.appendChild(script);</span><br><span class="line">		&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; test demo:</span><br><span class="line">jsonp(&#123;</span><br><span class="line">		url: &#39;http:&#x2F;&#x2F;localhost:3000&#x2F;&#39;,</span><br><span class="line">		params: &#123;test:&quot;test&quot;&#125;,</span><br><span class="line">		callback: &quot;show&quot;</span><br><span class="line">&#125;).then((data) &#x3D;&gt; &#123;</span><br><span class="line">		console.log(data);</span><br><span class="line">&#125;).catch((e) &#x3D;&gt; &#123;console.err(e)&#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="AJAX的实现方法"><a href="#AJAX的实现方法" class="headerlink" title="AJAX的实现方法"></a>AJAX的实现方法</h3><h4 id="JQuery提供的AJAX方法："><a href="#JQuery提供的AJAX方法：" class="headerlink" title="JQuery提供的AJAX方法："></a>JQuery提供的AJAX方法：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">		url: &quot;&quot;,</span><br><span class="line">		type: &quot;&quot;,</span><br><span class="line">		dataType: &quot;&quot;,</span><br><span class="line">		data: &#123;</span><br><span class="line">				</span><br><span class="line">		&#125;,</span><br><span class="line">		success: function()&#123;&#125;,</span><br><span class="line">		error: function()&#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h4><blockquote>
-<p><code>XMLHttpRequest</code> 对象</p>
-</blockquote>
-<p>用于在后台与服务器交换数据</p>
-<blockquote>
-<p><code>xmlhttp.open(method,url,async)</code></p>
-</blockquote>
-<ul>
-<li><p>method：请求类型（GET，POST）</p>
-</li>
-<li><p>url：文件在服务器上的位置</p>
-</li>
-<li><p>async：true（异步）或false（同步）</p>
-</li>
-</ul>
-<blockquote>
-<p><code>xmlhttp.onreadystatechang事件</code></p>
-</blockquote>
-<ul>
-<li>当请求被发送到服务器时，我们需要执行一些基于响应的任务</li>
-<li>每当readyState改变时，就会触发该事件</li>
-<li>readyState属性存有XMLHTTPRequest的状态信息</li>
-</ul>
-<blockquote>
-<p><code>xmlhttp.readyState</code>状态码</p>
-</blockquote>
-<ul>
-<li>0：请求未初始化</li>
-<li>1：服务器连接已建立</li>
-<li>2：请求已接受</li>
-<li>3：请求处理中</li>
-<li>4：请求已完成，且响应已就绪</li>
-</ul>
-<blockquote>
-<p><code>xmlhttp.status</code>即HTTP状态码</p>
-</blockquote>
-<h4 id="原生js实现AJAX方法："><a href="#原生js实现AJAX方法：" class="headerlink" title="原生js实现AJAX方法："></a>原生js实现AJAX方法：</h4><p>（1）创建一个异步对象</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (window.XMLHttpRequest)</span><br><span class="line">&#123;		&#x2F;&#x2F; code for IE7+, Firefox, Chrome, Opera, Safari</span><br><span class="line">		xmlhttp&#x3D;new XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;		&#x2F;&#x2F; code for IE6, IE5</span><br><span class="line">		mlhttp&#x3D;new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>（2）打开连接</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(&quot;GET&quot;, url, true);</span><br></pre></td></tr></table></figure>
-
-<p>（3）发送请求</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET 请求:</span><br><span class="line">xmlhttp.send();&#x2F;&#x2F;get请求的参数加在url的后面</span><br><span class="line"></span><br><span class="line">POST 请求:</span><br><span class="line">xmlhttp.setRequestHeader(&quot;Content-type&quot;,&quot;application&#x2F;x-www-form-urlencoded&quot;);    &#x2F;&#x2F; 向请求添加HTTP头</span><br><span class="line">xmlhttp.send(&quot;fname&#x3D;Bill&amp;lname&#x3D;Gates&quot;);	&#x2F;&#x2F;post请求的参数要放在send()里面</span><br></pre></td></tr></table></figure>
-
-<p>（4）监听状态变化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.onreadystatechange &#x3D; function (ev2) &#123;</span><br><span class="line">		if(xmlhttp.readyState &#x3D;&#x3D;&#x3D; 4)&#123;</span><br><span class="line">				&#x2F;&#x2F; 判断是否请求成功</span><br><span class="line">				if(xmlhttp.status &gt;&#x3D; 200 &amp;&amp; xmlhttp.status &lt; 300 ||xmlhttp.status &#x3D;&#x3D;&#x3D; 304)&#123;</span><br><span class="line">						&#x2F;&#x2F; 处理返回的结果</span><br><span class="line">						console.log(&quot;接收到服务器返回的数据&quot;);</span><br><span class="line">						success(xmlhttp);</span><br><span class="line">				&#125;else&#123;</span><br><span class="line">						console.log(&quot;没有接收到服务器返回的数据&quot;);</span><br><span class="line">						error(xmlhttp);</span><br><span class="line">				&#125;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="封装ajax方法"><a href="#封装ajax方法" class="headerlink" title="封装ajax方法"></a>封装ajax方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">var myAjax &#x3D; &#123;</span><br><span class="line">    get: function (url, fn) &#123;</span><br><span class="line">        var xmlhttp &#x3D; new XMLHttpRequest();</span><br><span class="line">        xmlhttp.open(&quot;GET&quot;, url, true);</span><br><span class="line">        xmlhttp.send();</span><br><span class="line">        xmlhttp.onreadystatechange &#x3D; function (e) &#123;</span><br><span class="line">            if(xmlhttp.readyState &#x3D;&#x3D;&#x3D; 4 &amp;&amp; xmlhttp.status &#x3D;&#x3D;&#x3D; 200 || xmlhttp.status &#x3D;&#x3D;&#x3D; 304)&#123;</span><br><span class="line">                &#x2F;&#x2F; xmlhttp.responseText为从服务端返回的数据</span><br><span class="line">                fn.call(this, xmlhttp.responseText);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    post: function (url, fn, data) &#123;</span><br><span class="line">        var xmlhttp &#x3D; new XMLHttpRequest();</span><br><span class="line">        xmlhttp.open(&quot;POST&quot;, url, true);</span><br><span class="line">        &#x2F;&#x2F; 添加http头，发送信息至服务器时内容编码类型</span><br><span class="line">        xmlhttp.setRequestHeader(&quot;Content-Type&quot;, &quot;application&#x2F;x-www-form-urlencoded&quot;);</span><br><span class="line">        xmlhttp.onreadystatechange &#x3D; function () &#123;</span><br><span class="line">            if(xmlhttp.readyState &#x3D;&#x3D;&#x3D; 4 &amp;&amp; xmlhttp.status &#x3D;&#x3D;&#x3D; 200 || xmlhttp.status &#x3D;&#x3D;&#x3D; 304)&#123;</span><br><span class="line">                fn.call(this, xmlhttp.responseText);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        xmlhttp.send(data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/06/JS%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/06/JS%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">JS跨域问题</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-06 16:06:27" itemprop="dateCreated datePublished" datetime="2020-04-06T16:06:27+08:00">2020-04-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-08 14:17:55" itemprop="dateModified" datetime="2020-04-08T14:17:55+08:00">2020-04-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>所谓的  <strong>同源</strong>  是指<strong>域名、协议、端口号</strong> 相同。不同的客户端脚本（javascript，ActionScript）在没有授权的情况下，不能读取对方资源。简单来说，浏览器允许包含在页面A的脚本访问第二个页面B的数据资源，这一切是建立在A和B页面是同源的基础上。</p>
-<blockquote>
-<p>同源策略 是由Netscape提出的一个著名的安全策略，现在所有支持JavaScript 的浏览器都会使用这个策略。实际上，这种策略只是一个规范，并不是强制要求，各大厂商的浏览器只是针对同源策略的一种实现。它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。</p>
-</blockquote>
-<h4 id="什么是跨域？"><a href="#什么是跨域？" class="headerlink" title="什么是跨域？"></a>什么是跨域？</h4><p>跨域就是<strong>从一个域名的网页去请求另一个域名的资源</strong>。比如从<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 页面去请求 <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a> 的资源,出于安全方面的考虑，页面中的JavaScript在<strong>请求非同源的资源</strong>时就会出 <strong>跨域问题</strong> ，这时，由于同源策略，我们的请求会被浏览器禁止。</p>
-<p><img src="http://q76oz3v1b.bkt.clouddn.com/JS%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98%E4%BE%8B%E5%AD%90.png" alt="跨域问题例子"></p>
-<p>浏览器执行JavaScript脚本时，会检查这个脚本属于哪个页面，如果不是同源页面，就不会被执行。</p>
-<h4 id="为什么要跨域？"><a href="#为什么要跨域？" class="headerlink" title="为什么要跨域？"></a>为什么要跨域？</h4><p>最主要的原因便是<strong>安全问题</strong>：如果一个网页可以随意访问另一个网页的资源，那么就有可能在客户完全不知情的情况下出现安全问题。举个例子</p>
-<ol>
-<li>用户访问银行账户，登陆网银进行操作，登陆的信息通过cookie保存在了浏览器</li>
-<li>用户不小心访问了一个钓鱼网站</li>
-<li>钓鱼网站执行脚本，在浏览器页面拿到了银行和cookie，比如用户、登陆token等</li>
-<li>如果此时浏览器不予限制，并且银行没有安全处理，那么用户的信息便可能会泄露</li>
-</ol>
-<hr>
-<h3 id="解决跨域问题的方法"><a href="#解决跨域问题的方法" class="headerlink" title="解决跨域问题的方法"></a>解决跨域问题的方法</h3><h4 id="跨域资源共享（CORS）"><a href="#跨域资源共享（CORS）" class="headerlink" title="跨域资源共享（CORS）"></a>跨域资源共享（CORS）</h4><blockquote>
-<p>CORS（Cross-Origin Resource Sharing）跨域资源共享，定义了必须在访问跨域资源时，浏览器与服务器如何沟通。CORS背后的基本思想是使用自定义的HTTP头部让浏览器与服务器进行沟通，从而决定请求或响应是应该成功还是失败。</p>
-</blockquote>
-<p>服务器端对于CORS的支持，主要是通过设置Accesss-Control-Allow-Origin来进行。如果浏览器检测到相应设置，就允许AJAX进行跨域访问。</p>
-<p>只需要在后台中加上<strong>响应头来允许域请求</strong>！在被请求的Response header中加入以下设置，就可以实现Ajax跨域访问。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 指定允许其他域名访问</span><br><span class="line">&#39;Access-Control-Allow-Origin: *&#39;	&#x2F;&#x2F; 或指定其他域</span><br><span class="line">&#x2F;&#x2F; 响应类型</span><br><span class="line">&#39;Access-Control-Allow-Methods: GET,POST&#39;</span><br><span class="line">&#x2F;&#x2F; 响应头设置</span><br><span class="line">&#39;Access-Control-Allow-Headers: x-request-with,content-type&#39;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="通过JSONP跨域"><a href="#通过JSONP跨域" class="headerlink" title="通过JSONP跨域"></a>通过JSONP跨域</h4><h5 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h5><p>JSONP是JSON with Padding的缩写，是应用JSON的一种新方法，只不过是<strong>被包含在函数调用中的json</strong>。JSONP由两个部分组成：<strong>回调函数</strong>和<strong>数据</strong>。回调函数是当响应到来时应该在页面中调用的函数，而数据就是传入回调函数中的JSON数据</p>
-<h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><p>通过script标签引入异步加载的js文件，当js文件加载成功后会调用url参数中的回调函数，并会把我们需要的数据作为参数传入。即<strong>用JavaScript动态加载一个js文件，同时定义一个回调函数给script执行</strong>。</p>
-<h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><p>有个a.html页面，它里面的代码需要利用ajax获取一个不同域上的json数据，假设这个json数据地址是<a href="http://example.com/data.php,那么a.html中的代码就可以这样：" target="_blank" rel="noopener">http://example.com/data.php,那么a.html中的代码就可以这样：</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">		function dosomething(jsondata)&#123;</span><br><span class="line">        &#x2F;&#x2F;处理获得的json数据</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;http:&#x2F;&#x2F;example.com&#x2F;data.php?callback&#x3D;dosomething&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。所以jsonp是需要<strong>服务器端的页面</strong>进行相应的配合的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$callback &#x3D; $_GET[&#39;callback&#39;];&#x2F;&#x2F;得到回调函数名</span><br><span class="line">$data &#x3D; array(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;);&#x2F;&#x2F;要返回的数据</span><br><span class="line">echo $callback.&#39;(&#39;.json_encode($data).&#39;)&#39;;&#x2F;&#x2F;输出</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-<p>最终，输出结果为：<code>dosomething([&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]);</code></p>
-<h5 id="JSONP的优缺点"><a href="#JSONP的优缺点" class="headerlink" title="JSONP的优缺点"></a>JSONP的优缺点</h5><ul>
-<li>优点：不受同源策略的限制；兼容性更好；在更古老的浏览器中可以运行，不需要<code>XMLHTTPRequest</code>或者<code>ActiveX</code>的支持；请求完毕后可以通过调用callback的方式回传结果。</li>
-<li>缺点：只<strong>支持GET请求</strong>而不支持POST等其他类型的请求；只支持跨域HTTP请求这种情况，不能解决不同域的两个页面之间如何进行JavaScript调用的问题。</li>
-</ul>
-<h5 id="CORS和JSONP对比"><a href="#CORS和JSONP对比" class="headerlink" title="CORS和JSONP对比"></a>CORS和JSONP对比</h5><p>CORS与JSONP相比，无疑更为先进、方便和可靠。</p>
-<ol>
-<li><p>JSONP只能实现GET请求，而CORS支持所有类型的HTTP请求</p>
-</li>
-<li><p>使用CORS，开发者可以使用普通的XMLHTTPRequest发起请求和获得数据，比起JSONP有更好的错误处理。</p>
-</li>
-</ol>
-<h4 id="通过修改document-domain来跨子域"><a href="#通过修改document-domain来跨子域" class="headerlink" title="通过修改document.domain来跨子域"></a>通过修改<code>document.domain</code>来跨子域</h4><p>浏览器的同源策略使得我们<strong>不能通过AJAX的方法</strong>去请求不同源中的文档，而且限制了浏览器中<strong>不同域的框架之间是不能进行js的交互操作</strong>的。</p>
-<p><strong>不同的框架之间是可以获取window对象的，但却无法获取相应的属性和方法。</strong>比如，有一个页面，它的地址是<code>http://www.example.com/a.html</code> ， 在这个页面里面有一个<code>iframe</code>，它的src是<code>http://example.com/b.html</code>, 很显然，这个页面与它里面的<code>iframe</code>框架是不同域的，所以我们是无法通过在页面中书写js代码来获取<code>iframe</code>中的东西的。</p>
-<p>通过修改<code>document.domain</code>将域名设置成自身或更高一级的父域，且主域必须相同。</p>
-<ol>
-<li>在页面 <code>http://www.example.com/a.html</code> 中设置<code>document.domain</code>:</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe id &#x3D; &quot;iframe&quot; src&#x3D;&quot;http:&#x2F;&#x2F;example.com&#x2F;b.html&quot; onload &#x3D; &quot;test()&quot;&gt;&lt;&#x2F;iframe&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">    document.domain &#x3D; &#39;example.com&#39;;	&#x2F;&#x2F;设置成主域</span><br><span class="line">    function test()&#123;</span><br><span class="line">    		&#x2F;&#x2F;contentWindow 可取得子窗口的 window 对象</span><br><span class="line">        alert(document.getElementById(&#39;￼iframe&#39;).contentWindow); </span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>在页面 <code>http://example.com/b.html</code> 中也设置<code>document.domain</code>:</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">		&#x2F;&#x2F;在iframe载入这个页面也设置document.domain，使之与主页面的document.domain相同</span><br><span class="line">    document.domain &#x3D; &#39;example.com&#39;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="使用window-name来进行跨域"><a href="#使用window-name来进行跨域" class="headerlink" title="使用window.name来进行跨域"></a>使用<code>window.name</code>来进行跨域</h4><p>window对象有一个name属性，该属性有一个特征：<strong>即在一个窗口的生命周期内，窗口载入的所有页面都是共享一个<code>window.name</code>的，每个页面对<code>window.name</code>都有读写权限</strong>，<code>window.name</code>是持久存在一个窗口载入过的所有页面中的，并不会因新页面的载入而进行重置。</p>
-<p>注意，<code>window.name</code>的值只能是字符串的形式，这个字符串的大小最大能允许2M左右甚至更大的一个容量，具体取决于不同的浏览器。</p>
-<h4 id="使用HTML5的window-postMessage实现跨域"><a href="#使用HTML5的window-postMessage实现跨域" class="headerlink" title="使用HTML5的window.postMessage实现跨域"></a>使用HTML5的<code>window.postMessage</code>实现跨域</h4><p><code>**window.postMessage**(message,targetOrigin)</code>  方法是html5新引进的特性，可以使用它来向其它的window对象发送消息，无论这个window对象是属于同源或不同源，目前IE8+、FireFox、Chrome、Opera等浏览器都已经支持window.postMessage方法。</p>
-<p>调用postMessage方法的window对象是指要接收消息的那一个window对象，该方法的第一个参数message为要发送的消息，类型只能为字符串；第二个参数targetOrigin用来限定接收消息的那个window对象所在的域，如果不想限定域，可以使用通配符 *  </p>
-<p>需要接收消息的window对象，可是通过<strong>监听自身的message事件</strong>来获取传过来的消息，消息内容<strong>储存在该事件对象的data属性</strong>中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 这是 http:&#x2F;&#x2F;test.com&#x2F;a.html 的代码 --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function onLoad()&#123;</span><br><span class="line">		var iframe &#x3D; document.getELementById(&#39;iframe&#39;);</span><br><span class="line">		var win &#x3D; iframe.contentWindow;		&#x2F;&#x2F; 获取window对象</span><br><span class="line">		win.postMessage(&quot;俺是来自页面a的消息！&quot;,&quot;*&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;iframe id&#x3D;&quot;iframe&quot; src&#x3D;&quot;http:&#x2F;&#x2F;test.com&#x2F;b.html&quot; onload&#x3D;&quot;onLoad()&quot;&gt;&lt;&#x2F;iframe&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 这是 http:&#x2F;&#x2F;test.com&#x2F;b.html 的代码 --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">window.onmessage &#x3D; function(e)&#123;</span><br><span class="line">		var e &#x3D; e || event;</span><br><span class="line">		alert(e.data);</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="web-sockets"><a href="#web-sockets" class="headerlink" title="web sockets"></a>web sockets</h4><p>web sockets是一种浏览器的API，它的目标是在一个单独的持久连接上提供全双工、双向通信。(同源策略对web sockets不适用)</p>
-<p>web sockets原理：在js创建了web socket之后，会有一个HTTP请求发送到浏览器以发起连接。取得服务器响应后，建立的连接会使用HTTP升级从HTTP协议交换为web socket协议。</p>
-<p>只有在支持web socket协议的服务器上才能正常工作。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;http-&gt;ws;  https-&gt;wss</span><br><span class="line">var socket &#x3D; new WebSockt(&#39;ws:&#x2F;&#x2F;www.baidu.com&#39;);</span><br><span class="line">socket.send(&#39;hello WebSockt&#39;);</span><br><span class="line">socket.onmessage &#x3D; function(event)&#123;</span><br><span class="line">    var data &#x3D; event.data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="XSS和CRSF攻击"><a href="#XSS和CRSF攻击" class="headerlink" title="XSS和CRSF攻击"></a>XSS和CRSF攻击</h3><h4 id="XSS跨站脚本攻击（代码注入的一种）"><a href="#XSS跨站脚本攻击（代码注入的一种）" class="headerlink" title="XSS跨站脚本攻击（代码注入的一种）"></a>XSS跨站脚本攻击（代码注入的一种）</h4><p> XSS, 即为（Cross Site Scripting）, 中文名为跨站脚本,  是发生在目标用户的浏览器层面上的，当渲染DOM树的过程成发生了不在预期内执行的JS代码时，就发生了XSS攻击。</p>
-<p>攻击者可以使用户在浏览器中<strong>执行其预定义的恶意脚本</strong>，实际上是在目标网站的作用域下执行了这段js代码，其导致的危害可想而知，如劫持用户会话，插入恶意内容、重定向用户、使用恶意软件劫持用户浏览器、繁殖<a href="https://baike.baidu.com/item/XSS蠕虫/22777013" target="_blank" rel="noopener">XSS蠕虫</a>，甚至破坏网站、修改路由器配置信息等。</p>
-<h4 id="XSS防御措施"><a href="#XSS防御措施" class="headerlink" title="XSS防御措施"></a>XSS防御措施</h4><p>XSS防御的总体思路是：</p>
-<ul>
-<li><p>在不需要HTML输入的地方对HTML标签及一些特殊字符进行过滤，将其转化为不被浏览器解析执行的字符。 </p>
-</li>
-<li><p>对输入(和URL参数)进行过滤，对输出进行编码。也就是对提交的所有内容进行过滤，对url中的参数进行过滤，过滤掉会导致脚本执行的相关内容；</p>
-</li>
-</ul>
-<h4 id="CSRF跨站请求伪造"><a href="#CSRF跨站请求伪造" class="headerlink" title="CSRF跨站请求伪造"></a>CSRF跨站请求伪造</h4><p>CSRF（Cross Site Request  Forgery，跨站请求伪造），字面理解意思就是在别的站点伪造了一个请求。专业术语来说就是在受害者访问一个网站时，其 Cookie  还没有过期的情况下，攻击者伪造一个链接地址发送受害者并欺骗让其点击，从而形成 CSRF 攻击。 </p>
-<h4 id="CSRF防御措施"><a href="#CSRF防御措施" class="headerlink" title="CSRF防御措施"></a>CSRF防御措施</h4><p>防御CSRF 攻击主要有三种策略：</p>
-<ul>
-<li>验证 HTTP Referer 字段；</li>
-<li>在请求地址中添加 token 并验证；</li>
-<li>在 HTTP 头中自定义属性并验证。 </li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/JS%E5%BC%82%E6%AD%A5Promise/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/04/JS%E5%BC%82%E6%AD%A5Promise/" class="post-title-link" itemprop="url">JS异步Promise</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-04 23:22:49" itemprop="dateCreated datePublished" datetime="2020-04-04T23:22:49+08:00">2020-04-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-05 14:37:39" itemprop="dateModified" datetime="2020-04-05T14:37:39+08:00">2020-04-05</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 手写实现Promise</span><br><span class="line"> * **&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 创建了三个常量用于表示状态</span><br><span class="line">const PENDING &#x3D; &#39;pending&#39;;</span><br><span class="line">const REJECTED &#x3D; &#39;rejected&#39;;</span><br><span class="line">const FULFILLED &#x3D; &#39;fulfilled&#39;;</span><br><span class="line">var myPromise &#x3D; function (fn) &#123;</span><br><span class="line">    console.log(&quot;Create a Promise!&quot;);</span><br><span class="line">    let _this &#x3D; this;</span><br><span class="line">    _this.state &#x3D; PENDING;</span><br><span class="line">    _this.value &#x3D; null;</span><br><span class="line">    _this.rejectedCallBacks &#x3D; [];</span><br><span class="line">    _this.resolvedCallBacks &#x3D; [];</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 首先两个函数都得判断当前状态是否为等待中，因为规范规定只有等待态才可以改变状态</span><br><span class="line">    &#x2F;&#x2F; 将当前状态更改为对应状态，并且将传入的值赋值给 value</span><br><span class="line">    &#x2F;&#x2F; vaule值会做为Promise的参数被后续调用&lt;promise&gt;</span><br><span class="line">    &#x2F;&#x2F; 遍历回调数组并执行</span><br><span class="line">    function resolve(value) &#123;</span><br><span class="line">        console.log(&quot;Running Resolve&quot;);</span><br><span class="line">        if(_this.state &#x3D;&#x3D;&#x3D; PENDING)&#123;</span><br><span class="line">            _this.state &#x3D; FULFILLED;</span><br><span class="line">            _this.value &#x3D; value;</span><br><span class="line">            _this.resolvedCallBacks.map(cb &#x3D;&gt; cb(_this.value));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    function reject(value) &#123;</span><br><span class="line">        console.log(&quot;Running Reject&quot;);</span><br><span class="line">        if(_this.state &#x3D;&#x3D;&#x3D; PENDING)&#123;</span><br><span class="line">            _this.state &#x3D; REJECTED;</span><br><span class="line">            _this.value &#x3D; value;</span><br><span class="line">            _this.rejectedCallBacks.map(cb &#x3D;&gt; cb(_this.value));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 实现很简单，执行传入的参数并且将之前两个函数当做参数传进去</span><br><span class="line">    &#x2F;&#x2F; 要注意的是，可能执行函数过程中会遇到错误，需要捕获错误并且执行 reject 函数</span><br><span class="line">    try &#123;</span><br><span class="line">        console.log(&quot;Running try &amp; catch&quot;);</span><br><span class="line">        fn(resolve, reject);</span><br><span class="line">    &#125;catch (e) &#123;</span><br><span class="line">        reject(e);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line">&#x2F;&#x2F; prototype实现then方法</span><br><span class="line">myPromise.prototype.then &#x3D; function (onFulfilled, onRejected) &#123;</span><br><span class="line">    const _this &#x3D; this;</span><br><span class="line">    &#x2F;&#x2F; 首先判断两个参数是否为函数类型，因为这两个参数是可选参数</span><br><span class="line">    &#x2F;&#x2F; 当参数不是函数类型时，需要创建一个函数赋值给对应的参数，同时也实现了透传</span><br><span class="line">    onFulfilled &#x3D; typeof onFulfilled &#x3D;&#x3D;&#x3D; &#39;function&#39;? onFulfilled: v &#x3D;&gt; v;</span><br><span class="line">    onRejected &#x3D; typeof onRejected &#x3D;&#x3D;&#x3D; &#39;function&#39;? onRejected: err &#x3D;&gt; &#123;throw err&#125;;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 根据状态执行相应函数</span><br><span class="line">    &#x2F;&#x2F; 如果状态是等待态的话，就往回调函数中 push 函数</span><br><span class="line">    if(_this.state &#x3D;&#x3D;&#x3D; PENDING)&#123;</span><br><span class="line">        _this.resolvedCallBacks.push(onFulfilled);</span><br><span class="line">        _this.rejectedCallBacks.push(onRejected);</span><br><span class="line">    &#125;else if(_this.state &#x3D;&#x3D;&#x3D; FULFILLED)&#123;</span><br><span class="line">        onFulfilled(_this.value);</span><br><span class="line">    &#125;else if(_this.state &#x3D;&#x3D;&#x3D; REJECTED)&#123;</span><br><span class="line">        onRejected(_this.value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 测试DEMO</span><br><span class="line">new myPromise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">        resolve(&quot;Write your content here!!&quot;)</span><br><span class="line">        &#x2F;&#x2F;reject(&quot;can i reject?&quot;)</span><br><span class="line">    &#125;, 1000)</span><br><span class="line">&#125;).then(res &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">    console.log(&quot;This is my Then&quot;);</span><br><span class="line">&#125;, err&#x3D;&gt;&#123;</span><br><span class="line">    console.log(err);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/JS%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/04/JS%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">JS常见的几个函数</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-04 12:30:26" itemprop="dateCreated datePublished" datetime="2020-04-04T12:30:26+08:00">2020-04-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-08 15:31:41" itemprop="dateModified" datetime="2020-04-08T15:31:41+08:00">2020-04-08</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>日常开发过程中，滚动事件频繁调用回调函数很可能造成页面卡顿，这时候就需要防抖<code>debounce</code>和节流<code>throttle</code>来对代码进行性能优化了！</p>
-<h3 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h3><p>当<strong>持续</strong>触发事件时，一定时间内没有再触发事件，事件处理函数才会执行一次。</p>
-<p>主要应用场景有：<strong>input验证、搜索联想、resize</strong>。</p>
-<p>DEMO：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 防抖</span><br><span class="line">var debounce &#x3D; function(fn, wait)&#123;</span><br><span class="line">		var timeout &#x3D; null;</span><br><span class="line">		return function()&#123;</span><br><span class="line">				if(timeout !&#x3D;&#x3D; null)</span><br><span class="line">						clearTimeout(timeout);</span><br><span class="line">				timeout &#x3D; setTimeout(fn, wait);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 处理函数</span><br><span class="line">var handle &#x3D; function()&#123;</span><br><span class="line">		&#x2F;&#x2F;这里放的是相应事件的处理函数</span><br><span class="line">		console.log(Math.random());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 添加滚动监听事件</span><br><span class="line">window.addEventListener(&quot;scroll&quot;, debounce(handle, 1000));</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h3><p>当持续触发事件时，保证一定时间段内只调用一次事件处理函数。节流通俗解释就比如我们水龙头放水，阀门一打开，水哗哗的往下流，秉着勤俭节约的优良传统美德，我们要把水龙头关小点，最好是如我们心意按照一定规律在某个时间间隔内一滴一滴的往下滴。</p>
-<p>主要应用场景：</p>
-<ul>
-<li>鼠标不断点击触发，<code>mousedown</code>(单位时间内只触发一次)</li>
-<li>监听滚动事件，比如是否滑到底部自动加载更多，用throttle来判断</li>
-</ul>
-<h4 id="方法一：事件戳"><a href="#方法一：事件戳" class="headerlink" title="方法一：事件戳"></a>方法一：事件戳</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var throttle &#x3D; function(func, delay) &#123;            </span><br><span class="line">		var prev &#x3D; Date.now();            </span><br><span class="line">		return function() &#123;                </span><br><span class="line">  			var context &#x3D; this;                </span><br><span class="line">				var args &#x3D; arguments;                </span><br><span class="line">				var now &#x3D; Date.now();                </span><br><span class="line">				if (now - prev &gt;&#x3D; delay) &#123;                    </span><br><span class="line">						func.apply(context, args);                    </span><br><span class="line">						prev &#x3D; Date.now();                </span><br><span class="line">    		&#125;            </span><br><span class="line">		&#125;        </span><br><span class="line">&#125;        </span><br><span class="line">function handle() &#123;            </span><br><span class="line">　　console.log(Math.random());        </span><br><span class="line">&#125;        </span><br><span class="line">window.addEventListener(&#39;scroll&#39;, throttle(handle, 1000));</span><br></pre></td></tr></table></figure>
-
-<h4 id="方法二：定时器"><a href="#方法二：定时器" class="headerlink" title="方法二：定时器"></a>方法二：定时器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var throttle &#x3D; function(func, delay)&#123;</span><br><span class="line">		var timeout &#x3D; null;</span><br><span class="line">		return function()&#123;</span><br><span class="line">				if(!timeout)&#123;</span><br><span class="line">						var context &#x3D; this;</span><br><span class="line">						var args &#x3D; arguments;</span><br><span class="line">						timeout &#x3D; setTimeout(function()&#123;</span><br><span class="line">								func.apply(context, args);</span><br><span class="line">								timeout &#x3D; null;</span><br><span class="line">						&#125;)</span><br><span class="line">				&#125;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line">function handle() &#123;            </span><br><span class="line">　　console.log(Math.random());        </span><br><span class="line">&#125;        </span><br><span class="line">window.addEventListener(&#39;scroll&#39;, throttle(handle, 1000));</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="数组扁平化处理"><a href="#数组扁平化处理" class="headerlink" title="数组扁平化处理"></a>数组扁平化处理</h3><h4 id="方法一：正则表达式"><a href="#方法一：正则表达式" class="headerlink" title="方法一：正则表达式"></a>方法一：正则表达式</h4><p>先将多维数组转换成字符串，再通过正则进行处理</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let num &#x3D; [1,5,[2,2],[3,[2,55],34],1];</span><br><span class="line">let str &#x3D; JSON.Stringify(num);</span><br><span class="line">&#x2F;&#x2F; 正则处理1</span><br><span class="line">result &#x3D; str.replace(&#x2F;(\[\])&#x2F;g, &#39;&#39;).split(&#39;,&#39;);</span><br><span class="line">&#x2F;&#x2F; 正则处理2</span><br><span class="line">str &#x3D; str.replace(&#x2F;(\[\])&#x2F;g, &#39;&#39;);</span><br><span class="line">str &#x3D; &#39;[&#39;+str+&#39;]&#39;;</span><br><span class="line">result2 &#x3D; JSON.parse(str);</span><br></pre></td></tr></table></figure>
-
-<h4 id="方法二：拓展运算符"><a href="#方法二：拓展运算符" class="headerlink" title="方法二：拓展运算符"></a>方法二：拓展运算符</h4><blockquote>
-<p>some( ) 方法用于检测数组中的元素是否满足指定条件（函数提供）。</p>
-</blockquote>
-<blockquote>
-<p>… （拓展运算符）可以将数组元素迭代为函数参数使用</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while (arr.some(Array.isArray)) &#123;</span><br><span class="line">  	arr &#x3D; [].concat(...arr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方法三：递归处理"><a href="#方法三：递归处理" class="headerlink" title="方法三：递归处理"></a>方法三：递归处理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function myFlat(arr)&#123;</span><br><span class="line">		let result &#x3D; [];</span><br><span class="line">		if(Array.isArray(arr))&#123;</span><br><span class="line">				arr.forEach(function(item)&#123;</span><br><span class="line">						if(Array.isArray(item))&#123;</span><br><span class="line">								result.push(...myFlat(item));</span><br><span class="line">						&#125;else&#123;</span><br><span class="line">								result.push(item);</span><br><span class="line">						&#125;</span><br><span class="line">				&#125;)</span><br><span class="line">		&#125;</span><br><span class="line">		return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>通过递归实现深拷贝</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function deepClone(obj)&#123;</span><br><span class="line">		if(typeof obj !&#x3D;&#x3D; &#39;object&#39;) return false;</span><br><span class="line">		var newObj &#x3D; Array.isArray(obj)? []: &#123;&#125;;</span><br><span class="line">		for(var key in obj)&#123;</span><br><span class="line">				if(obj.hasOwnProperty(key))&#123;</span><br><span class="line">						if(typeof obj[key] &#x3D;&#x3D;&#x3D; &#39;object&#39;)&#123;</span><br><span class="line">								newObj[key] &#x3D; deepClone(obj[key]);</span><br><span class="line">						&#125;else&#123;</span><br><span class="line">								newObj[key] &#x3D; obj[key];</span><br><span class="line">						&#125;</span><br><span class="line">				&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return newObj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="Curry化"><a href="#Curry化" class="headerlink" title="Curry化"></a>Curry化</h3><blockquote>
-<p>在数学和计算机科学中，柯里化是一种将<strong>使用多个参数的一个函数转换成一系列使用一个参数的函数</strong>的技术。</p>
-</blockquote>
-<h4 id="简单版curry函数实现"><a href="#简单版curry函数实现" class="headerlink" title="简单版curry函数实现"></a>简单版curry函数实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 简单版</span><br><span class="line">var curryV1 &#x3D; function(fn)&#123;</span><br><span class="line">		var args &#x3D; [].slice.call(arguments, 1);</span><br><span class="line">		return funciton()&#123;</span><br><span class="line">				var newArgs &#x3D; args.concat([].slice.call(arguments));</span><br><span class="line">				return fn.apply(this, newArgs);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="稍稍升级版"><a href="#稍稍升级版" class="headerlink" title="稍稍升级版"></a>稍稍升级版</h4><blockquote>
-<p><code>slice(0)</code>的作用：</p>
-<p>对原数组进行深拷贝</p>
-<p>将类数组对象转化为真正的数组对象</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">var curryV2 &#x3D; function(fn, args)&#123;</span><br><span class="line">		var len &#x3D; fn.length;</span><br><span class="line">		args &#x3D; args || [];</span><br><span class="line">		return function()&#123;</span><br><span class="line">				var _args &#x3D; args.slice(0), arg;</span><br><span class="line">				for(var i&#x3D;0; i&lt;arguments.length; i++)&#123;</span><br><span class="line">						arg &#x3D; arguments[i];</span><br><span class="line">						_args.push(arg);</span><br><span class="line">				&#125;</span><br><span class="line">				if(_args.length &lt; length)&#123;</span><br><span class="line">						return curryV2.call(this, fn, _args);</span><br><span class="line">				&#125;else&#123;</span><br><span class="line">						return fn.apply(this, _args);</span><br><span class="line">				&#125;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var fn &#x3D; curryV2(function(a, b, c) &#123;</span><br><span class="line">    console.log([a, b, c]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">fn(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;) &#x2F;&#x2F; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span><br><span class="line">fn(&quot;a&quot;, &quot;b&quot;)(&quot;c&quot;) &#x2F;&#x2F; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span><br><span class="line">fn(&quot;a&quot;)(&quot;b&quot;)(&quot;c&quot;) &#x2F;&#x2F; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span><br><span class="line">fn(&quot;a&quot;)(&quot;b&quot;, &quot;c&quot;) &#x2F;&#x2F; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1562,20 +1512,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

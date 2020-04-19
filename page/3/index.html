@@ -157,6 +157,665 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E7%89%A9%E7%90%86%E5%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/24/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E7%89%A9%E7%90%86%E5%B1%82/" class="post-title-link" itemprop="url">【计算机网络】第二章：物理层</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-24 20:41:29" itemprop="dateCreated datePublished" datetime="2020-03-24T20:41:29+08:00">2020-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-25 15:17:58" itemprop="dateModified" datetime="2020-03-25T15:17:58+08:00">2020-03-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="物理层定义的标准"><a href="#物理层定义的标准" class="headerlink" title="物理层定义的标准"></a>物理层定义的标准</h3><p>物理层解决如何在链接各种计算机的传输媒体上传输<strong>数据比特流</strong>，而不是指具体的传输媒体。<br>物理层的主要任务：确定传输媒体的接口的一些特性，包括，<br>机械特性：接口形状，大小，引线数量<br>电气特性：例如规定电压范围(-5V-5V)<br>功能特性：例如规定-5V上0，+5V是1<br>过程特性：也称规程特性，规定建立连接时各个相关部件的工作步骤<br><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B.png" alt="数据通信模型"></p>
+<h4 id="通信的目的是传送消息"><a href="#通信的目的是传送消息" class="headerlink" title="通信的目的是传送消息"></a>通信的目的是传送消息</h4><p><strong>数据(data)</strong>——运送消息的实体。<br><strong>信号(signal)</strong>——数据的电气或电磁的表现。<br><strong>模拟信号</strong>——代表信息的参数的取值是连续的。<br><strong>数字信号</strong>——代表信息的参数的取值是离散的。<br><strong>码元(code)</strong>——在使用时间域的波形表示数字信号时，代表不同离散数值的基本波形。<br>在数字通信中常常用时间间隔相同的符号表示一个二进制数字，这样的时间间隔内的信号称为<strong>二进制码元</strong>。这个间隔称为<strong>码元长度</strong>，1 code可以携带n bit信息量(此时电压会有多个取值，例如1，2，…,7V，而不是只有2个取值)</p>
+<h4 id="信道的概念"><a href="#信道的概念" class="headerlink" title="信道的概念"></a>信道的概念</h4><p>信道一般表示向一个方向传输信息的媒体。所以通信线路往往包含一条发送信息的信道和一条接收信息的信道。<br><strong>单向通信</strong>(单工通信)——只能有一个方向的通信，没有反向交互。<br><strong>双向交替通信</strong>(半双工通信)——通信的双方都可以发送信息，但是不能双方同时发送或接收。<br><strong>双向同时通信</strong>(全双工通信)——通信的双发可以同时发送和接收。</p>
+<h4 id="什么是基带-baseband-和带通-base-pass-信号？"><a href="#什么是基带-baseband-和带通-base-pass-信号？" class="headerlink" title="什么是基带(baseband)和带通(base pass)信号？"></a>什么是基带(baseband)和带通(base pass)信号？</h4><ul>
+<li><p>基带信号(基本频率信号)——来自信源的信号，例如计算机输出的代表各种文字或图像文件的数据信号都属于基带信号。基带信号就是发出的直接表达了要传输的信息的信号，比如说我们说话的声波。</p>
+</li>
+<li><p>带通信号——把基带信号经过<strong>载波调制</strong>后，把信号的频率范围迁移到较高的频段以便在信道中传输(即仅在一段频率范围内能够通过信道)</p>
+</li>
+</ul>
+<p>因此在传输<strong>距离较近</strong>时，采用<strong>基带传输</strong>方式(衰减不大，信号内容不会变化)。传输<strong>距离较远</strong>时，采用<strong>带通传输</strong>方式，例如从计算机到监视器，打印机等外设的信号。</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E8%B0%83%E5%88%B6.png" alt="信号调制方法"></p>
+<h4 id="常用编码方式"><a href="#常用编码方式" class="headerlink" title="常用编码方式"></a>常用编码方式</h4><p>单极性不归零编码：只使用一个电压值，高电平表示1，低电平表示0<br>双极性不归零编码：用幅值相等的正负电平表示二进制数1和0<br>单极性归零编码：发送码1时高电平在整个码元期间只持续一段时间，其余时间返回零电平<br>双极性归零编码：正负零三个电平，信号本事携带同步信息</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F.png" alt="常用的编码方式"></p>
+<p>曼彻斯特编码：单极性编码的缺点是没有办法区分此时是没有信号，还是有信号，但是信号是0</p>
+<blockquote>
+<p>这种编码方式是bit中间有信号，低-高跳转表示0，高-低跳转表示1，一个时钟周期只可以表示一个bit，并且必须通过两次采样才能得到一个bit。它能携带时钟信号，而且能区分此时是没有信号还是信号为0.</p>
+</blockquote>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%9B%BC%E5%BD%BB%E6%96%AF%E7%89%B9%E7%BC%96%E7%A0%81.png" alt="曼彻斯特编码"></p>
+<p>差分曼彻斯特编码：抗干扰能力比曼彻斯特编码更强。bit与bit之间有信号跳变，表示下一个bit为0，bit与bit之间没有信号跳变，表示下一个bit为1</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E5%B7%AE%E5%88%86%E6%9B%BC%E5%BD%BB%E6%96%AF%E7%89%B9%E7%BC%96%E7%A0%81.png" alt="差分曼彻斯特编码"></p>
+<h3 id="物理层下面的传输媒体"><a href="#物理层下面的传输媒体" class="headerlink" title="物理层下面的传输媒体"></a>物理层下面的传输媒体</h3><p>集线器：</p>
+<p>工作特点是在网络中只起到<strong>信号放大</strong>和<strong>重发</strong>作用，目的是扩大网络的传输范围，而<strong>不具备信号的定向传送能力</strong>。由于安全性的问题，现在被<strong>交换机</strong>取代</p>
+<p>最大传输距离是100m；</p>
+<p>集线器是一个大的冲突域(意思是某个时间点只能是2台设备进行通信)。</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E4%BC%A0%E8%BE%93%E8%AE%BE%E5%A4%87%E9%9B%86%E7%BA%BF%E5%99%A8.png" alt="集线器"></p>
+<h3 id="信道复用技术"><a href="#信道复用技术" class="headerlink" title="信道复用技术"></a>信道复用技术</h3><p>复用（multiplexing）是通信技术中的基本概念</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E4%BF%A1%E9%81%93%E5%A4%8D%E7%94%A8%E6%8A%80%E6%9C%AF.png" alt="信道复用技术"></p>
+<h4 id="频分复用FDM（Frequency-Division-Multiplexing）"><a href="#频分复用FDM（Frequency-Division-Multiplexing）" class="headerlink" title="频分复用FDM（Frequency Division Multiplexing）"></a>频分复用FDM（Frequency Division Multiplexing）</h4><p>用户在分配到一定频带后，在通信过程中自始至终都占用这个频带。频带复用的所用用户在同样的时间占用不同的带宽资源（这里的“带宽”是频率带宽而非数据的发送速率）</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E9%A2%91%E5%88%86%E5%A4%8D%E7%94%A8FDM.png" alt="频分复用"></p>
+<h4 id="时分复用TDM（Time-Division-Multiplexing）"><a href="#时分复用TDM（Time-Division-Multiplexing）" class="headerlink" title="时分复用TDM（Time Division Multiplexing）"></a>时分复用TDM（Time Division Multiplexing）</h4><p><strong>时分复用</strong>则是将时间划分为一段段等长的<strong>时分复用帧</strong>（TDM帧）。每一个时分复用的用户在每一个TDM帧中占用固定序号的时隙。每一个用户所占用的时隙是<strong>周期性</strong>出现的（其周期就是TDM帧的长度对应的时间）</p>
+<p>TDM信号也称为<strong>等时信号</strong>。时分复用的所有用户是在不同的时间占用同样的频带宽度。</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%97%B6%E5%88%86%E5%A4%8D%E7%94%A8TDM.png" alt="时分复用实现机制"></p>
+<p>缺点：时分复用可能造成线路资源浪费。由于计算机数据的突发性质，用户对分配到的子信道的利用率一般不高。</p>
+<h4 id="波分复用WDM（Wavelength-Division-Multiplexing）"><a href="#波分复用WDM（Wavelength-Division-Multiplexing）" class="headerlink" title="波分复用WDM（Wavelength Division Multiplexing）"></a>波分复用WDM（Wavelength Division Multiplexing）</h4><p>实质就是<strong>频分复用</strong></p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E6%B3%A2%E5%88%86%E5%A4%8D%E7%94%A8WDM.png" alt="波分复用"></p>
+<h4 id="码分复用CDM（Code-Division-Multiplexing）"><a href="#码分复用CDM（Code-Division-Multiplexing）" class="headerlink" title="码分复用CDM（Code Division Multiplexing）"></a>码分复用CDM（Code Division Multiplexing）</h4><p>常用名词是<strong>码分多址CDMA</strong>（Code Division Multiple Access）</p>
+<p>各用户使用经过特殊挑选的不同码型，因此彼此不会造成干扰。</p>
+<p>这种系统发送的信号有很强的抗干扰能力，其频谱类似于白噪声，不易被敌人发现。   </p>
+<p>每一个比特时间划分为m个短的间隔，称为<strong>码片(chip)</strong>。</p>
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/%E8%AE%A1%E7%BD%912%E7%A0%81%E5%88%86%E5%A4%8D%E7%94%A8CDM.png" alt="码分复用"></p>
+<blockquote>
+<p>任何一个码片向量和该码片向量自己的规格化内积都是1.</p>
+<p>任何一个码片向量和该码片反码向量的规格化内积都是-1.</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/for-in-%E5%92%8C-for-of/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/20/for-in-%E5%92%8C-for-of/" class="post-title-link" itemprop="url">for...in和for...of</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-20 20:31:33 / 修改时间：22:19:46" itemprop="dateCreated datePublished" datetime="2020-03-20T20:31:33+08:00">2020-03-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>通过举多个例子进行说明</p>
+<h4 id="例子1：遍历数组"><a href="#例子1：遍历数组" class="headerlink" title="例子1：遍历数组"></a>例子1：遍历数组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const arr1 &#x3D;[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];</span><br><span class="line">&#x2F;&#x2F; for...in 返回数组的下标</span><br><span class="line">for(let i in arr1)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; 0,1,2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; for...of 返回数组的元素</span><br><span class="line">for(let i of arr1)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; a,b,c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="例子2：给数组手动添加属性"><a href="#例子2：给数组手动添加属性" class="headerlink" title="例子2：给数组手动添加属性"></a>例子2：给数组手动添加属性</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const arr2 &#x3D; [&#39;a&#39;, &#39;b&#39;];</span><br><span class="line">arr2.name &#x3D; &#39;c&#39;;</span><br><span class="line">&#x2F;&#x2F; for..in循环可以遍历出&#39;name&#39;这个键名，for..of结果则为 a, b</span><br><span class="line">for(let i in arr2)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F;0,1,name</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="例子3：遍历对象"><a href="#例子3：遍历对象" class="headerlink" title="例子3：遍历对象"></a>例子3：遍历对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const json &#x3D; &#123;&quot;a&quot;:1, &quot;b&quot;:2, &quot;c&quot;:3&#125;;</span><br><span class="line">&#x2F;&#x2F; for..in遍历获取对象的key值 (对应键值对key-value)</span><br><span class="line">for(let i in json)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; a,b,c</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; for..of报错</span><br><span class="line">for(let i of json)&#123;</span><br><span class="line">	console.log(i)	&#x2F;&#x2F; TypeError: json is not iterable</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="for-in-的特点："><a href="#for-in-的特点：" class="headerlink" title="for..in 的特点："></a>for..in 的特点：</h4><ul>
+<li>for..in 语句用于对<strong>数组</strong>或<strong>对象</strong>的属性进行循环操作</li>
+<li>for..in 循环中的代码每执行一次，就会对数组元素或者对象的属性进行一次操作</li>
+<li>for..in 语句会遍历一个对象的<strong>可枚举属性</strong>（包括继承而来的属性）。</li>
+</ul>
+<h4 id="for-of-的特点："><a href="#for-of-的特点：" class="headerlink" title="for..of 的特点："></a>for..of 的特点：</h4><ul>
+<li>for..of 语句在<strong>可迭代对象</strong>(包括<strong>Array，Map，Set，String，arguments对象</strong>等)上创建一个迭代循环，调用自定义迭代钩子，并为每个不同属性的值执行语句。</li>
+<li>一个数据结构只要部署了<code>Symbol.iterator</code>属性，就被视为 <strong>iterator接口</strong>，就可以for..in</li>
+<li>for..of 可以与<code>break continue</code>和<code>return</code>配合使用（即可以随时退出循环，比forEach强</li>
+</ul>
+<hr>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>for..in 遍历的是<strong>key值</strong>，for..of遍历的是<strong>value值</strong>，因此前者更适合遍历对象</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Object.prototype.objCustom &#x3D; function() &#123;&#125;; </span><br><span class="line">Array.prototype.arrCustom &#x3D; function() &#123;&#125;;</span><br><span class="line"> </span><br><span class="line">let iterable &#x3D; [3, 5, 7];</span><br><span class="line">iterable.foo &#x3D; &#39;hello&#39;;</span><br><span class="line"> </span><br><span class="line">for (let i in iterable) &#123;</span><br><span class="line">  console.log(i); &#x2F;&#x2F; 0, 1, 2, &quot;foo&quot;, &quot;arrCustom&quot;, &quot;objCustom&quot;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">for (let i in iterable) &#123;</span><br><span class="line">  if (iterable.hasOwnProperty(i)) &#123;</span><br><span class="line">    console.log(i); &#x2F;&#x2F; 0, 1, 2, &quot;foo&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">for (let i of iterable) &#123;</span><br><span class="line">  console.log(i); &#x2F;&#x2F; 3, 5, 7</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>for...in</code> 语句以原始插入顺序迭代对象的可枚举属性。</p>
+<p><code>for...of</code> 语句遍历可迭代对象定义要迭代的数据。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/17/JS%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/17/JS%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">JS数据缓存</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-17 21:34:41 / 修改时间：22:57:48" itemprop="dateCreated datePublished" datetime="2020-03-17T21:34:41+08:00">2020-03-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h4><p><code>cookie</code>非常小，它的大小限制在4kb左右，主要用于保存登陆信息，比如你登陆某个网站市场可以看到“记住密码”，这就是通过在cookie中存入一段辨别用户身份的数据来实现的。</p>
+<h4 id="sessionStorage（临时保存"><a href="#sessionStorage（临时保存" class="headerlink" title="sessionStorage（临时保存"></a>sessionStorage（临时保存</h4><p><code>sessionStorage</code>可以将数据保存在客户端的session对象中，不与服务器进行交互通信，其生命周期仅在当前会话下有效，会话关闭其中的数据会被清空。</p>
+<h4 id="localStorage（永久保存"><a href="#localStorage（永久保存" class="headerlink" title="localStorage（永久保存"></a>localStorage（永久保存</h4><p><code>localStorage</code>将数据保存在客户端本地的硬件设备(通常指硬盘，也可以是其他硬件设备)中，即使浏览器被关闭了，该数据仍然存在，下次打开浏览器访问网站时仍然可以继续使用。</p>
+<h3 id="三者的不同之处"><a href="#三者的不同之处" class="headerlink" title="三者的不同之处"></a>三者的不同之处</h3><ul>
+<li>数据的生命周期不同</li>
+</ul>
+<p><strong>Cookie</strong>一般由服务器生成，可以设置失效时间(maxAge)，如果浏览器生成cookie，默认关闭后失效</p>
+<p><strong>localStorage</strong>除非被永久清除，否则永久保存</p>
+<p><strong>sessionStorage</strong>仅在当前会话有效，关闭页面或浏览器后被清除</p>
+<ul>
+<li>存放数据不同</li>
+</ul>
+<p><strong>cookie</strong>一般为4KB，<strong>localStorage</strong>和<strong>sessionStorage</strong>一般为5MB。</p>
+<ul>
+<li>与服务器端通信不同</li>
+</ul>
+<p><strong>cookie</strong> – 由对服务器的请求来传递，每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题</p>
+<p><strong>localStorage</strong>和<strong>sessionStorage</strong> – 数据不是由每个服务器请求传递的，而是只有在请求时使用数据，不参与和服务器的通信</p>
+<ul>
+<li>易用性</li>
+</ul>
+<p><strong>cookie</strong>需要自己封装<code>setCookie</code>, <code>getCookie</code></p>
+<p><strong>localStorage</strong>和<strong>sessionStorage</strong>则可以用原生接口，也可以再次封装来对Object和Array有更好的支持</p>
+<ul>
+<li>安全性</li>
+</ul>
+<p><code>localStorage</code>和<code>sessionStorage</code>不会随<code>HTTP header</code>发送到服务器端，所以安全性相对cookie来说较高一些，不用担心截获，但仍旧存在伪造问题</p>
+<ul>
+<li>应用场景</li>
+</ul>
+<h3 id="WebStorage使用方法与实例"><a href="#WebStorage使用方法与实例" class="headerlink" title="WebStorage使用方法与实例"></a>WebStorage使用方法与实例</h3><h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; webStorage &#x3D;&gt; localStorage&#x2F;sessionStorage </span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;保存数据，以键值对的方式储存信息。</span><br><span class="line">webStorage.setItem (key, value)		</span><br><span class="line">&#x2F;&#x2F;获取数据，将键值传入，即可获取到对应的value值。</span><br><span class="line">webStorage.getItem (key)					</span><br><span class="line">&#x2F;&#x2F;删除单个数据，根据键值移除对应的信息。</span><br><span class="line">webStorage.removeItem (key)			</span><br><span class="line">&#x2F;&#x2F;删除所有的数据</span><br><span class="line">webStorage.clear ()</span><br><span class="line">&#x2F;&#x2F;获取某个索引的key</span><br><span class="line">webStorage.key (index)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="封装方法实例（读取与保存数据方法封装在script-js中"><a href="#封装方法实例（读取与保存数据方法封装在script-js中" class="headerlink" title="封装方法实例（读取与保存数据方法封装在script.js中)"></a>封装方法实例（读取与保存数据方法封装在script.js中)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;sessionStorage 示例  (保存一个会话周期:从打开浏览器——到关闭浏览器窗口)</span><br><span class="line">function saveStorage(id)&#123;</span><br><span class="line">    var target&#x3D;document.getElementById(id);</span><br><span class="line">    var str&#x3D;target.value;</span><br><span class="line">    sessionStorage.setItem(&quot;message&quot;,str);</span><br><span class="line">    &#x2F;&#x2F;或者sessionStorage.message&#x3D;str;</span><br><span class="line">&#125;</span><br><span class="line">function loadStorage(id)&#123;</span><br><span class="line">    var target&#x3D;document.getElementById(id);</span><br><span class="line">    var msg&#x3D;sessionStorage.getItem(&quot;message&quot;);</span><br><span class="line">    &#x2F;&#x2F;或者var msg&#x3D;sessionStorage.message;</span><br><span class="line">    target.innerHTML&#x3D;msg;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;localStorage 示例(可永久保存)    </span><br><span class="line">function saveStorage(id)&#123;</span><br><span class="line">    var target&#x3D;document.getElementById(id);</span><br><span class="line">    var str&#x3D;target.value;</span><br><span class="line">    localStorage.setItem(&quot;message&quot;,str);</span><br><span class="line">    &#x2F;&#x2F;或者localStorage.message&#x3D;str;</span><br><span class="line">&#125;</span><br><span class="line">function loadStorage(id)&#123;</span><br><span class="line">    var target&#x3D;document.getElementById(&quot;msg&quot;);</span><br><span class="line">    var msg&#x3D;localStorage.getItem(&quot;message&quot;);</span><br><span class="line">    &#x2F;&#x2F;或者var msg&#x3D;localStorage.message;</span><br><span class="line">    target.innerHTML&#x3D;msg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/16/JS%E4%B8%AD%E7%9A%84call-apply%E4%B8%8Ebind/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/16/JS%E4%B8%AD%E7%9A%84call-apply%E4%B8%8Ebind/" class="post-title-link" itemprop="url">JS中的call,apply与bind</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-16 21:36:21" itemprop="dateCreated datePublished" datetime="2020-03-16T21:36:21+08:00">2020-03-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-17 15:37:11" itemprop="dateModified" datetime="2020-03-17T15:37:11+08:00">2020-03-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>首先，在了解call，apply及bind的区别前，我们要先弄清楚一个概念，<strong>this 永远指向最后调用它的那个对象</strong>（注意“最后调用”！！）。而使用call、apply和bind都能够是函数的上下文发生改变，即改变了this的指向。</p>
+<p>除此以外，还有<strong>ES6箭头函数</strong>、<strong>在函数内部使用_this = this</strong>以及<strong>new实例化一个对象</strong>等方法实现指向的改变。</p>
+<blockquote>
+<p>call()、apply()、bind()是用来改变this的指向的</p>
+</blockquote>
+<h3 id="call与apply"><a href="#call与apply" class="headerlink" title="call与apply"></a>call与apply</h3><p><code>call()</code>与<code>apply()</code>均为<code>Function.prototype</code>中的方法，使用方法基本相似，二者的区别只是传入的参数不同：</p>
+<ul>
+<li><code>call()</code>：第一个参数是this值没有变化，变化的是<strong>其余参数都直接传递给函数</strong>。在使用<code>call()</code>方法时，<strong>传递给函数的参数必须逐个列举出来</strong>。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function.call(thisArg, arg1, arg2, ...)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>apply()</code>：传递给函数的是<strong>参数数组</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function.apply(thisArg, [argsArray])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D;&#123;</span><br><span class="line">	name : &quot;Cherry&quot;,</span><br><span class="line">  fn : function (a,b) &#123;</span><br><span class="line">  	console.log( a + b)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var b1 &#x3D; a.fn;</span><br><span class="line">var b2 &#x3D; a.fn;</span><br><span class="line">b1.apply(a,[1,2])  &#x2F;&#x2F; 3</span><br><span class="line">b2.call(a,1,2)		 &#x2F;&#x2F; 3</span><br></pre></td></tr></table></figure>
+
+<p><em>注：</em>如果call()和apply()的第一个参数是null或者undefined，那么this的指向就是全局变量，在浏览器里就是window对象。</p>
+<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p><code>bind()</code> 方法创建一个新的函数，在 <code>bind()</code> 被调用时，这个新函数的 <code>this</code> 被指定为 <code>bind()</code> 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function.bind(thisArg[, arg1[, arg2[, ...]]])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const module &#x3D; &#123;</span><br><span class="line">  x: 42,</span><br><span class="line">  getX: function() &#123;</span><br><span class="line">    return this.x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const unboundGetX &#x3D; module.getX;</span><br><span class="line">console.log(unboundGetX()); 	&#x2F;&#x2F; undefined</span><br><span class="line">&#x2F;&#x2F; 此时UNboundGetX函数this指向windows全局变量，this.x未定义</span><br><span class="line"></span><br><span class="line">const boundGetX &#x3D; unboundGetX.bind(module);</span><br><span class="line">console.log(boundGetX());			&#x2F;&#x2F; 42</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/15/JS%E9%97%AD%E5%8C%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/15/JS%E9%97%AD%E5%8C%85/" class="post-title-link" itemprop="url">JS闭包</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-15 22:13:39" itemprop="dateCreated datePublished" datetime="2020-03-15T22:13:39+08:00">2020-03-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-16 13:44:00" itemprop="dateModified" datetime="2020-03-16T13:44:00+08:00">2020-03-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="闭包是什么？"><a href="#闭包是什么？" class="headerlink" title="闭包是什么？"></a>闭包是什么？</h3><p>闭包是指<strong>有权访问另一个函数作用域中的变量的函数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function outer() &#123;</span><br><span class="line">     var  a &#x3D; &#39;变量a&#39;</span><br><span class="line">     var  inner &#x3D; function()&#123;</span><br><span class="line">            console.info(a)</span><br><span class="line">     &#125;</span><br><span class="line">    return inner    &#x2F;&#x2F; inner 就是一个闭包函数，因为他能够访问到outer函数的作用域</span><br><span class="line">&#125;</span><br><span class="line">var  inner &#x3D; outer()   &#x2F;&#x2F; 获得inner闭包函数</span><br><span class="line">inner()   &#x2F;&#x2F;&quot;变量a&quot;</span><br></pre></td></tr></table></figure>
+
+<p>inner()是依赖于outer()的，因此当outer()函数的返回值是inner()时，outer()中的变量也会始终存在于内存中，不会在调用结束时，被垃圾回收机制回收。</p>
+<blockquote>
+<p>闭包是一种保护私有变量的机制，在函数执行时形成私有的作用域，保护里面的私有变量不受外界干扰。</p>
+<p>直观的说就是形成一个不销毁的栈环境。</p>
+</blockquote>
+<h3 id="闭包的应用场景"><a href="#闭包的应用场景" class="headerlink" title="闭包的应用场景"></a>闭包的应用场景</h3><h4 id="1、函数工厂"><a href="#1、函数工厂" class="headerlink" title="1、函数工厂"></a>1、函数工厂</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function makeAdder(x) &#123;</span><br><span class="line">  return function(y) &#123;</span><br><span class="line">    return x + y;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var add5 &#x3D; makeAdder(5);</span><br><span class="line">var add10 &#x3D; makeAdder(10);</span><br><span class="line">console.log(add5(2));  	&#x2F;&#x2F; 7</span><br><span class="line">console.log(add10(2)); 	&#x2F;&#x2F; 12</span><br></pre></td></tr></table></figure>
+
+<p>从本质上讲，<code>makeAdder</code> 是一个函数工厂 — 他创建了将指定的值和它的参数相加求和的函数。在上面的示例中，我们使用函数工厂创建了两个新函数 — 一个将其参数和 5 求和，另一个和 10 求和。</p>
+<p><code>add5</code> 和 <code>add10</code> 都是闭包。它们共享相同的函数定义，但是保存了不同的词法环境。在 <code>add5</code> 的环境中，<code>x</code> 为 5。而在 <code>add10</code> 中，<code>x</code> 则为 10。</p>
+<h4 id="2、用闭包解决递归"><a href="#2、用闭包解决递归" class="headerlink" title="2、用闭包解决递归"></a>2、用闭包解决递归</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function  factorial(num) &#123;</span><br><span class="line">   if(num&lt;&#x3D; 1) &#123;</span><br><span class="line">       return 1;</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">      return num * factorial(num-1)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 使用闭包实现递归</span><br><span class="line">function newFactorial &#x3D; （function f(num)&#123;</span><br><span class="line">    if(num&lt;1) &#123;return 1&#125;</span><br><span class="line">    else &#123;</span><br><span class="line">       return num* f(num-1)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;）</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、用闭包模仿块级作用域（现在都用let和const定义"><a href="#3、用闭包模仿块级作用域（现在都用let和const定义" class="headerlink" title="3、用闭包模仿块级作用域（现在都用let和const定义"></a>3、用闭包模仿块级作用域（现在都用let和const定义</h4><p>ES6没出来之前，用var定义变量会存在变量提升的问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">for(var i&#x3D;0; i&lt;10; i++)&#123;</span><br><span class="line">    console.info(i)</span><br><span class="line">&#125;</span><br><span class="line">alert(i)  &#x2F;&#x2F; 变量提升，弹出10</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;为了避免i的提升可以这样做</span><br><span class="line">(function () &#123;</span><br><span class="line">    for(var i&#x3D;0; i&lt;10; i++)&#123;</span><br><span class="line">         console.info(i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)()</span><br><span class="line">alert(i)   &#x2F;&#x2F; underfined   因为i随着闭包函数的退出，执行环境销毁，变量回收</span><br></pre></td></tr></table></figure>
+
+<h4 id="4、用闭包模拟私有方法"><a href="#4、用闭包模拟私有方法" class="headerlink" title="4、用闭包模拟私有方法"></a>4、用闭包模拟私有方法</h4><p> JavaScript 没有原生的private变量提供私有方法，但我们可以使用闭包来模拟私有方法。私有方法不仅仅有利于限制对代码的访问：还提供了管理全局命名空间的强大能力，避免非核心的方法弄乱了代码的公共接口部分。</p>
+<p>下面的示例展现了如何使用闭包来定义公共函数，并令其可以访问私有函数和变量。这个方式也称为<strong>模块模式（module pattern）</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var makeCounter &#x3D; function() &#123;</span><br><span class="line">  var privateCounter &#x3D; 0;</span><br><span class="line">  function changeBy(val) &#123;</span><br><span class="line">    privateCounter +&#x3D; val;</span><br><span class="line">  &#125;</span><br><span class="line">  return &#123;</span><br><span class="line">    increment: function() &#123;</span><br><span class="line">      changeBy(1);</span><br><span class="line">    &#125;,</span><br><span class="line">    decrement: function() &#123;</span><br><span class="line">      changeBy(-1);</span><br><span class="line">    &#125;,</span><br><span class="line">    value: function() &#123;</span><br><span class="line">      return privateCounter;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var Counter1 &#x3D; makeCounter();</span><br><span class="line">var Counter2 &#x3D; makeCounter();</span><br><span class="line">console.log(Counter1.value()); &#x2F;* logs 0 *&#x2F;</span><br><span class="line">Counter1.increment();</span><br><span class="line">Counter1.increment();</span><br><span class="line">console.log(Counter1.value()); &#x2F;* logs 2 *&#x2F;</span><br><span class="line">Counter1.decrement();</span><br><span class="line">console.log(Counter1.value()); &#x2F;* logs 1 *&#x2F;</span><br><span class="line">console.log(Counter2.value()); &#x2F;* logs 0 *&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>请注意两个计数器 <code>Counter1</code> 和 <code>Counter2</code> 是如何维护它们各自的独立性的。每个闭包都是引用自己词法作用域内的变量 <code>privateCounter</code> 。</p>
+<h3 id="闭包存在的坑"><a href="#闭包存在的坑" class="headerlink" title="闭包存在的坑"></a>闭包存在的坑</h3><h4 id="1、this指向问题"><a href="#1、this指向问题" class="headerlink" title="1、this指向问题"></a>1、this指向问题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var object &#x3D; &#123;</span><br><span class="line">	name: &quot;object&quot;,</span><br><span class="line">	getName: function()&#123;</span><br><span class="line">		return function()&#123;</span><br><span class="line">			console.log(this.name)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">object.getName()	&#x2F;&#x2F;undefined</span><br><span class="line">&#x2F;&#x2F;因为闭包函数是在window作用域下执行的，也就是说，this，指向windows</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、内存泄露问题"><a href="#2、内存泄露问题" class="headerlink" title="2、内存泄露问题"></a>2、内存泄露问题</h4><blockquote>
+<p>内存泄漏（Memory Leak）是指程序中己动态分配的堆内存由于某种原因程序未释放或无法释放，造成系统内存的浪费，导致程序运行速度减慢甚至系统崩溃等严重后果.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function  showId() &#123;</span><br><span class="line">    var el &#x3D; document.getElementById(&quot;app&quot;)</span><br><span class="line">    el.onclick &#x3D; function()&#123;</span><br><span class="line">      aler(el.id)   &#x2F;&#x2F; 这样会导致闭包引用外层的el，当执行完showId后，el无法释放</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 改成下面</span><br><span class="line">function  showId() &#123;</span><br><span class="line">    var el &#x3D; document.getElementById(&quot;app&quot;)</span><br><span class="line">    var id  &#x3D; el.id</span><br><span class="line">    el.onclick &#x3D; function()&#123;</span><br><span class="line">      aler(id)   &#x2F;&#x2F; 这样会导致闭包引用外层的el，当执行完showId后，el无法释放</span><br><span class="line">    &#125;</span><br><span class="line">    el &#x3D; null    &#x2F;&#x2F; 主动释放el</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/14/JS%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xya Fred">
+      <meta itemprop="description" content="Welcome to Natsun Blog~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Natsun Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/14/JS%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" class="post-title-link" itemprop="url">JS原型和原型链</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-14 20:41:39" itemprop="dateCreated datePublished" datetime="2020-03-14T20:41:39+08:00">2020-03-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-20 21:35:54" itemprop="dateModified" datetime="2020-03-20T21:35:54+08:00">2020-03-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一个对象不仅拥有自身所定义的属性，还会从其他对象中继承一些属性。当JavaScript在一个对象中找不到需要的属性时，便会到该对象的父属性上找，以此类推，便构成了<strong>对象的原型链</strong></p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">构造函数：function Foo( )&#123; &#125;;</span><br><span class="line">实例对象：let f1 &#x3D; new foo;</span><br></pre></td></tr></table></figure>
+
+<h3 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a>prototype</h3><blockquote>
+<p>每一个JavaScript对象（null除外）在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型”继承“属性。</p>
+</blockquote>
+<p>函数的<code>prototype</code> 属性指向了一个对象，这个对象正是调用该构造函数而创建的实例的原型，也就是这个例子中的 <strong>f1 的原型</strong>。prototype带有<code>__proto__</code> 和 <code>constructor</code>。</p>
+<p>​    </p>
+<h3 id="proto"><a href="#proto" class="headerlink" title="proto"></a>proto</h3><blockquote>
+<p>每一个JavaScript对象（除了null）都具有一个属性，叫<code>__proto__</code> ，这个属性会指向<strong>创建该对象的构造函数</strong>的原型</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(f1.__proto__ &#x3D;&#x3D;&#x3D; Foo.prototype)  &#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h3><blockquote>
+<p>每一个原型都有一个<code>constructor</code> 属性指向关联的构造函数</p>
+</blockquote>
+<p>由于实例对象可以继承原型对象的属性，所以实例对象也拥有<code>constructor</code> 属性，同样指向原型对象对应的构造函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(Foo.prototype.constructor &#x3D;&#x3D;&#x3D; Foo); 	&#x2F;&#x2F;true</span><br><span class="line">console.log(f1.constructor &#x3D;&#x3D;&#x3D; Foo);							&#x2F;&#x2F;true</span><br><span class="line">console.log(f1.hasOwnProperty(&#39;constructor&#39;));		&#x2F;&#x2F;false</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><p>JS在创建对象（不论普通对象还是函数对象）的时候，都有一个叫做<code>__proto__</code>的内置属性，用于指向创建它的函数对象的原型对象prototype。</p>
+<p>以开头的例子为例，<code>Foo.prototype</code>也有<code>__proto__</code>属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(Foo.prototype.__proto__ &#x3D;&#x3D;&#x3D; Object.prototype)	&#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
+
+<p><code>Object.prototype</code>对象也有，但比较特殊，为null值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(Object.prototype.__proto__ &#x3D;&#x3D;&#x3D; null)	&#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
+
+<p>我们把这个由<code>__proto__</code> 串起来的直到<code>Object.prototype.__proto__</code>为null的链叫做<strong>原型链</strong>。原型链的形成是靠<code>__proto__</code>属性而非<code>prototype</code>。</p>
+<p>+++</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>每个构造函数都有一个原型对象</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Foo.prototype</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>原型对象都包含一个指向构造函数的指针</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Foo.prototype.constructor &#x3D;&#x3D;&#x3D; Foo</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>实例都包含一个指向原型对象的内部指针</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fo.__proto__ &#x3D;&#x3D;&#x3D; Foo.prototype</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="http://q76oz3v1b.bkt.clouddn.com/JS%E5%8E%9F%E5%9E%8B%E9%93%BE1.jpg" alt="JS原型链"></p>
+<h4 id="看图说话："><a href="#看图说话：" class="headerlink" title="看图说话："></a>看图说话：</h4><ol>
+<li>所有的函数都有一个<strong>prototype指针</strong>，指向原型对象，如图中的Foo的prototype指针。prototype指针的意义是，当我们使用这个构造函数new出新对象的时候，<strong>新对象的原型是谁</strong>。</li>
+<li><strong>构造函数的prototype所指向的原型对象</strong>有一个constructor指针，指回构造函数。如图中Foo.prototype的constructor指针指向Foo。constructor指针有助于我们找到一个对象的构造函数是谁。</li>
+<li><strong>proto</strong><strong>每个对象都有</strong>，js在new一个对象的时候，会将它的<strong>proto</strong>指向<strong>构造函数的prototype指向的那个对象</strong>。在上图中，f1、f2这些实例对象的<strong>proto</strong>都指向了Foo.prototype。</li>
+</ol>
+<blockquote>
+<p>请注意<strong>proto</strong>与prototype的区别！<strong>proto</strong>才是真正连接原型链的东西，而prototype只是构造函数的一个指针属性而已</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 将伪数组（arguments和字符串）转化成数组</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 方法1：Array.prototype.slice.call(arguments)</span><br><span class="line">function foo(a,b,c,d) &#123; </span><br><span class="line">   var arg &#x3D; Array.prototype.slice.call(arguments); </span><br><span class="line">   console.log(arg); </span><br><span class="line">   console.log(typeof arguments);</span><br><span class="line">   console.log(arguments);</span><br><span class="line">&#125; </span><br><span class="line">foo(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;); &#x2F;&#x2F; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]， object</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 方法2：ES6提供了Array.from，适用对象（伪数组对象和可遍历对象）</span><br><span class="line">let bar &#x3D; new Set([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]);</span><br><span class="line">Array.from(bar); 	&#x2F;&#x2F; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 方法3：拓展运算符 ...</span><br><span class="line">function foo(a,b,c,d) &#123;</span><br><span class="line">&#x2F;&#x2F;    console.log(Array.prototype.slice.call(arguments));</span><br><span class="line">&#x2F;&#x2F;    console.log(Array.from(arguments));</span><br><span class="line">    console.log([...arguments]); &#x2F;&#x2F; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]</span><br><span class="line">&#125;</span><br><span class="line">foo(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;);		&#x2F;&#x2F; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;];</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/14/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E6%A6%82%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -598,146 +1257,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/08/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/08/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="post-title-link" itemprop="url">我的第一篇文章</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-08 22:07:18" itemprop="dateCreated datePublished" datetime="2020-03-08T22:07:18+08:00">2020-03-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-11 11:24:58" itemprop="dateModified" datetime="2020-03-11T11:24:58+08:00">2020-03-11</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>hello，文章内容测试desu</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/08/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xya Fred">
-      <meta itemprop="description" content="Welcome to Natsun Blog~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsun Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/08/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-08 21:51:03" itemprop="dateCreated datePublished" datetime="2020-03-08T21:51:03+08:00">2020-03-08</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -805,20 +1329,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
